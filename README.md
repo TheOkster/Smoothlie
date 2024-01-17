@@ -1,4 +1,5 @@
 Here are the instructions they provided. We can change the README later
+Also make sure to copy the .env.example and save it to a new file called .env with the SRV replaced with ours (should be in the group chat).
 
 # How to code a webapp with this skeleton
 
