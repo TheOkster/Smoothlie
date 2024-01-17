@@ -1,3 +1,5 @@
+Here are the instructions they provided. We can change the README later
+
 # How to code a webapp with this skeleton
 
 ## Initial setup
