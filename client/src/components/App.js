@@ -5,6 +5,7 @@ import jwt_decode from "jwt-decode";
 
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
+import DragndDrop from "./DragndDrop.js";
 
 import "../utilities.css";
 
@@ -43,20 +44,23 @@ const App = () => {
   };
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Skeleton
-            path="/"
-            handleLogin={handleLogin}
-            handleLogout={handleLogout}
-            userId={userId}
-          />
-        }
-      />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Skeleton
+              path="/"
+              handleLogin={handleLogin}
+              handleLogout={handleLogout}
+              userId={userId}
+            />
+          }
+        />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      <DragndDrop />
+    </>
   );
 };
 
