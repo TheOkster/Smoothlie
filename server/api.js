@@ -21,6 +21,16 @@ const router = express.Router();
 //initialize socket
 const socketManager = require("./server-socket");
 
+let data = {
+  smoothies: [
+    {
+      _id: "43aeb65f-eaa6-41e8-92c5-153eaae9d4e8",
+      name: "Jan 29 Plan",
+      owner: "c9bb8a85-9461-4907-a124-b0966fc8cf82",
+    },
+  ],
+};
+
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
 router.get("/whoami", (req, res) => {
@@ -30,6 +40,26 @@ router.get("/whoami", (req, res) => {
   }
 
   res.send(req.user);
+});
+router.get("/whoami", (req, res) => {
+  if (!req.user) {
+    // not logged in
+    return res.send({});
+  }
+
+  res.send(req.user);
+});
+router.get("/smoothie", function (req, res) {
+  if (id in req) {
+  }
+  foundID = data.smoothies.find(function (smoothie) {
+    return smoothie._id == req.id;
+  });
+  if (!foundID) {
+    return res.status(404).send("Smoothie not found");
+  }
+  var smoothie = foundID;
+  res.send(smoothie);
 });
 
 router.post("/initsocket", (req, res) => {
