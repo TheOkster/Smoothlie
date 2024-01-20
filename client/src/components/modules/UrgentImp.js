@@ -5,19 +5,23 @@ import Draggable from "./Draggable";
 import Droppable from "./Droppable";
 
 const UrgentImp = () => {
-  const containers = ["A", "B", "C"];
+  const containers = ["green", "blue", "red", "purple"];
   const [parent, setParent] = useState(null);
-  const draggableMarkup = <Draggable id="draggable">Drag me</Draggable>;
+  const draggableMarkup = <Draggable id="draggable">Be gay and do crime</Draggable>;
 
   return (
     <DndContext onDragEnd={handleDragEnd}>
-      {parent === null ? draggableMarkup : null}
+      <div>
+        <Draggable id="task-1">Be gay and do crime</Draggable>
+        <Draggable id="task-2">Be gayer and do more crime</Draggable>
+      </div>
 
+      {/* {parent === null ? draggableMarkup : null} */}
       {containers.map((id) => (
         // We updated the Droppable component so it would accept an `id`
         // prop and pass it to `useDroppable`
-        <Droppable key={id} id={id}>
-          {parent === id ? draggableMarkup : "Drop here"}
+        <Droppable key={id} id={id} color={id}>
+          {parent === id ? draggableMarkup : id}
         </Droppable>
       ))}
     </DndContext>

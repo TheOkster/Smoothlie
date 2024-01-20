@@ -9,6 +9,10 @@ const Droppable = (props) => {
 
   const style = {
     color: isOver ? "green" : undefined,
+    backgroundColor: props.color,
+    padding: "10px",
+    width: "100px",
+    height: "100px",
   };
 
   return (

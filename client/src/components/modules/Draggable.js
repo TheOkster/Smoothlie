@@ -8,6 +8,8 @@ const Draggable = (props) => {
   });
   const style = {
     transform: CSS.Translate.toString(transform),
+    width: "100px",
+    backgroundColor: "pink",
   };
 
   return (
