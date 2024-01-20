@@ -27,7 +27,7 @@ const Home = ({ userId, handleLogin, handleLogout }) => {
           </div>
         )}
       </GoogleOAuthProvider>
-      heyy wassup
+      <div className="smoothlie">Smoothlie</div>
     </>
   );
 };

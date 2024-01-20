@@ -1,16 +1,20 @@
 .NavBar-container {
   padding: var(--s) var(--m);
-  background-color: var(--primary);
+  background: #dbc0ab;
 }
 
 .NavBar-title {
   color: var(--white);
   font-size: 20px;
-}
-
-.NavBar-title-red {
-  color: #ffa4a4;
-  font-size: 20px;
+  font-family: "Josefin Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 100px;
+  line-height: 100px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #ee5469;
 }
 
 .NavBar-linkContainer {
@@ -20,12 +24,21 @@
 .NavBar-link,
 .NavBar-link:visited {
   color: var(--white);
-  opacity: 0.6;
+  opacity: 0.7;
   text-decoration: none;
+  /* Past Smoothies */
+
+  /* font-family: "Roboto"; */
+  /* font-style: normal; */
+  /* font-weight: 600; */
+  font-size: 20px;
+  line-height: 38px;
+
+  color: #b16660;
 }
 
 .NavBar-link:hover {
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .NavBar-link.NavBar-login {
