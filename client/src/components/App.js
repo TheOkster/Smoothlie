@@ -56,7 +56,6 @@ const App = () => {
           />
         }
       />
-      <Route path="/test" element={<PastSmoothies />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
