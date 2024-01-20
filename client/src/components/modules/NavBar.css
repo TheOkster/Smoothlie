@@ -1,15 +1,11 @@
 .NavBar-container {
   padding: var(--s) var(--m);
   background: #dbc0ab;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw
 }
-
-/* .NavBar-logo{
-  /* logo */
-
-
-
-
-/* } */ 
 
 .NavBar-title {
   color: var(--white);
