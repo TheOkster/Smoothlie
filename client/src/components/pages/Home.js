@@ -25,7 +25,7 @@ const Home = ({ userId, handleLogin, handleLogout }) => {
           <GoogleLogin onSuccess={handleLogin} onError={(err) => console.log(err)} />
         )}
       </GoogleOAuthProvider>
-      heyy wassup
+      <div className="smoothlie">Smoothlie</div>
     </>
   );
 };

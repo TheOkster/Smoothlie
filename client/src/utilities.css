@@ -31,6 +31,19 @@
   --l: 24px;
 }
 
+.smoothlie {
+  font-family: "Josefin Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 100px;
+  line-height: 100px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #ee5469;
+}
+
 body {
   margin: 0;
   padding: 0;
