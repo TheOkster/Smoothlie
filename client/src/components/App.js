@@ -11,6 +11,7 @@ import "../utilities.css";
 import { socket } from "../client-socket.js";
 
 import { get, post } from "../utilities";
+import PastSmoothies from "./pages/PastSmoothies.js";
 
 /**
  * Define the "App" component
@@ -55,6 +56,7 @@ const App = () => {
           />
         }
       />
+      <Route path="/test" element={<PastSmoothies />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
