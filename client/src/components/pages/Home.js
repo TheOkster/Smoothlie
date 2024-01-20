@@ -11,23 +11,25 @@ const GOOGLE_CLIENT_ID =
 const Home = ({ userId, handleLogin, handleLogout }) => {
   return (
     <>
-      <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-        {userId ? (
-          <button
-            onClick={() => {
-              googleLogout();
-              handleLogout();
-            }}
-          >
-            Logout
-          </button>
-        ) : (
-          <div className="Home-centerButton">
-            <GoogleLogin onSuccess={handleLogin} onError={(err) => console.log(err)} />
-          </div>
-        )}
-      </GoogleOAuthProvider>
-      <div className="smoothlie">Smoothlie</div>
+      <div className="Home-container">
+        <div className="Home-logo">Smoothlie</div>
+          <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+            {userId ? (
+              <button
+                onClick={() => {
+                  googleLogout();
+                  handleLogout();
+                }}
+              >
+                Logout
+              </button>
+            ) : (
+              <div className="Home-centerButton">
+                <GoogleLogin onSuccess={handleLogin} onError={(err) => console.log(err)} />
+              </div>
+            )}
+          </GoogleOAuthProvider>
+        </div>
     </>
   );
 };
