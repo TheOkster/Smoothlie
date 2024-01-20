@@ -4,7 +4,7 @@ import { useDroppable } from "@dnd-kit/core";
 
 const Droppable = (props) => {
   const { isOver, setNodeRef } = useDroppable({
-    id: "droppable",
+    id: props.id,
   });
 
   const style = {
@@ -14,7 +14,6 @@ const Droppable = (props) => {
   return (
     <div ref={setNodeRef} style={style}>
       {props.children}
-      HIIIII
     </div>
   );
 };
