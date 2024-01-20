@@ -4,14 +4,17 @@ import { Routes, Route } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
 import NotFound from "./pages/NotFound.js";
-import Skeleton from "./pages/Skeleton.js";
+import Home from "./pages/Home.js";
+import NewSmoothie from "./pages/NewSmoothie.js";
+import PastSmoothies from "./pages/PastSmoothies.js";
+
+import NavBar from "./modules/NavBar.js";
 
 import "../utilities.css";
 
 import { socket } from "../client-socket.js";
 
 import { get, post } from "../utilities";
-import PastSmoothies from "./pages/PastSmoothies.js";
 
 /**
  * Define the "App" component
@@ -44,20 +47,20 @@ const App = () => {
   };
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Skeleton
-            path="/"
-            handleLogin={handleLogin}
-            handleLogout={handleLogout}
-            userId={userId}
-          />
-        }
-      />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <>
+      <NavBar />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
+          }
+        />
+        <Route path="/NewSmoothie" element={<NewSmoothie path="/NewSmoothie" />} />
+        <Route path="/PastSmoothies" element={<PastSmoothies path="/PastSmoothies" />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
   );
 };
 
