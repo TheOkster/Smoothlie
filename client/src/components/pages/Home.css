@@ -1,1 +1,13 @@
 /* Fill me in :) */
+.Home-container{
+    width: 489px;
+    height: 360px;
+    flex-shrink: 0;
+}
+
+.Home-centerButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;/*  is supposed to center items vertically in the container*/
+    height: 75vh; /*takes up the full viewport height but maybe i should save this property for the full container*/
+}
