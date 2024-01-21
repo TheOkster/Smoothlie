@@ -6,6 +6,7 @@ const NewSmoothie = () => {
   return (
     <>
       <div>Create a new smoothie! Click the button below to begin.</div>
+      {/* <UrgentImp /> */}
     </>
   );
 };

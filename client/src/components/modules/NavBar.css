@@ -1,10 +1,6 @@
 .NavBar-container {
   padding: var(--s) var(--m);
   background: #dbc0ab;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw
 }
 
 .NavBar-title {
@@ -32,9 +28,9 @@
   text-decoration: none;
   /* Past Smoothies */
 
-  /* font-family: "Roboto"; */
-  /* font-style: normal; */
-  /* font-weight: 600; */
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 600;
   font-size: 20px;
   line-height: 38px;
 
