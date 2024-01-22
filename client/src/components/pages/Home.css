@@ -1,13 +1,63 @@
-/* Fill me in :) */
+.Home-container {
+    width: 100vw;
+    height: 100vh;
+    flex-shrink: 0; /* change this later */
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center; /* Center items vertically */
+}
+
+.Home-logo {
+    height: 106px;
+    /* Remove left and top properties */
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 100px; /* Adjust the font size to fit within the container */
+    line-height: 36px; /* Adjust line height accordingly */
+    display: flex;
+    text-align: center;
+    color: #EE5469;
+}
+
+.Home-centerButton {
+    display: flex;
+    justify-content: center;
+}
+/*
+
 .Home-container{
-    width: 489px;
+    width: 500px;
     height: 360px;
-    flex-shrink: 0;
+    flex-shrink: 0; /* change this later */
+    /*flex-direction:column;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;/*  is supposed to center items vertically in the container*/
+    /*height: 100vh;
+}
+
+.Home-logo{
+    /* width: 501px; probably don't need this */
+    /*height: 106px;
+    /* left: calc(50% - 501px/2 + 8.5px); /* what*/
+    /*top: 377px; */
+
+    /*font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 100px;
+    line-height: 100px;
+    display: flex;
+    text-align: center;
+
+    color: #EE5469;
 }
 
 .Home-centerButton{
     display: flex;
     justify-content: center;
-    align-items: center;/*  is supposed to center items vertically in the container*/
-    height: 75vh; /*takes up the full viewport height but maybe i should save this property for the full container*/
-}
+} */
