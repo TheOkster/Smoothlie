@@ -11,6 +11,9 @@ const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
+const Smoothie = require("./models/smoothie.js");
+const Task = require("./models/task.js");
+const mongoose = require("mongoose");
 
 // import authentication library
 const auth = require("./auth");
@@ -21,16 +24,25 @@ const router = express.Router();
 //initialize socket
 const socketManager = require("./server-socket");
 
-let data = {
-  smoothies: [
-    {
-      _id: "43aeb65f-eaa6-41e8-92c5-153eaae9d4e8",
-      name: "Jan 29 Plan",
-      owner: "c9bb8a85-9461-4907-a124-b0966fc8cf82",
-    },
-  ],
-};
-
+// const smoothieTest = new Smoothie({
+//   name: "First Smoothie",
+//   owner: "105388941574105185560",
+//   tasks: [
+//     {
+//       startTimestamp: 1122145200,
+//       endTimestamp: 5855655600,
+//     },
+//   ],
+// });
+// const taskTest = new Task({
+//   name: "18.02A PSET 3",
+//   owner: "105388941574105185560",
+//   duration: 300,
+//   notes: "",
+//   source: "GCal",
+// });
+// smoothieTest.save();
+// taskTest.save();
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
 router.get("/whoami", (req, res) => {
@@ -49,19 +61,90 @@ router.get("/whoami", (req, res) => {
 
   res.send(req.user);
 });
-router.get("/smoothie", function (req, res) {
-  if (id in req) {
+router.get("/smoothie", (req, res) => {
+  // Didn't Bother for Now but could change into a function since
+  // this and task use practically the same code
+  if (!req.query._id) {
+    return res.status(400).send({ error: "No ID selected" });
   }
-  foundID = data.smoothies.find(function (smoothie) {
-    return smoothie._id == req.id;
+  let parseableID;
+  try {
+    parseableID = mongoose.Types.ObjectId(req.query._id);
+  } catch {
+    return res.status(400).send({ message: "Invalid ID Type" });
+  }
+  Smoothie.findOne({ _id: parseableID })
+    .then((smoothie) => {
+      if (!smoothie) {
+        return res.status(404).send({ message: "Smoothie with ID Not Found" });
+      }
+      res.send(smoothie);
+    })
+    .catch((err) => res.status(500).send(`Internal Server Error`));
+});
+router.get("/task", (req, res) => {
+  if (!req.query._id) {
+    return res.status(400).send({ error: "No ID selected" });
+  }
+  let parseableID;
+  try {
+    parseableID = mongoose.Types.ObjectId(req.query._id);
+  } catch {
+    return res.status(400).send({ message: "Invalid ID Type" });
+  }
+  Task.findOne({ _id: parseableID })
+    .then((task) => {
+      if (!task) {
+        return res.status(404).send({ message: "Task with ID Not Found" });
+      }
+      res.send(task);
+    })
+    .catch((err) => res.status(500).send("Internal Server Error"));
+});
+router.get("/smoothies", (req, res) => {
+  if (!req.query.owner) {
+    return res.status(400).send({ error: "No Owner selected" });
+  }
+  Smoothie.find({ owner: req.query.owner })
+    .then((smoothies) => {
+      res.send({ smoothies: smoothies });
+    })
+    .catch((err) => res.status(500).send("Internal Server Error"));
+});
+router.get("/tasks", (req, res) => {
+  if (!req.query.owner) {
+    return res.status(400).send({ error: "No Owner selected" });
+  }
+  Task.find({ owner: req.query.owner })
+    .then((tasks) => {
+      res.send({ tasks: tasks });
+    })
+    .catch((err) => res.status(500).send("Internal Server Error"));
+});
+router.post("/smoothie", (req, res) => {
+  // TODO: Add error checking?
+  const smoothie = new Smoothie({
+    name: req.body.name,
+    owner: req.body.owner,
+    events: req.body.events,
   });
-  if (!foundID) {
-    return res.status(404).send("Smoothie not found");
-  }
-  var smoothie = foundID;
+  smoothie.save();
   res.send(smoothie);
 });
-
+router.post("/task", (req, res) => {
+  const task = new Task({
+    name: req.body.name,
+    owner: req.body.owner,
+    duration: req.body.duration,
+    label: req.body.label,
+    category: req.body.category,
+    notes: req.body.notes,
+    source: req.body.source,
+  });
+  task.save();
+  res.send(task);
+});
+// TODO: Add Post endpoint to make it easier to add multiple smoothies/tasks at once?
 router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in
   if (req.user)
