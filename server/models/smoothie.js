@@ -12,6 +12,9 @@ const SmoothieSchema = new mongoose.Schema({
     },
   ],
 });
-
+const IncompleteSmoothieSchema = new mongoose.Schema({
+  owner: String,
+  events: [],
+});
 // compile model from schema
 module.exports = mongoose.model("smoothie", SmoothieSchema);

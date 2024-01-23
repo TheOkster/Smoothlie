@@ -8,6 +8,7 @@ const PastSmoothies = () => {
       _id="feelings"
       _name="feelings"
       label="Enter your feelings: "
+      handleChange={() => {}}
       fields={["I", "love", "this", "(jk)"]}
     />
   );

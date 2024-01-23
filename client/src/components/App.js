@@ -15,6 +15,8 @@ import "../utilities.css";
 import { socket } from "../client-socket.js";
 
 import { get, post } from "../utilities";
+import NewTask from "./pages/NewTasks.js";
+import EnterTasks from "./pages/EnterTasks.js";
 
 /**
  * Define the "App" component
@@ -58,6 +60,8 @@ const App = () => {
         />
         <Route path="/NewSmoothie" element={<NewSmoothie path="/NewSmoothie" />} />
         <Route path="/PastSmoothies" element={<PastSmoothies path="/PastSmoothies" />} />
+        <Route path="/newtask" element={<NewTask path="/newtask" />} />
+        <Route path="/entertasks" element={<EnterTasks path="/entertasks" />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

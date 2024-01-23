@@ -137,7 +137,7 @@ router.post("/task", (req, res) => {
     owner: req.body.owner,
     duration: req.body.duration,
     label: req.body.label,
-    category: req.body.category,
+    deadline: req.body.deadline,
     notes: req.body.notes,
     source: req.body.source,
   });
