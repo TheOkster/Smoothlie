@@ -8,12 +8,12 @@ const NewSmoothie = (props) => {
     return <div>Please login before you use Smoothlie!</div>;
   }
   return (
-    <>
+    <div className="TaskPage-pageContainer">
       <div>Create a new smoothie! Click the button below to begin.</div>
       <Link to={{ pathname: "/selecttasks" }}>
-        <button>Begin</button>
+        <button className="Button">Begin</button>
       </Link>
-    </>
+    </div>
   );
 };
 

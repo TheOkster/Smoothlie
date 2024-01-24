@@ -1,9 +1,9 @@
 .NewSmoothie-container {
     width: 100vw;
-    height: 100vh;
+    height: 100vh; /* need to make this like, include the navbar so slightly less than 100vh*/
+    display: flex;
     flex-shrink: 0; /* change this later */
     flex-direction: column;
-    display: flex;
     justify-content: center;
     text-align: center;
     align-items: center; /* Center items vertically */

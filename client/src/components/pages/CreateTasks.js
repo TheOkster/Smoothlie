@@ -13,7 +13,7 @@ const CreateTasks = (props) => {
     return <div>Please login before you use Smoothlie!</div>;
   }
   return (
-    <>
+    <div className="TaskPage-pageContainer">
       <h1>Tasks:</h1>
       <ul className="EnterTasks-taskList">
         {taskList.map((task) => (
@@ -34,7 +34,7 @@ const CreateTasks = (props) => {
       >
         Finish Adding Tasks
       </button>
-    </>
+    </div>
   );
 };
 
