@@ -5,6 +5,7 @@ import { get } from "../../utilities";
 import { useState } from "react";
 import Checkbox from "../modules/Checkbox";
 import "./General.css";
+import "./TaskPage.css";
 
 const SelectTasks = (props) => {
   if (!props.userId) {
@@ -15,7 +16,7 @@ const SelectTasks = (props) => {
   const [checkedTasks, setCheckedTasks] = useState(new Set());
   get("/api/tasks", { owner: props.userId }).then((tasks) => setPossibleTaskList(tasks));
   return (
-    <div>
+    <div className="TaskPage-pageContainer">
       {possibleTaskList.map((task) => (
         <Checkbox
           for={task._id}

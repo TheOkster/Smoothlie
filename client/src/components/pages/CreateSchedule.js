@@ -31,7 +31,7 @@ const CreateSchedule = (props) => {
 
   // to do: add functionality for user to enter startdate, numdays, mintime, maxtime
   return (
-    <>
+    <div className="TaskPage-pageContainer">
       <div>
         <ScheduleSelector
           minTime={minTime}
@@ -44,8 +44,8 @@ const CreateSchedule = (props) => {
           timeFormat="h:mma"
         />
       </div>
-      <button onClick={handleClick}>Submit Availability</button>
-    </>
+      <button className="Button" onClick={handleClick}>Submit Availability</button>
+    </div>
   );
 };
 

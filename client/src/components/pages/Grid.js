@@ -22,7 +22,7 @@ const GridPage = (props) => {
     return <div>Please login before you use Smoothlie!</div>;
   }
   return (
-    <>
+    <div className="TaskPage-pageContainer">
       <UrgentImp taskList={taskList} handleTaskList={(event) => setQuadrants(event)} />
       <button onClick={handleClick}>Next</button>
     </>
