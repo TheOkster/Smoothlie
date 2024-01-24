@@ -13,6 +13,7 @@ const express = require("express");
 const User = require("./models/user");
 const Smoothie = require("./models/smoothie.js");
 const Task = require("./models/task.js");
+const scheduler = require("./scheduler.js");
 const mongoose = require("mongoose");
 
 // import authentication library
@@ -144,6 +145,10 @@ router.post("/initsocket", (req, res) => {
   if (req.user)
     socketManager.addUser(req.user, socketManager.getSocketFromSocketID(req.body.socketid));
   res.send({});
+});
+
+router.get("/scheduler", (req, res) => {
+  res.send(scheduler.scheduleTask(req.body.schedule, req.body.tasks));
 });
 
 // |------------------------------|
