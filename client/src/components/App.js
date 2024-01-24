@@ -21,6 +21,7 @@ import { socket } from "../client-socket.js";
 import { get, post } from "../utilities";
 import NewTask from "./pages/NewTasks.js";
 import CreateTasks from "./pages/CreateTasks.js";
+import Result from "./pages/Result.js";
 
 /**
  * Define the "App" component
