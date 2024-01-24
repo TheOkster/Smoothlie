@@ -8,8 +8,8 @@ import Droppable from "./Droppable";
  * Proptypes
  *  *  sets it to active
  * @property {Array} taskList
+ * @param onChange
  */
-
 const UrgentImp = (props) => {
   // console.log(props.taskList.map((task) => task.name));
   const [taskList, setTaskList] = useState({
