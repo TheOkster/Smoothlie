@@ -1,0 +1,23 @@
+.NewSmoothie-container {
+    width: 100vw;
+    height: 100vh;
+    flex-shrink: 0; /* change this later */
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center; /* Center items vertically */
+}
+
+.NewSmoothie-text {
+    height: 106px;
+    /* Remove left and top properties */
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px; /* Adjust the font size to fit within the container */
+    line-height: 36px; /* Adjust line height accordingly */
+    display: flex;
+    text-align: center;
+    color: #EE5469;
+}

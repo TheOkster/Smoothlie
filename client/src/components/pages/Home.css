@@ -21,6 +21,18 @@
     text-align: center;
     color: #EE5469;
 }
+.Home-l { /*figure this out later or just insert a photo*/
+    height: inline;
+    /* Remove left and top properties */
+    font-family: 'Pacifico';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 100px; /* Adjust the font size to fit within the container */
+    line-height: 36px; /* Adjust line height accordingly */
+    display: flex;
+    text-align: left;
+    color: #EE5469;
+}
 
 .Home-centerButton {
     display: flex;
