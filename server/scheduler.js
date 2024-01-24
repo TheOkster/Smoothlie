@@ -2,6 +2,7 @@ const { compareAsc } = require("date-fns");
 const TIME_INTERVAL = 15;
 
 const getFreeTimes = (schedule) => {
+  console.log(`schedule ${schedule}`);
   schedule.sort(compareAsc);
 
   // vision: taking in the input from the schedule, this should output a dictionary of the form
@@ -140,6 +141,7 @@ const scheduleTask = (newSchedule, scheduleObj, task, time, blockLength) => {
 const createSchedule = (tasks, schedule) => {
   // returns an array where the first element is a boolean indicating if all tasks were scheduled
   // and second element is an array of events that were scheduled
+  console.log(`task list ${tasks}`);
   const tasksObj = formatTasks(tasks);
   const scheduleObj = getFreeTimes(schedule);
 
@@ -151,7 +153,6 @@ const createSchedule = (tasks, schedule) => {
   const newSchedule = [];
 
   const startTime = Date.now();
-  console.log(startTime);
 
   while (tasksByDeadline.length > 0) {
     if (Date.now() - startTime > 10 * 1000) {
@@ -170,10 +171,11 @@ const createSchedule = (tasks, schedule) => {
     if (!time) {
       // couldn't find a time block to do entire task
       // split task in half and try scheduling that instead
-      newTasks = [
-        { ...currentTask, duration: Math.floor(currentTask.duration / 2) },
-        { ...currentTask, duration: Math.ceil(currentTask.duration / 2) },
-      ];
+      const task1 = currentTask;
+      task1.duration = Math.floor(currentTask.duration / 2);
+      const task2 = currentTask;
+      task2.duration = Math.ceil(currentTask.duration / 2);
+      newTasks = [task1, task2];
       tasksByDeadline = newTasks.concat(tasksByDeadline);
     } else {
       // schedule task for the found time block
@@ -220,5 +222,5 @@ const schedule = [
 console.log(createSchedule(myTasks, schedule));
 
 module.exports = {
-  scheduleTask,
+  createSchedule,
 };

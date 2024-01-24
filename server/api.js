@@ -120,7 +120,7 @@ router.post("/smoothie", (req, res) => {
     // In the future, we could add created date, authorized users, etc.
     name: req.body.name,
     owner: req.body.owner,
-    timestamps: req.body.timestamps,
+    // timestamps: req.body.timestamps,
     events: req.body.events,
   });
   smoothie.save();
@@ -148,7 +148,13 @@ router.post("/initsocket", (req, res) => {
 });
 
 router.get("/scheduler", (req, res) => {
-  res.send(scheduler.scheduleTask(req.body.schedule, req.body.tasks));
+  // console.log(req.body.taskList[0]);
+  console.log(req.query.taskList);
+  const available = req.query.schedule;
+  console.log(`type of available within api call ${typeof available}`);
+  const schedule = scheduler.createSchedule(req.query.taskList, available);
+  console.log(schedule);
+  res.send([true, "hello"]);
 });
 
 // |------------------------------|
