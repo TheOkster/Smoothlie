@@ -84,6 +84,8 @@ const findTime = (scheduleObj, task) => {
       } else {
         start += 1;
       }
+    } else {
+      start += 1;
     }
   }
   // failed to schedule task
@@ -123,7 +125,6 @@ const updateSchedule = (scheduleObj, time, blockLength, taskDuration) => {
 };
 
 const scheduleTask = (newSchedule, scheduleObj, task, time, blockLength) => {
-  newSchedule.set(new Date(time), task);
   const startTime = new Date(time);
   const endTime = new Date(time + task.duration * 60 * 1000);
   newSchedule.push({
@@ -137,20 +138,27 @@ const scheduleTask = (newSchedule, scheduleObj, task, time, blockLength) => {
 };
 
 const createSchedule = (tasks, schedule) => {
+  // returns an array where the first element is a boolean indicating if all tasks were scheduled
+  // and second element is an array of events that were scheduled
   const tasksObj = formatTasks(tasks);
   const scheduleObj = getFreeTimes(schedule);
 
   // array of all the tasks sorted so soonest deadline task is first
-  const tasksByDeadline = [...tasks].sort((task1, task2) => {
+  let tasksByDeadline = [...tasks].sort((task1, task2) => {
     compareAsc(task1.deadline, task2.deadline);
   });
 
-  console.log(`tasks by deadline: ${tasksByDeadline}`);
   const newSchedule = [];
 
+  const startTime = Date.now();
+  console.log(startTime);
+
   while (tasksByDeadline.length > 0) {
-    // assuming it is possible to schedule all your tasks
-    changed = false;
+    if (Date.now() - startTime > 10 * 1000) {
+      console.log("could not find schedule that works for all tasks");
+      return [false, newSchedule];
+    }
+
     const currentTask = tasksByDeadline.shift(); // get first element from tasks list and remove it
 
     // find a time that works for the current task
@@ -162,8 +170,8 @@ const createSchedule = (tasks, schedule) => {
       // couldn't find a time block to do entire task
       // split task in half and try scheduling that instead
       newTasks = [
-        { ...currentTask, duration: Math.floor(duration / 2) },
-        { ...currentTask, duration: Math.ceil(duration / 2) },
+        { ...currentTask, duration: Math.floor(currentTask.duration / 2) },
+        { ...currentTask, duration: Math.ceil(currentTask.duration / 2) },
       ];
       tasksByDeadline = newTasks.concat(tasksByDeadline);
     } else {
@@ -172,25 +180,25 @@ const createSchedule = (tasks, schedule) => {
     }
   }
 
-  return newSchedule;
+  return [true, newSchedule];
 };
 
 // testing
 
-// const myTasks = [
-//   { name: "be gay do crime", duration: 30, deadline: new Date(2024, 1, 25, 1, 0, 0) },
-//   { name: "be gayer and do more crime", duration: 15, deadline: new Date(2024, 1, 26, 1, 0, 0) },
-//   { name: "hellloooooo", duration: 15, deadline: new Date(2024, 1, 28, 5, 15, 0) },
-// ];
+const myTasks = [
+  { name: "be gay do crime", duration: 30, deadline: new Date(2024, 1, 25, 1, 0, 0) },
+  { name: "be gayer and do more crime", duration: 60, deadline: new Date(2024, 1, 26, 1, 0, 0) },
+  { name: "hellloooooo", duration: 15, deadline: new Date(2024, 1, 28, 5, 15, 0) },
+];
 
-// const schedule = [
-//   new Date(2024, 1, 24, 9, 0, 0),
-//   new Date(2024, 1, 24, 9, 15, 0),
-//   new Date(2024, 1, 24, 9, 30, 0),
-//   new Date(2024, 1, 25, 8, 30, 0),
-//   new Date(2024, 1, 25, 8, 45, 0),
-//   new Date(2024, 1, 21, 11, 15, 0),
-// ];
+const schedule = [
+  new Date(2024, 1, 24, 9, 0, 0),
+  new Date(2024, 1, 24, 9, 15, 0),
+  new Date(2024, 1, 24, 9, 30, 0),
+  new Date(2024, 1, 25, 8, 30, 0),
+  new Date(2024, 1, 25, 8, 45, 0),
+  new Date(2024, 1, 21, 11, 15, 0),
+];
 
 // const scheduleObj = getFreeTimes(schedule);
 // console.log(scheduleObj);
@@ -208,7 +216,7 @@ const createSchedule = (tasks, schedule) => {
 
 // console.log(scheduleObj);
 
-// console.log(createSchedule(myTasks, schedule));
+console.log(createSchedule(myTasks, schedule));
 
 module.exports = {
   scheduleTask,
