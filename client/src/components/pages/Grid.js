@@ -4,7 +4,7 @@ import UrgentImp from "../modules/UrgentImp.js";
 
 const GridPage = (props) => {
   const location = useLocation();
-  if (!(state in location)) {
+  if (!location.state?.taskList) {
     console.log("yes");
     return <div>Please don't call this page directly.</div>;
   }

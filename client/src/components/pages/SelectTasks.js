@@ -4,7 +4,7 @@ import UrgentImp from "../modules/UrgentImp.js";
 import { get } from "../../utilities";
 import { useState } from "react";
 import Checkbox from "../modules/Checkbox";
-import "./General.css"
+import "./General.css";
 
 const SelectTasks = (props) => {
   if (!props.userId) {
@@ -13,6 +13,7 @@ const SelectTasks = (props) => {
   const navigate = useNavigate();
   const [possibleTaskList, setPossibleTaskList] = useState([]);
   const [checkedTasks, setCheckedTasks] = useState(new Set());
+  console.log(props.available);
   get("/api/tasks", { owner: props.userId }).then((tasks) => setPossibleTaskList(tasks));
   return (
     <div>
@@ -30,7 +31,8 @@ const SelectTasks = (props) => {
           }}
         />
       ))}
-      <button className="Button"
+      <button
+        className="Button"
         onClick={() => {
           navigate("/entertasks", {
             state: { taskList: possibleTaskList.filter((task) => checkedTasks.has(task._id)) },

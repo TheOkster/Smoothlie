@@ -22,6 +22,7 @@ import { get, post } from "../utilities";
 import NewTask from "./pages/NewTasks.js";
 import CreateTasks from "./pages/CreateTasks.js";
 import Result from "./pages/Result.js";
+import CreateSchedule from "./pages/CreateSchedule.js";
 
 /**
  * Define the "App" component
@@ -74,6 +75,7 @@ const App = () => {
         <Route path="/entertasks" element={<CreateTasks path="/entertasks" userId={userId} />} />
         <Route path="/result" element={<Result path="/result" userId={userId} />} />
         <Route path="/TaskPage" element={<TaskPage path="/TaskPage" />} />
+        <Route path="/createschedule" element={<CreateSchedule path="/createschedule" />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

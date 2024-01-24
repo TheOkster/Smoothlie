@@ -2,19 +2,15 @@ import React, { useState } from "react";
 import ScheduleSelector from "react-schedule-selector";
 
 const EnterSchedule = (props) => {
-  const [schedule, setSchedule] = useState([]);
+  const [availability, setAvailability] = useState([]);
 
   const handleChange = (newSchedule) => {
-    setSchedule(newSchedule);
+    setAvailability(newSchedule);
   };
-
-  // if (schedule.length > 1) {
-  //   console.log(schedule[0].getTime());
-  // }
 
   return (
     <ScheduleSelector
-      selection={schedule}
+      selection={availability}
       numDays={5}
       minTime={8}
       maxTime={23}
