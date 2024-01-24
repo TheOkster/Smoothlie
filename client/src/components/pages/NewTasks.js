@@ -52,7 +52,6 @@ const NewTask = (props) => {
   }
   return (
     <div className="TaskPage-pageContainer">
-
       <h1>Enter your Lemons:</h1>
       <div className="TaskPage-line">
         <p>Task Name:</p>

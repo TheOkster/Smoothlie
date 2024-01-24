@@ -1,6 +1,6 @@
 .Button {
-    position: absolute;
-    top:50%;
+    position: relative;
+    top:10%;
     background-color:#0a0a23;
     color: #fff;
     border:none;
