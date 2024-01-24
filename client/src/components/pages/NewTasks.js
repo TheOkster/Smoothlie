@@ -46,6 +46,9 @@ const NewTask = (props) => {
       })
     );
   };
+  if (!props.userId) {
+    return <div>Please login before you use Smoothlie!</div>;
+  }
   return (
     <>
       <h1>Enter your Lemons:</h1>

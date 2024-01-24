@@ -4,11 +4,14 @@ import Dropdown from "../modules/Dropdown";
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-const CreateTasks = () => {
+const CreateTasks = (props) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [taskList, setTaskList] = useState(location.state?.taskList ?? []);
   //  console.log(taskList);
+  if (!props.userId) {
+    return <div>Please login before you use Smoothlie!</div>;
+  }
   return (
     <>
       <h1>Tasks:</h1>
