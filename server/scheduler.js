@@ -155,6 +155,7 @@ const createSchedule = (tasks, schedule) => {
 
   while (tasksByDeadline.length > 0) {
     if (Date.now() - startTime > 10 * 1000) {
+      // ten seconds have passed and haven't fully scheduled everything -- break from loop
       console.log("could not find schedule that works for all tasks");
       return [false, newSchedule];
     }
