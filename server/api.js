@@ -116,8 +116,10 @@ router.get("/tasks", (req, res) => {
 router.post("/smoothie", (req, res) => {
   // TODO: Add error checking?
   const smoothie = new Smoothie({
+    // In the future, we could add created date, authorized users, etc.
     name: req.body.name,
     owner: req.body.owner,
+    timestamps: req.body.timestamps,
     events: req.body.events,
   });
   smoothie.save();
