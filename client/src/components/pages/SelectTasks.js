@@ -4,6 +4,8 @@ import UrgentImp from "../modules/UrgentImp.js";
 import { get } from "../../utilities";
 import { useState } from "react";
 import Checkbox from "../modules/Checkbox";
+import "./General.css"
+
 const SelectTasks = (props) => {
   if (!props.userId) {
     return <div>Please login before you use Smoothlie!</div>;
@@ -28,7 +30,7 @@ const SelectTasks = (props) => {
           }}
         />
       ))}
-      <button
+      <button className="Button"
         onClick={() => {
           navigate("/entertasks", {
             state: { taskList: possibleTaskList.filter((task) => checkedTasks.has(task._id)) },

@@ -24,7 +24,7 @@ const NavBar = (props) => {
           Past Smoothies
         </Link>
         <Link to="/TaskPage" className="NavBar-link">
-          Task Page (testing)
+          Task Page (testing prototype)
         </Link>
         {/* get rid of this later */}
       </div>

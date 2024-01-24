@@ -1,6 +1,7 @@
 import React from "react";
 import Smoothie from "../modules/Smoothie.js";
 import { get, post } from "../../utilities";
+
 const Result = (props) => {
   if (!props.userId) {
     return <div>Please login before you use Smoothlie!</div>;
