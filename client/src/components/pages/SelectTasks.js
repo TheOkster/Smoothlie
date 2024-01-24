@@ -13,30 +13,32 @@ const SelectTasks = (props) => {
   const [checkedTasks, setCheckedTasks] = useState(new Set()); // Didn't use useState since we will never need to render this
   get("/api/tasks", { owner: props.userId }).then((tasks) => setPossibleTaskList(tasks));
   return (
-    <div>
-      {possibleTaskList.map((task) => (
-        <Checkbox
-          for={task._id}
-          text={task.name}
-          handleChange={(event) => {
-            event.target.checked
-              ? setCheckedTasks(new Set([...checkedTasks, event.target.id]))
-              : setCheckedTasks(
-                  new Set([...checkedTasks].filter((item) => item != event.target.id))
-                );
-            // TODO: Make this less slow
+    <div className="TaskPage-pageContainer">
+      <div>
+        {possibleTaskList.map((task) => (
+          <Checkbox
+            for={task._id}
+            text={task.name}
+            handleChange={(event) => {
+              event.target.checked
+                ? setCheckedTasks(new Set([...checkedTasks, event.target.id]))
+                : setCheckedTasks(
+                    new Set([...checkedTasks].filter((item) => item != event.target.id))
+                  );
+              // TODO: Make this less slow
+            }}
+          />
+        ))}
+        <button className="Button"
+          onClick={() => {
+            navigate("/entertasks", {
+              state: { taskList: possibleTaskList.filter((task) => checkedTasks.has(task._id)) },
+            });
           }}
-        />
-      ))}
-      <button
-        onClick={() => {
-          navigate("/entertasks", {
-            state: { taskList: possibleTaskList.filter((task) => checkedTasks.has(task._id)) },
-          });
-        }}
-      >
-        Finish Selecting Checked Tasks
-      </button>
+        >
+          Finish Selecting Checked Tasks
+        </button>
+      </div>
     </div>
   );
 };
