@@ -11,7 +11,7 @@ import Droppable from "./Droppable";
  */
 
 const UrgentImp = (props) => {
-  console.log(props.taskList.map((task) => task.name));
+  // console.log(props.taskList.map((task) => task.name));
   const [taskList, setTaskList] = useState({
     quad1: [],
     quad2: [],

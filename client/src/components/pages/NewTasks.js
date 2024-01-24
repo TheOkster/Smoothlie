@@ -16,7 +16,6 @@ const NewTask = (props) => {
   const [minutes, setMinutes] = useState(0);
   const [label, setLabel] = useState("");
   const [notes, setNotes] = useState("");
-  // console.log(get("/whoami"));
   const handleDateChange = (event) => {
     setDate(event.target.valueAsDate);
   };

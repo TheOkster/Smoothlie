@@ -8,8 +8,7 @@ const CreateTasks = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [taskList, setTaskList] = useState(location.state?.taskList ?? []);
-  console.log("Task list");
-  console.log(taskList);
+  //  console.log(taskList);
   return (
     <>
       <h1>Tasks:</h1>
