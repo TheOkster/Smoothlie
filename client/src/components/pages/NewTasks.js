@@ -27,6 +27,9 @@ const NewTask = (props) => {
   };
 
   const addTask = () => {
+    if (taskName == "" || date === undefined || (hours == 0 && minutes == 0)) {
+      return;
+    }
     post("/api/task", {
       name: taskName,
       owner: props.userId,
@@ -72,6 +75,7 @@ const NewTask = (props) => {
       <input
         type="number"
         min="0"
+        max="60"
         placeholder=""
         className="EnterTasks-minuteInput"
         onChange={handleChange(setMinutes)}
@@ -80,8 +84,8 @@ const NewTask = (props) => {
       <p>Label: </p>
       <Dropdown
         handleChange={handleChange(setLabel)}
-        // To Do: Use Manually Coded Label Options
-        fields={["", "18.02A", "8.02", "21G.401", "6.1200", "6.1903", "5.111"]}
+        // To Do: Use Not Hardcoded Label Options
+        fields={["", "", "", ""]}
       />
       <p>Additional Notes:</p>
       <textarea rows="4" cols="50" onChange={handleChange(setNotes)}></textarea>
