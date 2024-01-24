@@ -23,6 +23,7 @@ const GridPage = (props) => {
   }
   return (
     <div className="TaskPage-pageContainer">
+    <div className="TaskPage-pageContainer">
       <UrgentImp taskList={taskList} handleTaskList={(event) => setQuadrants(event)} />
       <button onClick={handleClick}>Next</button>
     </>
