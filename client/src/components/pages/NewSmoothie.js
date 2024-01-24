@@ -10,7 +10,9 @@ const NewSmoothie = (props) => {
   return (
     <>
       <div>Create a new smoothie! Click the button below to begin.</div>
-      <UrgentImp />
+      <Link to={{ pathname: "/selecttasks" }}>
+        <button>Begin</button>
+      </Link>
     </>
   );
 };
