@@ -26,10 +26,17 @@ const SelectTasks = (props) => {
                   new Set([...checkedTasks].filter((item) => item != event.target.id))
                 );
           }}
-        >
-          Finish Selecting Checked Tasks
-        </button>
-      </div>
+        />
+      ))}
+      <button
+        onClick={() => {
+          navigate("/entertasks", {
+            state: { taskList: possibleTaskList.filter((task) => checkedTasks.has(task._id)) },
+          });
+        }}
+      >
+        Finish Selecting Checked Tasks
+      </button>
     </div>
   );
 };
