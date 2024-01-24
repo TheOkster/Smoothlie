@@ -20,14 +20,14 @@ const CreateTasks = (props) => {
           <li key={task._id}>{task.name}</li>
         ))}
       </ul>
-      <button
+      <button className="Button"
         onClick={() => {
           navigate("/newtask", { state: { taskList: taskList } });
         }}
       >
         Add a New Task
       </button>
-      <button
+      <button className="Button"
         onClick={() => {
           navigate("/taskgrid", { state: { taskList: taskList } });
         }}
