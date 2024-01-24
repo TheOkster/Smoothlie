@@ -8,7 +8,9 @@ const EnterSchedule = (props) => {
     setSchedule(newSchedule);
   };
 
-  console.log(schedule);
+  if (schedule.length > 1) {
+    console.log(schedule[0].getTime());
+  }
 
   return (
     <ScheduleSelector
