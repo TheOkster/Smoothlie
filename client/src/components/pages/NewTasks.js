@@ -27,6 +27,9 @@ const NewTask = (props) => {
   };
 
   const addTask = () => {
+    if (taskName == "" || date === undefined || (hours == 0 && minutes == 0)) {
+      return;
+    }
     post("/api/task", {
       name: taskName,
       owner: props.userId,
@@ -47,59 +50,50 @@ const NewTask = (props) => {
     <div className="TaskPage-pageContainer">
 
       <h1>Enter your Lemons:</h1>
-      <div className="TaskPage-line">
-        <p>Task Name:</p>
-        <input
-          type="text"
-          placeholder=""
-          className="EnterTasks-taskNameInput"
-          onChange={handleChange(setTaskName)}
-        />
-      </div>
-      <div className="TaskPage-line">
-        <p>Deadline</p>
-        <input
-          type="datetime-local"
-          placeholder=""
-          className="EnterTasks-dateInput"
-          onChange={handleDateChange}
-        />
-      </div>
-      <div className="TaskPage-line">
-        <p>Duration</p>
-        <input
-          type="number"
-          min="0"
-          placeholder=""
-          className="EnterTasks-hourInput"
-          onChange={handleChange(setHours)}
-        />
-        hrs
-        <input
-          type="number"
-          min="0"
-          placeholder=""
-          className="EnterTasks-minuteInput"
-          onChange={handleChange(setMinutes)}
-        />
-        mins
-      </div>
-      <div className="TaskPage-line">
-        <p>Label: </p>
-          <Dropdown
-            handleChange={handleChange(setLabel)}
-            // To Do: Use Manually Coded Label Options
-            fields={["", "18.02A", "8.02", "21G.401", "6.1200", "6.1903", "5.111"]}
-          />
-      </div>
-      <div className="TaskPage-line">
-        <p>Additional Notes:</p>
-        <textarea rows="4" cols="50" onChange={handleChange(setNotes)}></textarea>
-        <div>
-          <button className="Button" type="button" onClick={addTask}>
-            Add
-          </button>
-        </div>
+      <p>Task Name:</p>
+      <input
+        type="text"
+        placeholder=""
+        className="EnterTasks-taskNameInput"
+        onChange={handleChange(setTaskName)}
+      />
+      <p>Deadline</p>
+      <input
+        type="datetime-local"
+        placeholder=""
+        className="EnterTasks-dateInput"
+        onChange={handleDateChange}
+      />
+      <p>Duration</p>
+      <input
+        type="number"
+        min="0"
+        placeholder=""
+        className="EnterTasks-hourInput"
+        onChange={handleChange(setHours)}
+      />
+      hrs
+      <input
+        type="number"
+        min="0"
+        max="60"
+        placeholder=""
+        className="EnterTasks-minuteInput"
+        onChange={handleChange(setMinutes)}
+      />
+      mins
+      <p>Label: </p>
+      <Dropdown
+        handleChange={handleChange(setLabel)}
+        // To Do: Use Not Hardcoded Label Options
+        fields={["", "", "", ""]}
+      />
+      <p>Additional Notes:</p>
+      <textarea rows="4" cols="50" onChange={handleChange(setNotes)}></textarea>
+      <div>
+        <button type="button" onClick={addTask}>
+          Add
+        </button>
       </div>
     </div>
   );

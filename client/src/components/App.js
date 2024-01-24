@@ -21,6 +21,7 @@ import { socket } from "../client-socket.js";
 import { get, post } from "../utilities";
 import NewTask from "./pages/NewTasks.js";
 import CreateTasks from "./pages/CreateTasks.js";
+import Result from "./pages/Result.js";
 
 /**
  * Define the "App" component
@@ -71,8 +72,9 @@ const App = () => {
         <Route path="/taskgrid" element={<GridPage path="/taskgrid" userId={userId} />} />
         <Route path="/newtask" element={<NewTask path="/newtask" userId={userId} />} />
         <Route path="/entertasks" element={<CreateTasks path="/entertasks" userId={userId} />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/result" element={<Result path="/result" userId={userId} />} />
         <Route path="/TaskPage" element={<TaskPage path="/TaskPage" />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
