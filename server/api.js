@@ -54,14 +54,6 @@ router.get("/whoami", (req, res) => {
 
   res.send(req.user);
 });
-router.get("/whoami", (req, res) => {
-  if (!req.user) {
-    // not logged in
-    return res.send({});
-  }
-
-  res.send(req.user);
-});
 router.get("/smoothie", (req, res) => {
   // Didn't Bother for Now but could change into a function since
   // this and task use practically the same code
@@ -108,7 +100,7 @@ router.get("/smoothies", (req, res) => {
   }
   Smoothie.find({ owner: req.query.owner })
     .then((smoothies) => {
-      res.send({ smoothies: smoothies });
+      res.send({ smoothies });
     })
     .catch((err) => res.status(500).send("Internal Server Error"));
 });
@@ -118,15 +110,17 @@ router.get("/tasks", (req, res) => {
   }
   Task.find({ owner: req.query.owner })
     .then((tasks) => {
-      res.send({ tasks: tasks });
+      res.send(tasks);
     })
     .catch((err) => res.status(500).send("Internal Server Error"));
 });
 router.post("/smoothie", (req, res) => {
   // TODO: Add error checking?
   const smoothie = new Smoothie({
+    // In the future, we could add created date, authorized users, etc.
     name: req.body.name,
     owner: req.body.owner,
+    timestamps: req.body.timestamps,
     events: req.body.events,
   });
   smoothie.save();
@@ -138,7 +132,7 @@ router.post("/task", (req, res) => {
     owner: req.body.owner,
     duration: req.body.duration,
     label: req.body.label,
-    category: req.body.category,
+    deadline: req.body.deadline,
     notes: req.body.notes,
     source: req.body.source,
   });

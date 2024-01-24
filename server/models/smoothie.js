@@ -3,8 +3,9 @@ const mongoose = require("mongoose");
 const SmoothieSchema = new mongoose.Schema({
   name: String,
   owner: String,
-  startTimestamp: Number,
-  endTimestamp: Number,
+  /* Each timestamp represents the time it includes and 15 minutes ahead
+     May change to maek it easier to understand */
+  timestamps: [],
   events: [
     {
       startTimestamp: Number,
@@ -12,6 +13,5 @@ const SmoothieSchema = new mongoose.Schema({
     },
   ],
 });
-
 // compile model from schema
 module.exports = mongoose.model("smoothie", SmoothieSchema);

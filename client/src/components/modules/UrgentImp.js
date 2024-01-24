@@ -3,16 +3,26 @@ import { DndContext } from "@dnd-kit/core";
 
 import Draggable from "./Draggable";
 import Droppable from "./Droppable";
+/**
+ * Component to render an online user
+ * Proptypes
+ *  *  sets it to active
+ * @property {Array} taskList
+ */
 
-const UrgentImp = () => {
+const UrgentImp = (props) => {
+  // console.log(props.taskList.map((task) => task.name));
   const [taskList, setTaskList] = useState({
-    quad1: ["hello"],
+    quad1: [],
     quad2: [],
     quad3: [],
     quad4: [],
-    unsorted: ["hellooooooo", "be gayer and do more crime"],
+    unsorted: props.taskList.map((task) => task.name) ?? [
+      "hello",
+      "hellooooooo",
+      "be gayer and do more crime",
+    ],
   });
-
   // const containers = ["green", "blue"];
   // const [green, setGreen] = useState([]);
   // const [blue, setBlue] = useState([]);
