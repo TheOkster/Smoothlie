@@ -10,7 +10,7 @@ const CreateTasks = () => {
   const [taskList, setTaskList] = useState(location.state?.taskList ?? []);
   //  console.log(taskList);
   return (
-    <>
+    <div className="TaskPage-pageContainer">
       <h1>Tasks:</h1>
       <ul className="EnterTasks-taskList">
         {taskList.map((task) => (
@@ -31,7 +31,7 @@ const CreateTasks = () => {
       >
         Finish Adding Tasks
       </button>
-    </>
+    </div>
   );
 };
 

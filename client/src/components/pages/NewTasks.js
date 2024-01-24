@@ -47,7 +47,8 @@ const NewTask = (props) => {
     );
   };
   return (
-    <>
+    <div className="TaskPage-pageContainer">
+
       <h1>Enter your Lemons:</h1>
       <p>Task Name:</p>
       <input
@@ -94,7 +95,7 @@ const NewTask = (props) => {
           Add
         </button>
       </div>
-    </>
+    </div>
   );
 };
 
