@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import UrgentImp from "../modules/UrgentImp.js";
+import "./General.css";
 // import EnterSchedule from "../modules/EnterSchedule.js";
 
 const NewSmoothie = (props) => {

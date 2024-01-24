@@ -3,6 +3,7 @@ import { get, post } from "../../utilities";
 import Dropdown from "../modules/Dropdown";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import "./General.css";
 /* Ignore this for now
   While this is (mostly) functional, it doesn't fit with our React structure and will likely be better fitted
   into a component so that we can use props from the Urgent/Important Grid */
@@ -53,6 +54,7 @@ const NewTask = (props) => {
     <div className="TaskPage-pageContainer">
 
       <h1>Enter your Lemons:</h1>
+
       <p>Task Name:</p>
       <input
         type="text"
@@ -94,7 +96,7 @@ const NewTask = (props) => {
       <p>Additional Notes:</p>
       <textarea rows="4" cols="50" onChange={handleChange(setNotes)}></textarea>
       <div>
-        <button type="button" onClick={addTask}>
+        <button className="Button" type="button" onClick={addTask}>
           Add
         </button>
       </div>
