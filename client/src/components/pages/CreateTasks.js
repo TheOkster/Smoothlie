@@ -4,7 +4,7 @@ import Dropdown from "../modules/Dropdown";
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-const NewTask = () => {
+const CreateTasks = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [taskList, setTaskList] = useState(location.state?.taskList ?? []);
@@ -25,8 +25,15 @@ const NewTask = () => {
       >
         Add a New Task
       </button>
+      <button
+        onClick={() => {
+          navigate("/taskgrid", { state: { taskList: taskList } });
+        }}
+      >
+        Finish Adding Tasks
+      </button>
     </>
   );
 };
 
-export default NewTask;
+export default CreateTasks;

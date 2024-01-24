@@ -7,16 +7,21 @@ import Droppable from "./Droppable";
  * Component to render an online user
  * Proptypes
  *  *  sets it to active
- * @property {list} taskList
+ * @property {Array} taskList
  */
 
 const UrgentImp = (props) => {
+  console.log(props.taskList.map((task) => task.name));
   const [taskList, setTaskList] = useState({
     quad1: [],
     quad2: [],
     quad3: [],
     quad4: [],
-    unsorted: props.taskList ?? ["hello", "hellooooooo", "be gayer and do more crime"],
+    unsorted: props.taskList.map((task) => task.name) ?? [
+      "hello",
+      "hellooooooo",
+      "be gayer and do more crime",
+    ],
   });
   // const containers = ["green", "blue"];
   // const [green, setGreen] = useState([]);

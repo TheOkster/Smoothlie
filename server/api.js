@@ -53,14 +53,6 @@ router.get("/whoami", (req, res) => {
 
   res.send(req.user);
 });
-router.get("/whoami", (req, res) => {
-  if (!req.user) {
-    // not logged in
-    return res.send({});
-  }
-
-  res.send(req.user);
-});
 router.get("/smoothie", (req, res) => {
   // Didn't Bother for Now but could change into a function since
   // this and task use practically the same code
@@ -107,7 +99,7 @@ router.get("/smoothies", (req, res) => {
   }
   Smoothie.find({ owner: req.query.owner })
     .then((smoothies) => {
-      res.send({ smoothies: smoothies });
+      res.send({ smoothies });
     })
     .catch((err) => res.status(500).send("Internal Server Error"));
 });
@@ -117,7 +109,7 @@ router.get("/tasks", (req, res) => {
   }
   Task.find({ owner: req.query.owner })
     .then((tasks) => {
-      res.send({ tasks: tasks });
+      res.send(tasks);
     })
     .catch((err) => res.status(500).send("Internal Server Error"));
 });

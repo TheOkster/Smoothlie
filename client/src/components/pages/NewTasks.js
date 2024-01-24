@@ -6,34 +6,31 @@ import { useNavigate, useLocation } from "react-router-dom";
 /* Ignore this for now
   While this is (mostly) functional, it doesn't fit with our React structure and will likely be better fitted
   into a component so that we can use props from the Urgent/Important Grid */
-const NewTask = () => {
+const NewTask = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [taskName, setTaskName] = useState("");
   const [taskList, setTaskList] = useState(location.state?.taskList ?? []);
-  console.log(taskList);
   const [date, setDate] = useState();
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [label, setLabel] = useState("");
   const [notes, setNotes] = useState("");
+  // console.log(get("/whoami"));
   const handleDateChange = (event) => {
     setDate(event.target.valueAsDate);
-    console.log(event.target.valueAsDate);
   };
   const handleChange = (setter) => {
     // I'm not sure why return is necessary in this case, but it doesn't work without it
     return (event) => {
       setter(event.target.value);
-      console.log(event.target.value);
     };
   };
 
   const addTask = () => {
     post("/api/task", {
       name: taskName,
-      // Change to User ID
-      owner: "0",
+      owner: props.userId,
       duration: hours * 60 + minutes,
       label: label,
       deadline: date,
@@ -59,7 +56,7 @@ const NewTask = () => {
       />
       <p>Deadline</p>
       <input
-        type="date"
+        type="datetime-local"
         placeholder=""
         className="EnterTasks-dateInput"
         onChange={handleDateChange}
