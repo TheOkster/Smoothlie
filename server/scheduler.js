@@ -170,20 +170,20 @@ const createSchedule = (tasks, schedule) => {
 
 // testing
 
-const myTasks = [
-  { name: "be gay do crime", duration: 30, deadline: new Date(2024, 1, 25, 1, 0, 0) },
-  { name: "be gayer and do more crime", duration: 15, deadline: new Date(2024, 1, 26, 1, 0, 0) },
-  { name: "hellloooooo", duration: 15, deadline: new Date(2024, 1, 28, 5, 15, 0) },
-];
+// const myTasks = [
+//   { name: "be gay do crime", duration: 30, deadline: new Date(2024, 1, 25, 1, 0, 0) },
+//   { name: "be gayer and do more crime", duration: 15, deadline: new Date(2024, 1, 26, 1, 0, 0) },
+//   { name: "hellloooooo", duration: 15, deadline: new Date(2024, 1, 28, 5, 15, 0) },
+// ];
 
-const schedule = [
-  new Date(2024, 1, 24, 9, 0, 0),
-  new Date(2024, 1, 24, 9, 15, 0),
-  new Date(2024, 1, 24, 9, 30, 0),
-  new Date(2024, 1, 25, 8, 30, 0),
-  new Date(2024, 1, 25, 8, 45, 0),
-  new Date(2024, 1, 21, 11, 15, 0),
-];
+// const schedule = [
+//   new Date(2024, 1, 24, 9, 0, 0),
+//   new Date(2024, 1, 24, 9, 15, 0),
+//   new Date(2024, 1, 24, 9, 30, 0),
+//   new Date(2024, 1, 25, 8, 30, 0),
+//   new Date(2024, 1, 25, 8, 45, 0),
+//   new Date(2024, 1, 21, 11, 15, 0),
+// ];
 
 // const scheduleObj = getFreeTimes(schedule);
 // console.log(scheduleObj);
