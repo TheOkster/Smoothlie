@@ -202,3 +202,7 @@ const schedule = [
 // console.log(scheduleObj);
 
 // console.log(createSchedule(myTasks, schedule));
+
+module.exports = {
+  scheduleTask,
+};
