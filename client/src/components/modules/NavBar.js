@@ -23,6 +23,10 @@ const NavBar = (props) => {
         <Link to="/PastSmoothies" className="NavBar-link">
           Past Smoothies
         </Link>
+        <Link to="/TaskPage" className="NavBar-link">
+          Task Page (testing)
+        </Link>
+        {/* get rid of this later */}
       </div>
     </nav>
   );

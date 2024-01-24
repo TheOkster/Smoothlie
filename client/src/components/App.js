@@ -7,6 +7,8 @@ import NotFound from "./pages/NotFound.js";
 import Home from "./pages/Home.js";
 import NewSmoothie from "./pages/NewSmoothie.js";
 import PastSmoothies from "./pages/PastSmoothies.js";
+import TaskPage from "./pages/TaskPage.js";
+import "./pages/TaskPage.jpg";
 
 import NavBar from "./modules/NavBar.js";
 
@@ -59,6 +61,7 @@ const App = () => {
         <Route path="/NewSmoothie" element={<NewSmoothie path="/NewSmoothie" />} />
         <Route path="/PastSmoothies" element={<PastSmoothies path="/PastSmoothies" />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/TaskPage" element={<TaskPage path="/TaskPage" />} />
       </Routes>
     </>
   );
