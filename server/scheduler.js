@@ -189,8 +189,8 @@ const createSchedule = (tasks, schedule) => {
 // testing
 
 const myTasks = [
-  { name: "be gay do crime", duration: 30, deadline: new Date(2024, 1, 25, 1, 0, 0) },
-  { name: "be gayer and do more crime", duration: 60, deadline: new Date(2024, 1, 26, 1, 0, 0) },
+  { name: "be cool", duration: 30, deadline: new Date(2024, 1, 25, 1, 0, 0) },
+  { name: "be cooler", duration: 60, deadline: new Date(2024, 1, 26, 1, 0, 0) },
   { name: "hellloooooo", duration: 15, deadline: new Date(2024, 1, 28, 5, 15, 0) },
 ];
 

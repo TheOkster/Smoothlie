@@ -13,8 +13,6 @@ const Result = (props) => {
   const [taskList, setTaskList] = useState(location.state.taskList);
   const [smoothie, setSmoothie] = useState([]);
 
-  console.log(`type of available before entering api call ${typeof available}`);
-
   const newSmoothie = get("/api/scheduler", {
     schedule: available,
     taskList: taskList,
@@ -33,7 +31,7 @@ const Result = (props) => {
 
   return (
     <>
-      {smoothie[0] ? "be gay and do crime" : "Failed to schedule all tasks"}
+      {smoothie[0] ? "Tasks scheduled successfully!" : "Failed to schedule all tasks."}
 
       <Smoothie events={smoothie[1]} />
     </>

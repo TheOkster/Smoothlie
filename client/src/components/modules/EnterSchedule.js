@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import ScheduleSelector from "react-schedule-selector";
 
 const EnterSchedule = (props) => {
-  const [availability, setAvailability] = useState([]);
+  // const [availability, setAvailability] = useState([]);
+
+  console.log(props.available);
 
   const handleChange = (newSchedule) => {
     setAvailability(newSchedule);
@@ -10,12 +12,15 @@ const EnterSchedule = (props) => {
 
   return (
     <ScheduleSelector
-      selection={availability}
+      selection={props.available}
       numDays={5}
       minTime={8}
       maxTime={23}
       hourlyChunks={4}
-      onChange={handleChange}
+      onChange={(newSchedule) => {
+        props.setAvailable(newSchedule);
+      }}
+      timeFormat="h:mma"
     />
   );
 };
