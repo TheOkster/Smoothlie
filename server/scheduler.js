@@ -124,6 +124,13 @@ const updateSchedule = (scheduleObj, time, blockLength, taskDuration) => {
 
 const scheduleTask = (newSchedule, scheduleObj, task, time, blockLength) => {
   newSchedule.set(new Date(time), task);
+  const startTime = new Date(time);
+  const endTime = new Date(time + task.duration * 60 * 1000);
+  newSchedule.push({
+    title: task.name,
+    start: startTime,
+    end: endTime,
+  });
   // update schedule object
   const duration = task.duration;
   updateSchedule(scheduleObj, time, blockLength, duration);
@@ -139,7 +146,7 @@ const createSchedule = (tasks, schedule) => {
   });
 
   console.log(`tasks by deadline: ${tasksByDeadline}`);
-  const newSchedule = new Map();
+  const newSchedule = [];
 
   while (tasksByDeadline.length > 0) {
     // assuming it is possible to schedule all your tasks
