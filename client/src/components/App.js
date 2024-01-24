@@ -71,8 +71,9 @@ const App = () => {
         <Route path="/taskgrid" element={<GridPage path="/taskgrid" userId={userId} />} />
         <Route path="/newtask" element={<NewTask path="/newtask" userId={userId} />} />
         <Route path="/entertasks" element={<CreateTasks path="/entertasks" userId={userId} />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/result" element={<Result path="/result" userId={userId} />} />
         <Route path="/TaskPage" element={<TaskPage path="/TaskPage" />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
