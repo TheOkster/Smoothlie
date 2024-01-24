@@ -10,7 +10,7 @@ const SelectTasks = (props) => {
   }
   const navigate = useNavigate();
   const [possibleTaskList, setPossibleTaskList] = useState([]);
-  const [checkedTasks, setCheckedTasks] = useState(new Set()); // Didn't use useState since we will never need to render this
+  const [checkedTasks, setCheckedTasks] = useState(new Set());
   get("/api/tasks", { owner: props.userId }).then((tasks) => setPossibleTaskList(tasks));
   return (
     <div>
@@ -19,12 +19,12 @@ const SelectTasks = (props) => {
           for={task._id}
           text={task.name}
           handleChange={(event) => {
+            // TODO: Make this less slow
             event.target.checked
               ? setCheckedTasks(new Set([...checkedTasks, event.target.id]))
               : setCheckedTasks(
                   new Set([...checkedTasks].filter((item) => item != event.target.id))
                 );
-            // TODO: Make this less slow
           }}
         />
       ))}

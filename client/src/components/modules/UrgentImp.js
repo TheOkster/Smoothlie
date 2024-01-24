@@ -8,21 +8,25 @@ import Droppable from "./Droppable";
  * Proptypes
  *  *  sets it to active
  * @property {Array} taskList
+ * @param handleTaskList
  */
 
 const UrgentImp = (props) => {
   // console.log(props.taskList.map((task) => task.name));
   const [taskList, setTaskList] = useState({
-    quad1: [],
-    quad2: [],
-    quad3: [],
-    quad4: [],
+    notUrgNotImp: [],
+    notUrgIsImp: [],
+    isUrgNotImp: [],
+    isUrgIsImp: [],
     unsorted: props.taskList.map((task) => task.name) ?? [
       "hello",
       "hellooooooo",
       "be gayer and do more crime",
     ],
   });
+  if ("handleTaskList" in props) {
+    props.handleTaskList(taskList);
+  }
   // const containers = ["green", "blue"];
   // const [green, setGreen] = useState([]);
   // const [blue, setBlue] = useState([]);
@@ -75,10 +79,10 @@ const UrgentImp = (props) => {
   };
 
   const colorMapping = {
-    quad1: "red",
-    quad2: "blue",
-    quad3: "pink",
-    quad4: "purple",
+    notUrgNotImp: "red",
+    notUrgIsImp: "blue",
+    isUrgNotImp: "pink",
+    isUrgIsImp: "purple",
   };
 
   const containerMarkup = (key) => {
