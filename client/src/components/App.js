@@ -10,13 +10,17 @@ import PastSmoothies from "./pages/PastSmoothies.js";
 import TaskPage from "./pages/TaskPage.js";
 import "./pages/TaskPage.jpg";
 
+import GridPage from "./pages/Grid.js";
 import NavBar from "./modules/NavBar.js";
+import SelectTasks from "./pages/SelectTasks.js";
 
 import "../utilities.css";
 
 import { socket } from "../client-socket.js";
 
 import { get, post } from "../utilities";
+import NewTask from "./pages/NewTasks.js";
+import CreateTasks from "./pages/CreateTasks.js";
 
 /**
  * Define the "App" component
@@ -58,8 +62,15 @@ const App = () => {
             <Home path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
           }
         />
-        <Route path="/NewSmoothie" element={<NewSmoothie path="/NewSmoothie" />} />
-        <Route path="/PastSmoothies" element={<PastSmoothies path="/PastSmoothies" />} />
+        <Route path="/NewSmoothie" element={<NewSmoothie path="/NewSmoothie" userId={userId} />} />
+        <Route
+          path="/PastSmoothies"
+          element={<PastSmoothies path="/PastSmoothies" userId={userId} />}
+        />
+        <Route path="/selecttasks" element={<SelectTasks path="/selecttasks" userId={userId} />} />
+        <Route path="/taskgrid" element={<GridPage path="/taskgrid" userId={userId} />} />
+        <Route path="/newtask" element={<NewTask path="/newtask" userId={userId} />} />
+        <Route path="/entertasks" element={<CreateTasks path="/entertasks" userId={userId} />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/TaskPage" element={<TaskPage path="/TaskPage" />} />
       </Routes>
