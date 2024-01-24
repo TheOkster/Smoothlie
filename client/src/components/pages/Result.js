@@ -33,7 +33,7 @@ const Result = (props) => {
 
   return (
     <>
-      {smoothie[0] ? "be gay and do crime" : "Failed to schedule all tasks"}
+      {smoothie[0] ? "Tasks scheduled successfully!" : "Failed to schedule all tasks"}
 
       <Smoothie events={smoothie[1]} />
     </>
