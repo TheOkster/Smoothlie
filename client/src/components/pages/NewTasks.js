@@ -30,7 +30,7 @@ const NewTask = (props) => {
   };
 
   const addTask = () => {
-    if (taskName == "" || date === undefined || (hours == 0 && minutes == 0)) {
+    if (taskName === "" || date === undefined || (hours === "0" && minutes === "0")) {
       return;
     }
     post("/api/task", {
