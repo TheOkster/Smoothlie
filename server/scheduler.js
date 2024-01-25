@@ -59,16 +59,17 @@ const formatTasks = (tasks) => {
 
 const checkDeadline = (task, time) => {
   // return true if the time of task.deadline is after the time block, false otherwise
-  if (task.deadline.getTime() > time + task.duration * 60 * 1000) {
+  deadline2 = new Date(task.deadline);
+  if (deadline2.getTime() > time + task.duration * 60 * 1000) {
     return true;
   }
   return false;
 };
 
 const findTime = (scheduleObj, task) => {
-  // return a tuple time, length of time block
+  // return a tuple time, length of time fblock
   const duration = task.duration;
-
+  // console.log(duration);
   // binary search the schedule object keys to find available time >= duration --- might need to change this
   const timeBlocks = Array.from(scheduleObj.keys());
 
@@ -141,12 +142,16 @@ const scheduleTask = (newSchedule, scheduleObj, task, time, blockLength) => {
 const createSchedule = (tasks, schedule) => {
   // returns an array where the first element is a boolean indicating if all tasks were scheduled
   // and second element is an array of events that were scheduled
-  console.log(`task list ${tasks}`);
-  const tasksObj = formatTasks(tasks);
-  const scheduleObj = getFreeTimes(schedule);
+  // After being passed through the API, it recognizes both as Arrays (as in Array.isArray returns True)
+  // but the date objects inside are still strings which is why I did this
+  const tasks_new = tasks.map((obj) => ({ ...obj, deadline: new Date(obj.deadline) }));
+  const schedule_new = schedule.map((obj) => new Date(obj));
+  console.log(`task list ${JSON.stringify(tasks_new)}`);
 
+  const tasksObj = formatTasks(tasks_new);
+  const scheduleObj = getFreeTimes(schedule_new);
   // array of all the tasks sorted so soonest deadline task is first
-  let tasksByDeadline = [...tasks].sort((task1, task2) => {
+  let tasksByDeadline = [...tasks_new].sort((task1, task2) => {
     compareAsc(task1.deadline, task2.deadline);
   });
 
@@ -219,7 +224,7 @@ const schedule = [
 
 // console.log(scheduleObj);
 
-console.log(createSchedule(myTasks, schedule));
+// console.log(createSchedule(myTasks, schedule));
 
 module.exports = {
   createSchedule,

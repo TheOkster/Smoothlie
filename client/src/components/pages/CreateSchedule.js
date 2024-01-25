@@ -18,7 +18,6 @@ const CreateSchedule = (props) => {
   console.log(`this is availalbe before we pass it to the results page ${available}`);
 
   const handleClick = (event) => {
-    // TO DO: store availability in database by calling an api endpoint
     navigate("/result", {
       state: {
         available: available,

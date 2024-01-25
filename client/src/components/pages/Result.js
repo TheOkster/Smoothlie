@@ -13,13 +13,14 @@ const Result = (props) => {
   const [taskList, setTaskList] = useState(location.state.taskList);
   const [smoothie, setSmoothie] = useState([]);
 
-  const newSmoothie = get("/api/scheduler", {
+  console.log(`type of available before entering api call ${Array.isArray(available)}`);
+  console.log(`what is tasklist: ${taskList}`);
+  const newSmoothie = post("/api/scheduler", {
     schedule: available,
     taskList: taskList,
-  }).then((smoothie) => {
-    setSmoothie(smoothie);
-  });
-  const body = { owner: props.userId, events: newSmoothie }; // TODO: allow option  for user to enter the name of the smoothie
+  }).then((event) => setSmoothie(smoothie));
+  const body = { owner: props.userId, events: newSmoothie };
+  // TODO: allow option  for user to enter the name of the smoothie
   post("/api/smoothie", body);
   const events = [
     {
