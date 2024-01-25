@@ -15,7 +15,6 @@ const CreateSchedule = (props) => {
   const [taskList, setTaskList] = useState(location.state.taskList);
 
   const handleClick = (event) => {
-    // TO DO: store availability in database by calling an api endpoint
     navigate("/result", {
       state: {
         available: available,

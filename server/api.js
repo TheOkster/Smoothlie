@@ -146,14 +146,14 @@ router.post("/initsocket", (req, res) => {
     socketManager.addUser(req.user, socketManager.getSocketFromSocketID(req.body.socketid));
   res.send({});
 });
-
-router.get("/scheduler", (req, res) => {
+// Changed to a POST endpoint instead of GET
+router.post("/scheduler", (req, res) => {
   // console.log(req.body.taskList[0]);
-  console.log(req.query.taskList);
-  const available = req.query.schedule;
+  console.log(`Task in API: ${req.body.taskList[0]}`);
+  const available = req.body.schedule;
   console.log(`type of available within api call ${typeof available}`);
-  const schedule = scheduler.createSchedule(req.query.taskList, available);
-  console.log(schedule);
+  const schedule = scheduler.createSchedule(req.body.taskList, available);
+  // console.log(`Schedule: ${schedule}`);
   res.send([true, "hello"]);
 });
 
