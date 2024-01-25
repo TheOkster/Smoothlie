@@ -36,7 +36,7 @@ const NewTask = (props) => {
     post("/api/task", {
       name: taskName,
       owner: props.userId,
-      duration: hours * 60 + minutes,
+      duration: parseInt(hours) * 60 + parseInt(minutes),
       label: label,
       deadline: date,
       notes: notes,
@@ -86,7 +86,7 @@ const NewTask = (props) => {
         <input
           type="number"
           min="0"
-          max="60"
+          max="59"
           placeholder=""
           className="EnterTasks-minuteInput"
           onChange={handleChange(setMinutes)}
