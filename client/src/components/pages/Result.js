@@ -3,6 +3,8 @@ import Smoothie from "../modules/Smoothie.js";
 import { get, post } from "../../utilities";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
+import EnterSchedule from "../modules/EnterSchedule.js";
+
 const Result = (props) => {
   if (!props.userId) {
     return <div>Please login before you use Smoothlie!</div>;
@@ -13,15 +15,16 @@ const Result = (props) => {
   const [taskList, setTaskList] = useState(location.state.taskList);
   const [smoothie, setSmoothie] = useState([]);
 
-  console.log(`type of available before entering api call ${Array.isArray(available)}`);
-  console.log(`what is tasklist: ${taskList}`);
-  const newSmoothie = post("/api/scheduler", {
+  console.log(available);
+
+  // why is this continuously called?
+  post("/api/scheduler", {
     schedule: available,
     taskList: taskList,
-  }).then((event) => setSmoothie(smoothie));
-  const body = { owner: props.userId, events: newSmoothie };
+  }).then((smoothie) => setSmoothie(smoothie));
+  // const body = { owner: props.userId, events: smoothie };
   // TODO: allow option  for user to enter the name of the smoothie
-  post("/api/smoothie", body);
+  // post("/api/smoothie", body);
   const events = [
     {
       title: "My Event",
@@ -34,7 +37,7 @@ const Result = (props) => {
     <>
       {smoothie[0] ? "Tasks scheduled successfully!" : "Failed to schedule all tasks."}
 
-      <Smoothie events={smoothie[1]} />
+      {/* <Smoothie events={smoothie[1]} /> */}
     </>
   );
 };

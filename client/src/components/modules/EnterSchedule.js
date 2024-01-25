@@ -4,8 +4,6 @@ import ScheduleSelector from "react-schedule-selector";
 const EnterSchedule = (props) => {
   // const [availability, setAvailability] = useState([]);
 
-  console.log(props.available);
-
   const handleChange = (newSchedule) => {
     setAvailability(newSchedule);
   };

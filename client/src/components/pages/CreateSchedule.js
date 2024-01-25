@@ -15,7 +15,7 @@ const CreateSchedule = (props) => {
   const [maxTime, setMaxTime] = useState(20);
   const [taskList, setTaskList] = useState(location.state.taskList);
 
-  console.log(`this is availalbe before we pass it to the results page ${available}`);
+  console.log(`task list in createschedule ${JSON.stringify(taskList)}`);
 
   const handleClick = (event) => {
     navigate("/result", {

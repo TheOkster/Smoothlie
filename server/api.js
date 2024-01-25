@@ -150,11 +150,9 @@ router.post("/initsocket", (req, res) => {
 router.post("/scheduler", (req, res) => {
   // console.log(req.body.taskList[0]);
   console.log(`Task in API: ${req.body.taskList[0]}`);
-  const available = req.body.schedule;
-  console.log(`type of available within api call ${typeof available}`);
-  const schedule = scheduler.createSchedule(req.body.taskList, available);
-  // console.log(`Schedule: ${schedule}`);
-  res.send([true, "hello"]);
+  const schedule = scheduler.createSchedule(req.body.taskList, req.body.schedule);
+  console.log(`Schedule: ${JSON.stringify(schedule)}`);
+  res.send(schedule);
 });
 
 // |------------------------------|

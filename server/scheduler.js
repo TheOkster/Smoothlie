@@ -2,7 +2,6 @@ const { compareAsc } = require("date-fns");
 const TIME_INTERVAL = 15;
 
 const getFreeTimes = (schedule) => {
-  console.log(`schedule ${schedule}`);
   schedule.sort(compareAsc);
 
   // vision: taking in the input from the schedule, this should output a dictionary of the form
@@ -12,15 +11,14 @@ const getFreeTimes = (schedule) => {
   // take all available times and put it in the form latest time: duration
   const timeBlocks = new Map();
   for (time of schedule) {
-    const previousTime = time.getTime() - TIME_INTERVAL * 60 * 1000;
-    if (timeBlocks.has(previousTime)) {
+    if (timeBlocks.has(time.getTime())) {
       // update time blocks to have newer latest time and new duration
-      const duration = timeBlocks.get(previousTime);
-      timeBlocks.set(time.getTime(), duration + TIME_INTERVAL);
-      timeBlocks.delete(previousTime);
+      const duration = timeBlocks.get(time.getTime());
+      timeBlocks.set(time.getTime() + TIME_INTERVAL * 60 * 1000, duration + TIME_INTERVAL);
+      timeBlocks.delete(time.getTime());
     } else {
       // create a new time block
-      timeBlocks.set(time.getTime(), TIME_INTERVAL);
+      timeBlocks.set(time.getTime() + TIME_INTERVAL * 60 * 1000, TIME_INTERVAL);
     }
   }
 
@@ -144,18 +142,18 @@ const createSchedule = (tasks, schedule) => {
   // and second element is an array of events that were scheduled
   // After being passed through the API, it recognizes both as Arrays (as in Array.isArray returns True)
   // but the date objects inside are still strings which is why I did this
-  console.log(`task list ${JSON.stringify(tasks)}`);
+  // console.log(`task list ${JSON.stringify(tasks)}`);
   // Right now, it looks like the deadline is sometimes being passed as null which is why
   // the tasks_new deadline displays as null or the Unix epoch (Jan 1 1970)
   const tasks_new = tasks.map((obj) => ({ ...obj, deadline: new Date(obj.deadline) }));
   // Schedule seems to be working fine
   const schedule_new = schedule.map((obj) => new Date(obj));
-  console.log(`Schedule type ${typeof schedule_new[0]}`); //Object is what is to be expected
+  // console.log(`Schedule type ${typeof schedule_new[0]}`); //Object is what is to be expected
   // typeof Date objects returns Object
   // Inside the JSON.stringify the date looks like a string, but it
   // is in fact a date object (it's just the way stringiy works)
   console.log(`new task list ${JSON.stringify(tasks_new)}`);
-  console.log(`schedule list ${JSON.stringify(schedule_new)}`);
+  // console.log(`schedule list ${JSON.stringify(schedule_new)}`);
 
   const tasksObj = formatTasks(tasks_new);
   const scheduleObj = getFreeTimes(schedule_new);
@@ -208,6 +206,20 @@ const myTasks = [
   { name: "hellloooooo", duration: 15, deadline: new Date(2024, 1, 28, 5, 15, 0) },
 ];
 
+const tasks2 = [
+  {
+    _id: "65b2beeee5d86e522b7a7b14",
+    name: "Test3",
+    owner: "65b1451132f6af4052d69039",
+    deadline: "2024-01-31T20:04:00.000Z",
+    duration: 75,
+    label: "",
+    notes: "",
+    source: "Manual",
+    __v: 0,
+  },
+];
+
 const schedule = [
   new Date(2024, 1, 24, 9, 0, 0),
   new Date(2024, 1, 24, 9, 15, 0),
@@ -217,6 +229,16 @@ const schedule = [
   new Date(2024, 1, 21, 11, 15, 0),
 ];
 
+const schedule2 = [
+  "Thu Jan 25 2024 08:00:00 GMT-0500 (Eastern Standard Time)",
+  "Thu Jan 25 2024 08:15:00 GMT-0500 (Eastern Standard Time)",
+  "Thu Jan 25 2024 08:30:00 GMT-0500 (Eastern Standard Time)",
+  "Thu Jan 25 2024 08:45:00 GMT-0500 (Eastern Standard Time)",
+  "Thu Jan 25 2024 09:00:00 GMT-0500 (Eastern Standard Time)",
+  "Thu Jan 25 2024 09:15:00 GMT-0500 (Eastern Standard Time)",
+  "Thu Jan 25 2024 09:30:00 GMT-0500 (Eastern Standard Time)",
+  "Thu Jan 25 2024 09:45:00 GMT-0500 (Eastern Standard Time)",
+];
 // const scheduleObj = getFreeTimes(schedule);
 // console.log(scheduleObj);
 
@@ -234,6 +256,8 @@ const schedule = [
 // console.log(scheduleObj);
 
 // console.log(createSchedule(myTasks, schedule));
+
+// console.log(createSchedule(tasks2, schedule2));
 
 module.exports = {
   createSchedule,
