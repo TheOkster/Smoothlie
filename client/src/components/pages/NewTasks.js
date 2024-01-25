@@ -18,7 +18,9 @@ const NewTask = (props) => {
   const [label, setLabel] = useState("");
   const [notes, setNotes] = useState("");
   const handleDateChange = (event) => {
-    setDate(event.target.valueAsDate);
+    console.log(event.target.value);
+    const parsedDateTime = new Date(event.target.value);
+    setDate(parsedDateTime);
   };
   const handleChange = (setter) => {
     // I'm not sure why return is necessary in this case, but it doesn't work without it
@@ -99,7 +101,7 @@ const NewTask = (props) => {
           fields={["", "", "", ""]}
         />
       </div>
-        <div className="TaskPage-line">
+      <div className="TaskPage-line">
         <p>Additional Notes:</p>
         <textarea rows="4" cols="50" onChange={handleChange(setNotes)}></textarea>
         <div>

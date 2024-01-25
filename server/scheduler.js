@@ -146,7 +146,7 @@ const createSchedule = (tasks, schedule) => {
   // but the date objects inside are still strings which is why I did this
   console.log(`task list ${JSON.stringify(tasks)}`);
   // Right now, it looks like the deadline is sometimes being passed as null which is why
-  // the tasks_new date displays as null or the Unix epoch (Jan 1 1970)
+  // the tasks_new deadline displays as null or the Unix epoch (Jan 1 1970)
   const tasks_new = tasks.map((obj) => ({ ...obj, deadline: new Date(obj.deadline) }));
   // Schedule seems to be working fine
   const schedule_new = schedule.map((obj) => new Date(obj));
