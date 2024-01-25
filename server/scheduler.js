@@ -144,9 +144,18 @@ const createSchedule = (tasks, schedule) => {
   // and second element is an array of events that were scheduled
   // After being passed through the API, it recognizes both as Arrays (as in Array.isArray returns True)
   // but the date objects inside are still strings which is why I did this
+  console.log(`task list ${JSON.stringify(tasks)}`);
+  // Right now, it looks like the deadline is sometimes being passed as null which is why
+  // the tasks_new date displays as null or the Unix epoch (Jan 1 1970)
   const tasks_new = tasks.map((obj) => ({ ...obj, deadline: new Date(obj.deadline) }));
+  // Schedule seems to be working fine
   const schedule_new = schedule.map((obj) => new Date(obj));
-  console.log(`task list ${JSON.stringify(tasks_new)}`);
+  console.log(`Schedule type ${typeof schedule_new[0]}`); //Object is what is to be expected
+  // typeof Date objects returns Object
+  // Inside the JSON.stringify the date looks like a string, but it
+  // is in fact a date object (it's just the way stringiy works)
+  console.log(`new task list ${JSON.stringify(tasks_new)}`);
+  console.log(`schedule list ${JSON.stringify(schedule_new)}`);
 
   const tasksObj = formatTasks(tasks_new);
   const scheduleObj = getFreeTimes(schedule_new);
