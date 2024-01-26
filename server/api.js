@@ -118,6 +118,7 @@ router.post("/smoothie", (req, res) => {
   // TODO: Add error checking?
   const smoothie = new Smoothie({
     // In the future, we could add created date, authorized users, etc.
+    dateCreated: req.body.dateCreated,
     name: req.body.name,
     owner: req.body.owner,
     // timestamps: req.body.timestamps,
@@ -137,10 +138,6 @@ router.post("/task", (req, res) => {
     source: req.body.source,
   });
   task.save();
-  res.send(task);
-});
-router.delete("/task", (req, res) => {
-  Task.deleteOne({ _id: req.body.id });
   res.send(task);
 });
 // TODO: Add Post endpoint to make it easier to add multiple smoothies/tasks at once?
