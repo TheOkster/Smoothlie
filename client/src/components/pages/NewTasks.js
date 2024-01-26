@@ -4,7 +4,6 @@ import Dropdown from "../modules/Dropdown";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./General.css";
-import Alert from "react-bootstrap/Alert";
 
 /* Ignore this for now
   While this is (mostly) functional, it doesn't fit with our React structure and will likely be better fitted
@@ -19,6 +18,7 @@ const NewTask = (props) => {
   const [minutes, setMinutes] = useState(0);
   const [label, setLabel] = useState("");
   const [notes, setNotes] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
   const handleDateChange = (event) => {
     console.log(event.target.value);
     const parsedDateTime = new Date(event.target.value);
@@ -33,8 +33,12 @@ const NewTask = (props) => {
 
   const addTask = () => {
     if (taskName === "" || date === undefined || (hours === "0" && minutes === "0")) {
+      alert(
+        "Make sure that the task name, deadline (including the time), and duration boxes are filled!"
+      );
       return;
     }
+
     post("/api/task", {
       name: taskName,
       owner: props.userId,

@@ -139,6 +139,10 @@ router.post("/task", (req, res) => {
   task.save();
   res.send(task);
 });
+router.delete("/task", (req, res) => {
+  Task.deleteOne({ _id: req.body.id });
+  res.send(task);
+});
 // TODO: Add Post endpoint to make it easier to add multiple smoothies/tasks at once?
 router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in

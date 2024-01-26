@@ -23,6 +23,7 @@ import NewTask from "./pages/NewTasks.js";
 import CreateTasks from "./pages/CreateTasks.js";
 import Result from "./pages/Result.js";
 import CreateSchedule from "./pages/CreateSchedule.js";
+import ViewTasks from "./pages/ViewTasks.js";
 
 /**
  * Define the "App" component
@@ -74,6 +75,8 @@ const App = () => {
         <Route path="/newtask" element={<NewTask path="/newtask" userId={userId} />} />
         <Route path="/entertasks" element={<CreateTasks path="/entertasks" userId={userId} />} />
         <Route path="/result" element={<Result path="/result" userId={userId} />} />
+        {/* Tasks != TaskPage, TaskPage is a prototype */}
+        <Route path="/tasks" element={<ViewTasks path="/tasks" userId={userId} />} />
         <Route path="/TaskPage" element={<TaskPage path="/TaskPage" />} />
         <Route path="/createschedule" element={<CreateSchedule path="/createschedule" />} />
         <Route path="*" element={<NotFound />} />
