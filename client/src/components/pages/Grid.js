@@ -12,6 +12,10 @@ const GridPage = (props) => {
   const [taskList, setTaskList] = useState(location.state.taskList);
   const [quadrants, setQuadrants] = useState();
 
+  console.log(
+    `task list before passing onto create schedule in grid.js ${JSON.stringify(taskList)}`
+  );
+
   const handleClick = (event) => {
     navigate("/createschedule", {
       state: { taskList: taskList },

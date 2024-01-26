@@ -4,6 +4,8 @@ import Dropdown from "../modules/Dropdown";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./General.css";
+import Alert from "react-bootstrap/Alert";
+
 /* Ignore this for now
   While this is (mostly) functional, it doesn't fit with our React structure and will likely be better fitted
   into a component so that we can use props from the Urgent/Important Grid */
@@ -18,7 +20,9 @@ const NewTask = (props) => {
   const [label, setLabel] = useState("");
   const [notes, setNotes] = useState("");
   const handleDateChange = (event) => {
-    setDate(event.target.valueAsDate);
+    console.log(event.target.value);
+    const parsedDateTime = new Date(event.target.value);
+    setDate(parsedDateTime);
   };
   const handleChange = (setter) => {
     // I'm not sure why return is necessary in this case, but it doesn't work without it
@@ -28,13 +32,13 @@ const NewTask = (props) => {
   };
 
   const addTask = () => {
-    if (taskName == "" || date === undefined || (hours == 0 && minutes == 0)) {
+    if (taskName === "" || date === undefined || (hours === "0" && minutes === "0")) {
       return;
     }
     post("/api/task", {
       name: taskName,
       owner: props.userId,
-      duration: hours * 60 + minutes,
+      duration: parseInt(hours) * 60 + parseInt(minutes),
       label: label,
       deadline: date,
       notes: notes,
@@ -42,7 +46,16 @@ const NewTask = (props) => {
     }).then((task) =>
       navigate("/entertasks", {
         state: {
-          taskList: taskList.concat({ _id: task._id, name: task.name }),
+          taskList: taskList.concat({
+            _id: task._id,
+            name: task.name,
+            owner: task.owner,
+            duration: task.duration,
+            label: task.label,
+            deadline: task.deadline,
+            notes: task.notes,
+            source: task.source,
+          }),
         },
       })
     );
@@ -84,7 +97,7 @@ const NewTask = (props) => {
         <input
           type="number"
           min="0"
-          max="60"
+          max="59"
           placeholder=""
           className="EnterTasks-minuteInput"
           onChange={handleChange(setMinutes)}
@@ -99,7 +112,7 @@ const NewTask = (props) => {
           fields={["", "", "", ""]}
         />
       </div>
-        <div className="TaskPage-line">
+      <div className="TaskPage-line">
         <p>Additional Notes:</p>
         <textarea rows="4" cols="50" onChange={handleChange(setNotes)}></textarea>
         <div>

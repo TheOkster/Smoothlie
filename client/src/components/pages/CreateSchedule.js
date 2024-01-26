@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ScheduleSelector from "react-schedule-selector";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import EnterSchedule from "../modules/EnterSchedule.js";
 
 const CreateSchedule = (props) => {
   const navigate = useNavigate();
@@ -14,8 +15,9 @@ const CreateSchedule = (props) => {
   const [maxTime, setMaxTime] = useState(20);
   const [taskList, setTaskList] = useState(location.state.taskList);
 
+  console.log(`task list in createschedule ${JSON.stringify(taskList)}`);
+
   const handleClick = (event) => {
-    // TO DO: store availability in database by calling an api endpoint
     navigate("/result", {
       state: {
         available: available,
@@ -25,27 +27,27 @@ const CreateSchedule = (props) => {
   };
 
   const handleChange = (newSchedule) => {
-    console.log(`handling change ${Object.keys(newSchedule)}`);
     setAvailable(newSchedule);
   };
 
   // to do: add functionality for user to enter startdate, numdays, mintime, maxtime
   return (
-    <div className="TaskPage-pageContainer">
-      <div>
-        <ScheduleSelector
-          minTime={minTime}
-          maxTime={maxTime}
-          numDays={numDays}
-          startDate={new Date(startDate)}
-          selection={available}
-          onChange={handleChange}
-          hourlyChunks={2}
-          timeFormat="h:mma"
-        />
-      </div>
-      <button className="Button" onClick={handleClick}>Submit Availability</button>
-    </div>
+    <>
+      {/* //   <div>
+    //     <ScheduleSelector
+    //       minTime={minTime}
+    //       maxTime={maxTime}
+    //       numDays={numDays}
+    //       startDate={new Date(startDate)}
+    //       selection={available}
+    //       onChange={handleChange}
+    //       hourlyChunks={2}
+    //       timeFormat="h:mma"
+    //     />
+    //   </div> */}
+      <EnterSchedule available={available} setAvailable={setAvailable} />
+      <button onClick={handleClick}>Submit Availability</button>
+    </>
   );
 };
 
