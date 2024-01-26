@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
+import "react-big-calendar/lib/css/react-big-calendar.css";
 
-// Setup the localizer by providing the moment (or globalize, or Luxon) Object
-// to the correct localizer.
-const localizer = momentLocalizer(moment); // or globalizeLocalizer
+const localizer = momentLocalizer(moment);
 
-const Smoothie = (props) => (
-  <div className="myCustomHeight">
-    <Calendar localizer={localizer} events={props.events} startAccessor="start" endAccessor="end" />
-  </div>
-);
+const Smoothie = (props) => {
+  return (
+    <div style={{ height: "500pt" }}>
+      <Calendar
+        events={props.events}
+        startAccessor="start"
+        endAccessor="end"
+        defaultDate={moment().toDate()}
+        localizer={localizer}
+      />
+    </div>
+  );
+};
 
 export default Smoothie;
