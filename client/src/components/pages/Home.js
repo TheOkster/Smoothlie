@@ -39,7 +39,7 @@ const Home = ({ userId, handleLogin, handleLogout }) => {
             </>
           ) : (
             <>
-            <div className="Home-centerButton">
+            <div className="Button">
               <GoogleLogin onSuccess={handleLogin} onError={(err) => console.log(err)} />
             </div>
             <div className="Label">Please login to start!</div>

@@ -10,15 +10,35 @@
 
     font-family: 'Josefin Sans';
     font-style: normal;
-    font-weight: 300;
-  }
+    font-size:large;
+    font-weight: 500;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
 
 .buttonContainer {
   position:absolute;
-  top:75%;
+  top:60%;
   align-items:center;
   justify-content:center;
   gap:20px;
+  display: flex;
+  flex-direction:column;
+}
+
+.pageContainer{
+  position: relative;
+    width: 60vw;
+    height: 55vh; /* this is the top of the hierarchy*/
+    left: 10vw;
+    top: 10vh;
+
+    display:inline-flex;
+    padding: 4% 4%;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    /* row-gap: 10%; */
+    background-color: rgba(190, 234, 152, 0.1);
 }
 
 .Label {
