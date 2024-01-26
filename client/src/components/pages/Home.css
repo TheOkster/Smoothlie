@@ -1,12 +1,13 @@
 .Home-container {
     width: 100vw;
-    height: 100vh;
+    height: 93vh; /* later i should either actually get rid of the navbar or like, fix this */
     flex-shrink: 0; /* change this later */
     flex-direction: column;
     display: flex;
     justify-content: center;
     text-align: center;
     align-items: center; /* Center items vertically */
+    /* background-color: brown; */
 }
 
 .Home-logo {
@@ -19,7 +20,7 @@
     line-height: 36px; /* Adjust line height accordingly */
     display: flex;
     text-align: center;
-    color: #EE5469;
+    color: var(--primary);
 }
 .Home-l { /*figure this out later or just insert a photo*/
     height: inline;
@@ -31,7 +32,7 @@
     line-height: 36px; /* Adjust line height accordingly */
     display: flex;
     text-align: left;
-    color: #EE5469;
+    color: var(--primary);
 }
 
 .Home-centerButton {

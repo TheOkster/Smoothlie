@@ -4,9 +4,62 @@
     background-color:#0a0a23;
     color: #fff;
     border:none;
+    padding: 10px;
     border-radius:10px;
+    margin: 5px;
 
     font-family: 'Josefin Sans';
     font-style: normal;
-    font-weight: 300;
-  }
+    font-size:large;
+    font-weight: 500;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.buttonContainer {
+  position:absolute;
+  top:60%;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
+  display: flex;
+  flex-direction:column;
+}
+
+.pageContainer{
+  position: relative;
+    width: 60vw;
+    height: 55vh; /* this is the top of the hierarchy*/
+    left: 10vw;
+    top: 10vh;
+
+    display:inline-flex;
+    padding: 4% 4%;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    /* row-gap: 10%; */
+    background-color: rgba(190, 234, 152, 0.1);
+}
+
+.Label {
+  position: relative;
+  top:5%;
+  background-color:var(--primary);
+  color: var(--grey);
+  padding:10px;
+  border-radius:10px;
+
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 300;
+}
+
+.Background {
+  width: 100vw;
+  height: 93vh;
+  background-color: #221717;
+  background-size: cover;
+  position:absolute;
+  z-index: -1;
+  overflow: hidden;
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Smoothie from "../modules/Smoothie.js";
 import { get, post } from "../../utilities";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import "./General.css";
 
 import EnterSchedule from "../modules/EnterSchedule.js";
 
