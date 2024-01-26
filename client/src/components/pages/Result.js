@@ -12,7 +12,7 @@ const Result = (props) => {
   const location = useLocation();
 
   const [smoothie, setSmoothie] = useState([]);
-  const [smoothieName, setSmoothieName] = useState(null);
+  const [smoothieName, setSmoothieName] = useState("");
 
   // why is this continuously called?
   useEffect(() => {
@@ -20,7 +20,9 @@ const Result = (props) => {
       post("/api/scheduler", {
         schedule: location.state.available,
         taskList: location.state.taskList,
-      }).then((smoothie) => setSmoothie([smoothie[0], smoothie[1].map(formatSmoothie)]));
+      }).then((smoothie) => {
+        setSmoothie([smoothie[0], smoothie[1].map(formatSmoothie)]);
+      });
     }
   }, [location]);
 
@@ -36,9 +38,10 @@ const Result = (props) => {
   // TODO: allow option  for user to enter the name of the smoothie
   // post("/api/smoothie", body);
   const handleSubmit = (event) => {
-    if (smoothieName === null) {
+    event.preventDefault();
+    if (smoothieName === "") {
       alert("Please enter a name for your smoothie to save it!");
-      return;
+      return false;
     }
     const body = {
       owner: props.userId,
@@ -47,6 +50,7 @@ const Result = (props) => {
       name: smoothieName,
     };
     post("/api/smoothie", body).then(alert("Smoothie saved successfully!"));
+    setSmoothieName("");
   };
 
   const handleChange = (event) => {
@@ -62,7 +66,7 @@ const Result = (props) => {
       <div>
         <form onSubmit={handleSubmit}>
           Enter a name for your smoothie:
-          <input type="text" placeholder="" onChange={handleChange} />
+          <input type="text" value={smoothieName} id="text" onChange={handleChange} />
           <input type="submit" value="Save Smoothie" />
         </form>
         {/* <p>Smoothie Name:</p>
