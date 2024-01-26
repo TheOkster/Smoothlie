@@ -94,11 +94,25 @@ router.get("/task", (req, res) => {
     })
     .catch((err) => res.status(500).send("Internal Server Error"));
 });
-router.get("/smoothies", (req, res) => {
+router.get("/smoothiesbyuser", (req, res) => {
   if (!req.query.owner) {
     return res.status(400).send({ error: "No Owner selected" });
   }
   Smoothie.find({ owner: req.query.owner, name: { $ne: null } })
+    .then((smoothies) => {
+      res.send({ smoothies });
+    })
+    .catch((err) => res.status(500).send("Internal Server Error"));
+});
+
+router.get("/smoothiesbyname", (req, res) => {
+  if (!req.query.name) {
+    return res.status(400).send({ error: "No Smoothie name selected" });
+  }
+  if (!req.query.owner) {
+    return res.status(400).send({ error: "No Owner selected" });
+  }
+  Smoothie.find({ owner: req.query.owner, name: req.query.name })
     .then((smoothies) => {
       console.log(smoothies);
       res.send({ smoothies });
