@@ -11,17 +11,18 @@ const Result = (props) => {
   }
   const location = useLocation();
 
-  const [available, setAvailable] = useState(location.state.available);
-  const [taskList, setTaskList] = useState(location.state.taskList);
   const [smoothie, setSmoothie] = useState([]);
+  const [smoothieName, setSmoothieName] = useState(null);
 
   // why is this continuously called?
   useEffect(() => {
-    post("/api/scheduler", {
-      schedule: available,
-      taskList: taskList,
-    }).then((smoothie) => setSmoothie([smoothie[0], smoothie[1].map(formatSmoothie)]));
-  }, []);
+    if (location.state) {
+      post("/api/scheduler", {
+        schedule: location.state.available,
+        taskList: location.state.taskList,
+      }).then((smoothie) => setSmoothie([smoothie[0], smoothie[1].map(formatSmoothie)]));
+    }
+  }, [location]);
 
   const formatSmoothie = (event) => {
     return {
@@ -34,19 +35,39 @@ const Result = (props) => {
   // const body = { owner: props.userId, events: smoothie };
   // TODO: allow option  for user to enter the name of the smoothie
   // post("/api/smoothie", body);
-  const events = [
-    {
-      title: "My Event",
-      start: new Date("2024-01-27T18:15:00.000Z"),
-      end: new Date("2024-01-27T19:45:00.000Z"),
-    },
-  ];
+  const handleSubmit = (event) => {
+    if (smoothieName === null) {
+      alert("Please enter a name for your smoothie to save it!");
+      return;
+    }
+    const body = {
+      owner: props.userId,
+      events: smoothie[1],
+      dateCreated: new Date(),
+      name: smoothieName,
+    };
+    post("/api/smoothie", body).then(alert("Smoothie saved successfully!"));
+  };
+
+  const handleChange = (event) => {
+    setSmoothieName(event.target.value);
+  };
 
   return (
     <>
-      {console.log(smoothie)}
-      {smoothie[0] ? "Tasks scheduled successfully!" : "Failed to schedule all tasks."}
-      <Smoothie events={smoothie[1]} />
+      <div>
+        {smoothie[0] ? "Tasks scheduled successfully!" : "Failed to schedule all tasks."}
+        <Smoothie events={smoothie[1]} />
+      </div>
+      <div>
+        <form onSubmit={handleSubmit}>
+          Enter a name for your smoothie:
+          <input type="text" placeholder="" onChange={handleChange} />
+          <input type="submit" value="Save Smoothie" />
+        </form>
+        {/* <p>Smoothie Name:</p>
+        <button onClick={handleClick}>Save Smoothie</button> */}
+      </div>
     </>
   );
 };
