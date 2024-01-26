@@ -14,6 +14,7 @@ const Smoothie = (props) => {
         endAccessor="end"
         defaultDate={moment().toDate()}
         localizer={localizer}
+        defaultView="week"
       />
     </div>
   );
