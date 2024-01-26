@@ -100,6 +100,7 @@ router.get("/smoothies", (req, res) => {
   }
   Smoothie.find({ owner: req.query.owner })
     .then((smoothies) => {
+      console.log(smoothies);
       res.send({ smoothies });
     })
     .catch((err) => res.status(500).send("Internal Server Error"));
