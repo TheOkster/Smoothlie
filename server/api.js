@@ -98,8 +98,9 @@ router.get("/smoothies", (req, res) => {
   if (!req.query.owner) {
     return res.status(400).send({ error: "No Owner selected" });
   }
-  Smoothie.find({ owner: req.query.owner })
+  Smoothie.find({ owner: req.query.owner, name: { $ne: null } })
     .then((smoothies) => {
+      console.log(smoothies);
       res.send({ smoothies });
     })
     .catch((err) => res.status(500).send("Internal Server Error"));
@@ -118,6 +119,7 @@ router.post("/smoothie", (req, res) => {
   // TODO: Add error checking?
   const smoothie = new Smoothie({
     // In the future, we could add created date, authorized users, etc.
+    dateCreated: req.body.dateCreated,
     name: req.body.name,
     owner: req.body.owner,
     // timestamps: req.body.timestamps,

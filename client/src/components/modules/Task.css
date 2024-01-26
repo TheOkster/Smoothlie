@@ -1,0 +1,10 @@
+.ViewTasks-task > * {
+  display: inline-flex;
+}
+.ViewTasks-delete {
+  /* Please don't keep it like this
+     Just for testing purposes */
+  padding-left: 1%;
+  padding-right: 1%;
+  align-items: center;
+}

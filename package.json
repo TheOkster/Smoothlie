@@ -19,6 +19,7 @@
     "node": ">=18.x"
   },
   "dependencies": {
+    "@coreui/react": "^4.11.1",
     "@dnd-kit/core": "^6.1.0",
     "@react-oauth/google": "^0.6.0",
     "connect-ensure-login": "^0.1.1",
