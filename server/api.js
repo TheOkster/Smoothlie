@@ -98,7 +98,7 @@ router.get("/smoothies", (req, res) => {
   if (!req.query.owner) {
     return res.status(400).send({ error: "No Owner selected" });
   }
-  Smoothie.find({ owner: req.query.owner })
+  Smoothie.find({ owner: req.query.owner, name: { $ne: null } })
     .then((smoothies) => {
       console.log(smoothies);
       res.send({ smoothies });
