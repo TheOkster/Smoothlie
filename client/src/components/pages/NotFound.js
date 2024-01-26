@@ -1,4 +1,5 @@
 import React from "react";
+import "./General.css";
 
 const NotFound = () => {
   return (

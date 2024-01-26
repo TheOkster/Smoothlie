@@ -1,12 +1,4 @@
-.TaskPage-bg {
-    width: 100vw;
-    height: 93vh;
-    background-image: url(TaskPage.jpg);
 
-    background-color: transparent;
-    background-size: cover;
-    /* background-position: center; Centers the image within the element */
-}
 
 .TaskPage-pageContainer {
     position: relative;

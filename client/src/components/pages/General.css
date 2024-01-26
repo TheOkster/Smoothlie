@@ -4,9 +4,42 @@
     background-color:#0a0a23;
     color: #fff;
     border:none;
+    padding: 10px;
     border-radius:10px;
+    margin: 5px;
 
     font-family: 'Josefin Sans';
     font-style: normal;
     font-weight: 300;
   }
+
+.buttonContainer {
+  position:absolute;
+  top:75%;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
+}
+
+.Label {
+  position: relative;
+  top:5%;
+  background-color:var(--primary);
+  color: var(--grey);
+  padding:10px;
+  border-radius:10px;
+
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 300;
+}
+
+.Background {
+  width: 100vw;
+  height: 93vh;
+  background-color: #221717;
+  background-size: cover;
+  position:absolute;
+  z-index: -1;
+  overflow: hidden;
+}
