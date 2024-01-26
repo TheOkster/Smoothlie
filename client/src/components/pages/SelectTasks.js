@@ -14,7 +14,6 @@ const SelectTasks = (props) => {
   const navigate = useNavigate();
   const [possibleTaskList, setPossibleTaskList] = useState([]);
   const [checkedTasks, setCheckedTasks] = useState(new Set());
-  console.log(props.available);
   get("/api/tasks", { owner: props.userId }).then((tasks) => setPossibleTaskList(tasks));
   return (
     <div className="TaskPage-pageContainer">

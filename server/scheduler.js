@@ -11,15 +11,14 @@ const getFreeTimes = (schedule) => {
   // take all available times and put it in the form latest time: duration
   const timeBlocks = new Map();
   for (time of schedule) {
-    const previousTime = time.getTime() - TIME_INTERVAL * 60 * 1000;
-    if (timeBlocks.has(previousTime)) {
+    if (timeBlocks.has(time.getTime())) {
       // update time blocks to have newer latest time and new duration
-      const duration = timeBlocks.get(previousTime);
-      timeBlocks.set(time.getTime(), duration + TIME_INTERVAL);
-      timeBlocks.delete(previousTime);
+      const duration = timeBlocks.get(time.getTime());
+      timeBlocks.set(time.getTime() + TIME_INTERVAL * 60 * 1000, duration + TIME_INTERVAL);
+      timeBlocks.delete(time.getTime());
     } else {
       // create a new time block
-      timeBlocks.set(time.getTime(), TIME_INTERVAL);
+      timeBlocks.set(time.getTime() + TIME_INTERVAL * 60 * 1000, TIME_INTERVAL);
     }
   }
 
@@ -58,16 +57,17 @@ const formatTasks = (tasks) => {
 
 const checkDeadline = (task, time) => {
   // return true if the time of task.deadline is after the time block, false otherwise
-  if (task.deadline.getTime() > time + task.duration * 60 * 1000) {
+  deadline2 = new Date(task.deadline);
+  if (deadline2.getTime() > time + task.duration * 60 * 1000) {
     return true;
   }
   return false;
 };
 
 const findTime = (scheduleObj, task) => {
-  // return a tuple time, length of time block
+  // return a tuple time, length of time fblock
   const duration = task.duration;
-
+  // console.log(duration);
   // binary search the schedule object keys to find available time >= duration --- might need to change this
   const timeBlocks = Array.from(scheduleObj.keys());
 
@@ -140,18 +140,31 @@ const scheduleTask = (newSchedule, scheduleObj, task, time, blockLength) => {
 const createSchedule = (tasks, schedule) => {
   // returns an array where the first element is a boolean indicating if all tasks were scheduled
   // and second element is an array of events that were scheduled
-  const tasksObj = formatTasks(tasks);
-  const scheduleObj = getFreeTimes(schedule);
+  // After being passed through the API, it recognizes both as Arrays (as in Array.isArray returns True)
+  // but the date objects inside are still strings which is why I did this
+  // console.log(`task list ${JSON.stringify(tasks)}`);
+  // Right now, it looks like the deadline is sometimes being passed as null which is why
+  // the tasks_new deadline displays as null or the Unix epoch (Jan 1 1970)
+  const tasks_new = tasks.map((obj) => ({ ...obj, deadline: new Date(obj.deadline) }));
+  // Schedule seems to be working fine
+  const schedule_new = schedule.map((obj) => new Date(obj));
+  // console.log(`Schedule type ${typeof schedule_new[0]}`); //Object is what is to be expected
+  // typeof Date objects returns Object
+  // Inside the JSON.stringify the date looks like a string, but it
+  // is in fact a date object (it's just the way stringiy works)
+  console.log(`new task list ${JSON.stringify(tasks_new)}`);
+  // console.log(`schedule list ${JSON.stringify(schedule_new)}`);
 
+  const tasksObj = formatTasks(tasks_new);
+  const scheduleObj = getFreeTimes(schedule_new);
   // array of all the tasks sorted so soonest deadline task is first
-  let tasksByDeadline = [...tasks].sort((task1, task2) => {
+  let tasksByDeadline = [...tasks_new].sort((task1, task2) => {
     compareAsc(task1.deadline, task2.deadline);
   });
 
   const newSchedule = [];
 
   const startTime = Date.now();
-  console.log(startTime);
 
   while (tasksByDeadline.length > 0) {
     if (Date.now() - startTime > 10 * 1000) {
@@ -170,10 +183,11 @@ const createSchedule = (tasks, schedule) => {
     if (!time) {
       // couldn't find a time block to do entire task
       // split task in half and try scheduling that instead
-      newTasks = [
-        { ...currentTask, duration: Math.floor(currentTask.duration / 2) },
-        { ...currentTask, duration: Math.ceil(currentTask.duration / 2) },
-      ];
+      const task1 = currentTask;
+      task1.duration = Math.floor(currentTask.duration / 2);
+      const task2 = currentTask;
+      task2.duration = Math.ceil(currentTask.duration / 2);
+      newTasks = [task1, task2];
       tasksByDeadline = newTasks.concat(tasksByDeadline);
     } else {
       // schedule task for the found time block
@@ -187,9 +201,23 @@ const createSchedule = (tasks, schedule) => {
 // testing
 
 const myTasks = [
-  { name: "be gay do crime", duration: 30, deadline: new Date(2024, 1, 25, 1, 0, 0) },
-  { name: "be gayer and do more crime", duration: 60, deadline: new Date(2024, 1, 26, 1, 0, 0) },
+  { name: "be cool", duration: 30, deadline: new Date(2024, 1, 25, 1, 0, 0) },
+  { name: "be cooler", duration: 60, deadline: new Date(2024, 1, 26, 1, 0, 0) },
   { name: "hellloooooo", duration: 15, deadline: new Date(2024, 1, 28, 5, 15, 0) },
+];
+
+const tasks2 = [
+  {
+    _id: "65b2beeee5d86e522b7a7b14",
+    name: "Test3",
+    owner: "65b1451132f6af4052d69039",
+    deadline: "2024-01-31T20:04:00.000Z",
+    duration: 75,
+    label: "",
+    notes: "",
+    source: "Manual",
+    __v: 0,
+  },
 ];
 
 const schedule = [
@@ -201,6 +229,16 @@ const schedule = [
   new Date(2024, 1, 21, 11, 15, 0),
 ];
 
+const schedule2 = [
+  "Thu Jan 25 2024 08:00:00 GMT-0500 (Eastern Standard Time)",
+  "Thu Jan 25 2024 08:15:00 GMT-0500 (Eastern Standard Time)",
+  "Thu Jan 25 2024 08:30:00 GMT-0500 (Eastern Standard Time)",
+  "Thu Jan 25 2024 08:45:00 GMT-0500 (Eastern Standard Time)",
+  "Thu Jan 25 2024 09:00:00 GMT-0500 (Eastern Standard Time)",
+  "Thu Jan 25 2024 09:15:00 GMT-0500 (Eastern Standard Time)",
+  "Thu Jan 25 2024 09:30:00 GMT-0500 (Eastern Standard Time)",
+  "Thu Jan 25 2024 09:45:00 GMT-0500 (Eastern Standard Time)",
+];
 // const scheduleObj = getFreeTimes(schedule);
 // console.log(scheduleObj);
 
@@ -217,8 +255,10 @@ const schedule = [
 
 // console.log(scheduleObj);
 
-console.log(createSchedule(myTasks, schedule));
+// console.log(createSchedule(myTasks, schedule));
+
+// console.log(createSchedule(tasks2, schedule2));
 
 module.exports = {
-  scheduleTask,
+  createSchedule,
 };

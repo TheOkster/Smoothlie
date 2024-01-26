@@ -11,7 +11,7 @@ const NewSmoothie = (props) => {
   return (
     <div className="TaskPage-pageContainer">
       <div>Create a new smoothie! Click the button below to begin.</div>
-      <Link to={{ pathname: "/createschedule" }}>
+      <Link to={{ pathname: "/selecttasks" }}>
         <button className="Button">Begin</button>
       </Link>
     </div>

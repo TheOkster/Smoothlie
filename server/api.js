@@ -120,7 +120,7 @@ router.post("/smoothie", (req, res) => {
     // In the future, we could add created date, authorized users, etc.
     name: req.body.name,
     owner: req.body.owner,
-    timestamps: req.body.timestamps,
+    // timestamps: req.body.timestamps,
     events: req.body.events,
   });
   smoothie.save();
@@ -146,9 +146,13 @@ router.post("/initsocket", (req, res) => {
     socketManager.addUser(req.user, socketManager.getSocketFromSocketID(req.body.socketid));
   res.send({});
 });
-
-router.get("/scheduler", (req, res) => {
-  res.send(scheduler.scheduleTask(req.body.schedule, req.body.tasks));
+// Changed to a POST endpoint instead of GET
+router.post("/scheduler", (req, res) => {
+  // console.log(req.body.taskList[0]);
+  console.log(`Task in API: ${req.body.taskList[0]}`);
+  const schedule = scheduler.createSchedule(req.body.taskList, req.body.schedule);
+  console.log(`Schedule: ${JSON.stringify(schedule)}`);
+  res.send(schedule);
 });
 
 // |------------------------------|
