@@ -4,6 +4,8 @@ import Dropdown from "../modules/Dropdown";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./General.css";
+import Alert from "react-bootstrap/Alert";
+
 /* Ignore this for now
   While this is (mostly) functional, it doesn't fit with our React structure and will likely be better fitted
   into a component so that we can use props from the Urgent/Important Grid */
@@ -44,7 +46,16 @@ const NewTask = (props) => {
     }).then((task) =>
       navigate("/entertasks", {
         state: {
-          taskList: taskList.concat({ _id: task._id, name: task.name }),
+          taskList: taskList.concat({
+            _id: task._id,
+            name: task.name,
+            owner: task.owner,
+            duration: task.duration,
+            label: task.label,
+            deadline: task.deadline,
+            notes: task.notes,
+            source: task.source,
+          }),
         },
       })
     );
