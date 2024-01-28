@@ -16,29 +16,31 @@ const SelectTasks = (props) => {
   const [checkedTasks, setCheckedTasks] = useState(new Set());
   get("/api/tasks", { owner: props.userId }).then((tasks) => setPossibleTaskList(tasks));
   return (
-    <div className="TaskPage-pageContainer">
-      {possibleTaskList.length > 0 ? (
-        possibleTaskList.map((task) => (
-          <Checkbox
-            for={task._id}
-            text={task.name}
-            handleChange={(event) => {
-              // TODO: Make this less slow
-              event.target.checked
-                ? setCheckedTasks(new Set([...checkedTasks, event.target.id]))
-                : setCheckedTasks(
-                    new Set([...checkedTasks].filter((item) => item != event.target.id))
-                  );
-            }}
-          />
-        ))
-      ) : (
-        <div>You have no existing tasks to import!</div>
-      )}
+    <div className="pageContainer">
+      <div className="mainContainer">
+        {possibleTaskList.length > 0 ? (
+          possibleTaskList.map((task) => (
+            <Checkbox
+              for={task._id}
+              text={task.name}
+              handleChange={(event) => {
+                // TODO: Make this less slow
+                event.target.checked
+                  ? setCheckedTasks(new Set([...checkedTasks, event.target.id]))
+                  : setCheckedTasks(
+                      new Set([...checkedTasks].filter((item) => item != event.target.id))
+                    );
+              }}
+            />
+          ))
+        ) : (
+          <div>You have no existing tasks to import!</div>
+        )}
+      </div>
       <button
         className="Button"
         onClick={() => {
-          navigate("/entertasks", {
+          navigate("/createtasks", {
             state: { taskList: possibleTaskList.filter((task) => checkedTasks.has(task._id)) },
           });
         }}

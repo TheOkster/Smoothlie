@@ -63,3 +63,15 @@
   z-index: -1;
   overflow: hidden;
 }
+
+.mainContainer{
+  display: flex;
+  flex-direction: column;
+  overflow:auto;
+  background-color: blueviolet; /*visibility purposes, get rid later */
+  justify-content:space-around;
+  /* align-items: flex-start; */
+  gap: var(--s);
+  width:200px; /* should i make this flexible later? */
+  word-wrap:break-word;
+}
