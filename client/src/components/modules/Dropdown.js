@@ -16,12 +16,18 @@ const Dropdown = (props) => {
   return (
     <div className="Dropdown-dropdown">
       {props.label && <label htmlFor={props._id}>{props.label}</label>}
-      <select name={props._name} id={props._id} onChange={props.handleChange}>
+      <select
+        name={props._name}
+        id={props._id}
+        defaultValue={"default"}
+        onChange={props.handleChange}
+      >
         {props.fields.map((field) => (
           <option key={field} value={field}>
             {field}
           </option>
         ))}
+        <option value={"default"}> {props.defaultValue} </option>
       </select>
     </div>
   );
