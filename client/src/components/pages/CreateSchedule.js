@@ -25,7 +25,6 @@ const CreateSchedule = (props) => {
   };
 
   const handleChange = (setter) => {
-    console.log("i am in the handleChange function");
     return (event) => {
       if (event.target.value !== "") {
         setter(event.target.value);
@@ -34,8 +33,6 @@ const CreateSchedule = (props) => {
   };
 
   const handleScheduleChange = (newSchedule) => {
-    console.log("in the handle schedule change function");
-    console.log(newSchedule);
     setAvailable(newSchedule);
   };
 
@@ -51,7 +48,7 @@ const CreateSchedule = (props) => {
           min="1"
           max="1000"
           value={numDays}
-          onChange={handleChange(setNumDays)}
+          onChange={(event) => setNumDays(Number(event.target.value))}
         />
         Min Hour:
         <input
@@ -59,7 +56,7 @@ const CreateSchedule = (props) => {
           min="0"
           max={maxTime - 1}
           value={minTime}
-          onChange={handleChange(setMinTime)}
+          onChange={(event) => setMinTime(Number(event.target.value))}
         />
         Max Hour:
         <input
@@ -67,7 +64,7 @@ const CreateSchedule = (props) => {
           min={minTime + 1}
           max="24"
           value={maxTime}
-          onChange={handleChange(setMaxTime)}
+          onChange={(event) => setMaxTime(Number(event.target.value))}
         />
       </div>
       <div>
