@@ -73,7 +73,7 @@ const App = () => {
         <Route path="/selecttasks" element={<SelectTasks path="/selecttasks" userId={userId} />} />
         <Route path="/taskgrid" element={<GridPage path="/taskgrid" userId={userId} />} />
         <Route path="/newtask" element={<NewTask path="/newtask" userId={userId} />} />
-        <Route path="/entertasks" element={<CreateTasks path="/entertasks" userId={userId} />} />
+        <Route path="/createtasks" element={<CreateTasks path="/createtasks" userId={userId} />} />
         <Route path="/result" element={<Result path="/result" userId={userId} />} />
         {/* Tasks != TaskPage, TaskPage is a prototype */}
         <Route path="/tasks" element={<ViewTasks path="/tasks" userId={userId} />} />

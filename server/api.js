@@ -114,7 +114,6 @@ router.get("/smoothiesbyname", (req, res) => {
   }
   Smoothie.find({ owner: req.query.owner, name: req.query.name })
     .then((smoothies) => {
-      console.log(smoothies);
       res.send({ smoothies });
     })
     .catch((err) => res.status(500).send("Internal Server Error"));
@@ -194,7 +193,6 @@ router.post("/initsocket", (req, res) => {
 // Changed to a POST endpoint instead of GET
 router.post("/scheduler", (req, res) => {
   // console.log(req.body.taskList[0]);
-  console.log(`Task in API: ${req.body.taskList[0]}`);
   const schedule = scheduler.createSchedule(req.body.taskList, req.body.schedule);
   console.log(`Schedule: ${JSON.stringify(schedule)}`);
   res.send(schedule);

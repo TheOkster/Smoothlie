@@ -14,7 +14,6 @@ const PastSmoothies = (props) => {
 
   useEffect(() => {
     get("/api/smoothiesbyuser", { owner: props.userId }).then((output) => {
-      console.log(JSON.stringify(output.smoothies[0].events));
       setSmoothies(output.smoothies);
       const names = output.smoothies.map((obj) => {
         return obj.name;
@@ -25,13 +24,15 @@ const PastSmoothies = (props) => {
 
   const handleChange = (event) => {
     const smoothieName = event.target.value;
+
+    // if user selects default option, do not display a smoothie
     if (smoothieName === "default") {
       setDisplaySmoothie(null);
     }
 
+    // find the smoothie the user wants to display and set it as the display smoothie
     for (let i = 0; i < smoothies.length; i++) {
       if (smoothies[i].name === smoothieName) {
-        console.log(JSON.stringify(smoothies[i].events));
         setDisplaySmoothie(smoothies[i]);
       }
     }
@@ -62,7 +63,13 @@ const PastSmoothies = (props) => {
         fields={smoothieNames}
         defaultValue={"Select Smoothie"}
       />
-      {displaySmoothie ? <Smoothie events={displaySmoothie.events} /> : null}
+      {displaySmoothie ? (
+        <Smoothie
+          events={displaySmoothie.events.map((event) => {
+            return { title: event.title, start: new Date(event.start), end: new Date(event.end) };
+          })}
+        />
+      ) : null}
     </>
   );
 };
