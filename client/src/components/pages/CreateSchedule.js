@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ScheduleSelector from "react-schedule-selector";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import EnterSchedule from "../modules/EnterSchedule.js";
+import "./CreateSchedule.css";
 
 const CreateSchedule = (props) => {
   const navigate = useNavigate();
@@ -40,6 +41,10 @@ const CreateSchedule = (props) => {
   return (
     <>
       <div>
+        <h1>Enter Your Availability</h1>
+        <p>Click and/or drag to select the times you're available for!</p>
+      </div>
+      <div className="container">
         Start Date:
         <input type="date" defaultValue={new Date()} onChange={handleChange(setStartDate)} />
         Number of Days:
