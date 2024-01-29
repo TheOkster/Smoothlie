@@ -38,6 +38,7 @@ const NewTask = (props) => {
       );
       return;
     }
+    /*edit this later to make it custom to each */
 
     post("/api/task", {
       name: taskName,
@@ -48,7 +49,7 @@ const NewTask = (props) => {
       notes: notes,
       source: "Manual",
     }).then((task) =>
-      navigate("/entertasks", {
+      navigate("/createtasks", {
         state: {
           taskList: taskList.concat({
             _id: task._id,
@@ -68,61 +69,82 @@ const NewTask = (props) => {
     return <div>Please login before you use Smoothlie!</div>;
   }
   return (
-    <div className="TaskPage-pageContainer">
-      <h1>Enter your Lemons:</h1>
-      <div className="TaskPage-line">
-        <p>Task Name:</p>
-        <input
-          type="text"
-          placeholder=""
-          className="EnterTasks-taskNameInput"
-          onChange={handleChange(setTaskName)}
-        />
+    <div className="pageContainer">
+      <h1>Enter your Fruits:</h1>
+      <div className="taskContainer">
+        <div className="TaskPage-line">
+          <div className="labelContainer">
+            <p>Task Name:</p>
+            <input
+              type="text"
+              placeholder=""
+              className="inputBox"
+              //"EnterTasks-taskNameInput"
+              onChange={handleChange(setTaskName)}
+            />
+          </div>
+          </div>
+        <div className="TaskPage-line">
+          <div className="labelContainer">
+            <p>Deadline:</p>
+            <input
+              type="datetime-local"
+              placeholder=""
+              className="EnterTasks-dateInput"
+              onChange={handleDateChange}
+            />
+          </div>
+          <div className="labelContainer">
+            <p>Duration: </p>
+            <input
+              type="number"
+              min="0"
+              placeholder=""
+              className="inputBox"
+              onChange={handleChange(setHours)}
+            />
+            hrs
+            <input
+              type="number"
+              min="0"
+              max="59"
+              placeholder=""
+              className="inputBox"
+              onChange={handleChange(setMinutes)}
+            />
+            mins
+
+          </div>
+        </div>
+        <div className="TaskPage-line">
+          <div className="labelContainer">
+            <p>Fruit type: </p>
+            {/* need to fix the dropdown*/}
+            <Dropdown
+
+              handleChange={handleChange(setLabel)}
+              fields={["lemons", "avocados", "strawberries", "bananas"]}
+            />
+          </div>
+          <div className="labelContainer">
+            <p>Project: </p>
+            <Dropdown
+              handleChange={handleChange(setLabel)}
+              // To Do: Use Not Hardcoded Label Options
+              fields={["", "", "", ""]}
+            />
+          </div>
+        </div>
+        <div className="TaskPage-line">
+          <div className="labelContainer">
+            <p>Additional Notes:</p>
+            <textarea rows="4" cols="50" onChange={handleChange(setNotes)}></textarea>
+          </div>
       </div>
-      <div className="TaskPage-line">
-        <p>Deadline</p>
-        <input
-          type="datetime-local"
-          placeholder=""
-          className="EnterTasks-dateInput"
-          onChange={handleDateChange}
-        />
-      </div>
-      <div className="TaskPage-line">
-        <p>Duration</p>
-        <input
-          type="number"
-          min="0"
-          placeholder=""
-          className="EnterTasks-hourInput"
-          onChange={handleChange(setHours)}
-        />
-        hrs
-        <input
-          type="number"
-          min="0"
-          max="59"
-          placeholder=""
-          className="EnterTasks-minuteInput"
-          onChange={handleChange(setMinutes)}
-        />
-        mins
-      </div>
-      <div className="TaskPage-line">
-        <p>Label: </p>
-        <Dropdown
-          handleChange={handleChange(setLabel)}
-          // To Do: Use Not Hardcoded Label Options
-          fields={["", "", "", ""]}
-        />
-      </div>
-      <div className="TaskPage-line">
-        <p>Additional Notes:</p>
-        <textarea rows="4" cols="50" onChange={handleChange(setNotes)}></textarea>
-        <div>
-          <button className="Button" type="button" onClick={addTask}>
-            Add
-          </button>
+      <div className="bottomLine">
+        <button className="Button" type="button" onClick={addTask}>
+          Add
+        </button>
         </div>
       </div>
     </div>

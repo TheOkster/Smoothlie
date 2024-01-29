@@ -42,6 +42,7 @@ const CreateSchedule = (props) => {
   // to do: add functionality for user to enter startdate, numdays, mintime, maxtime
   return (
     <>
+      <div className="pageContainer">
       <div>
         Start Date:
         <input type="date" defaultValue={new Date()} onChange={handleChange(setStartDate)} />
@@ -83,7 +84,8 @@ const CreateSchedule = (props) => {
         />
       </div>
       {/* <EnterSchedule available={available} setAvailable={setAvailable} /> */}
-      <button onClick={handleClick}>Submit Availability</button>
+      <button className="Button" onClick={handleClick}>Submit Availability</button>
+      </div>
     </>
   );
 };
