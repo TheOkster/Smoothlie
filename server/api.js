@@ -155,6 +155,35 @@ router.post("/task", (req, res) => {
   task.save();
   res.send(task);
 });
+router.put("/task", (req, res) => {
+  Task.findOneAndUpdate(
+    { _id: req.body._id },
+    {
+      name: req.body.name,
+      owner: req.body.owner,
+      duration: req.body.duration,
+      label: req.body.label,
+      deadline: req.body.deadline,
+      notes: req.body.notes,
+      source: req.body.source,
+    }
+  )
+    .then(() => {
+      res.status(200).send({ msg: `Task with id ${req.body.id} successfully updated` });
+    })
+    .catch((err) => res.status(500).send("Internal Server Error"));
+});
+router.delete("/task", (req, res) => {
+  // Not sure why but === causes this to crash while == works. In this instance,
+  // I'm not too concerned about the adverse effects of ==.
+  Task.deleteOne({ _id: req.body._id })
+    .then((result) =>
+      result.deletedCount == 1
+        ? res.status(200).send({ msg: `Task with id ${req.body.id} successfully deleted` })
+        : console.log({ msg: `Task with id ${req.body.id} not found.` })
+    )
+    .catch((error) => console.log(`Task with id ${req.body.id} not found`));
+});
 // TODO: Add Post endpoint to make it easier to add multiple smoothies/tasks at once?
 router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in

@@ -5,9 +5,8 @@ import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./General.css";
 
-/* Ignore this for now
-  While this is (mostly) functional, it doesn't fit with our React structure and will likely be better fitted
-  into a component so that we can use props from the Urgent/Important Grid */
+/* To make this less redundant, I could make this and CreateTasks render on the same page with conditional rendering
+and use the code from TaskFull */
 const NewTask = (props) => {
   const navigate = useNavigate();
   const location = useLocation();

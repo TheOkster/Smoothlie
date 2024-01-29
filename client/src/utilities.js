@@ -61,12 +61,26 @@ export function post(endpoint, params = {}) {
       throw `POST request to ${endpoint} failed with error:\n${error}`;
     });
 }
-// Helper code to make a delete request. Default paramter of empty JSON Object for params.
+/* The following functions were not originally in the skeleton */
+
+// Helper code to make a delete and request. Default paramter of empty JSON Object for params.
 // Returns a Promise to JSON Object.
-// Not originally in the skeletion
 export function del(endpoint, params = {}) {
   return fetch(endpoint, {
     method: "delete",
+    headers: { "Content-type": "application/json" },
+    body: JSON.stringify(params),
+  })
+    .then(convertToJSON) // convert result to JSON object
+    .catch((error) => {
+      // give a useful error message
+      throw `POST request to ${endpoint} failed with error:\n${error}`;
+    });
+}
+// Helper code to put a request. Default paramter of empty JSON Object for params.
+export function put(endpoint, params = {}) {
+  return fetch(endpoint, {
+    method: "put",
     headers: { "Content-type": "application/json" },
     body: JSON.stringify(params),
   })
