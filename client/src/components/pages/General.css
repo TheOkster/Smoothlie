@@ -68,10 +68,76 @@
   display: flex;
   flex-direction: column;
   overflow:auto;
-  background-color: blueviolet; /*visibility purposes, get rid later */
+  background-color: var(--primary); /*visibility purposes, get rid later */
   justify-content:space-around;
   /* align-items: flex-start; */
   gap: var(--s);
   width:200px; /* should i make this flexible later? */
   word-wrap:break-word;
+}
+
+.labelContainer{
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(255, 255, 255); /*visibility purposes, get rid later */
+  justify-content:space-around;
+  gap: 5%;
+  align-items:center;
+}
+
+.taskContainer {
+
+  display: inline-flex;
+  /* padding: 60px 31px; convert these into sensitive numbers later */
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 4% 3%; /* wait is this padding for the inside or outside... it seems like it's for the children */
+
+  width: 60vw;
+  height: 40vh;
+  /* max-width: 100%;
+  max-height: 100%; */
+
+  box-sizing: border-box;
+  flex:1;
+
+  border-radius: 30px;
+  background-color: #b7b7b7;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  gap:10px;
+  margin: 10px;
+  /* position:relative;
+  top:25.7vh;
+  left:10vw; */
+
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.bottomLine{
+  display: flex;
+  background-color: #f3f3f3cd;
+
+  width: 60vw;
+  position: relative;
+  left: 21.4vw;
+  top: 18vh;
+
+  /* flex-grow: 0; */
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap:10px;
+}
+
+.inputBox{
+  position: relative;
+  top:5%;
+  background-color:var(--primary);
+  color: var(--grey);
+  padding:5%;
+  border-radius:5%;
+
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 300;
 }

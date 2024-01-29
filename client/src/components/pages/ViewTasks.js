@@ -1,10 +1,12 @@
 import React from "react";
-import { get } from "../../utilities";
+import { get, del } from "../../utilities";
 import { useState } from "react";
 import Checkbox from "../modules/Checkbox";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Task from "../modules/Task";
+import TaskFull from "../modules/TaskFull";
+import * as mongoose from "mongoose";
 import "./General.css";
 import "./ViewTasks.css";
 
@@ -13,25 +15,38 @@ const ViewTasks = (props) => {
     return <div>Please login before you use Smoothlie!</div>;
   }
   const [possibleTaskList, setPossibleTaskList] = useState([]);
-  const [checkedTasks, setCheckedTasks] = useState(new Set());
-  const [showAlert, setShowAlert] = useState(false);
+  const [indivTaskId, setIndivTaskId] = useState();
+
   get("/api/tasks", { owner: props.userId }).then((tasks) => setPossibleTaskList(tasks));
-  console.log(showAlert);
   const handleDelete = () => {
+    console.log("Did it work?");
+    del("/api/task", { id: mongoose.Types.ObjectId("65aeecf2087fa00ec4207d12") });
     setShowAlert(true);
   };
   return (
     <>
-      <div>
-        {possibleTaskList.length > 0 ? (
-          possibleTaskList.map((task) => (
-            <Task _id={task._id} name={task.name} onDelete={handleDelete} />
-          ))
-        ) : (
-          <div>You have no existing tasks!</div>
-        )}
-        <button className="Button">Add New Task</button>
-      </div>
+      {indivTaskId === undefined ? (
+        <div>
+          {possibleTaskList.length > 0 ? (
+            possibleTaskList.map((task) => (
+              <Task
+                key={task._id}
+                _id={task._id}
+                name={task.name}
+                onDelete={handleDelete}
+                onTitleClick={(_id) => {
+                  setIndivTaskId(_id);
+                }}
+              />
+            ))
+          ) : (
+            <div>You have no existing tasks!</div>
+          )}
+          <button className="Button">Add New Task</button>
+        </div>
+      ) : (
+        <TaskFull _id={indivTaskId} setIndivTaskId={setIndivTaskId} {...props} />
+      )}
     </>
   );
 };
