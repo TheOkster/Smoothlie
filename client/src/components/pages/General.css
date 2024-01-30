@@ -228,11 +228,11 @@ input{
   position: relative;
   top:5%;
   background-color:var(--primary);
-  color: var(--grey);
+  color: var(--darktext);
   padding:5%;
   border-radius:5%;
 
   font-family: 'Josefin Sans';
   font-style: normal;
-  font-weight: 300;
+  font-weight: 500;
 }
