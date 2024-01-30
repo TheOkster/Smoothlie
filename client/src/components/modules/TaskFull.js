@@ -18,6 +18,7 @@ const TaskFull = (props) => {
   const [taskName, setTaskName] = useState("");
   const [deadline, setDeadline] = useState();
   const [hours, setHours] = useState(0);
+  const [fruit, setFruit] = useState("");
   const [minutes, setMinutes] = useState(0);
   const [label, setLabel] = useState("");
   const [notes, setNotes] = useState("");
@@ -53,7 +54,6 @@ const TaskFull = (props) => {
     setDeadline(event.target.value);
   };
   const handleChange = (setter) => {
-    // I'm not sure why return is necessary in this case, but it doesn't work without it
     return (event) => {
       setter(event.target.value);
     };
@@ -70,6 +70,7 @@ const TaskFull = (props) => {
       _id: props._id,
       name: taskName,
       owner: props.userId,
+      fruit: fruit,
       duration: parseInt(hours) * 60 + parseInt(minutes),
       label: label,
       deadline: new Date(deadline),
@@ -93,12 +94,22 @@ const TaskFull = (props) => {
       name: taskName,
       owner: props.userId,
       duration: parseInt(hours) * 60 + parseInt(minutes),
+      fruit: fruit,
       label: label,
       deadline: new Date(deadline),
       notes: notes,
       source: "Manual",
-    }).then((task) => {
+    }).then((newTask) => {
       console.log(`Task ID: ${props.indivTaskId}`);
+      props.setTaskList(
+        props.taskList.map((task) => {
+          if (task._id === props._id) {
+            return newTask;
+          } else {
+            return task;
+          }
+        })
+      );
       props.setIndivTaskId(undefined);
     });
   };
@@ -109,6 +120,7 @@ const TaskFull = (props) => {
     }).then(() => {
       console.log(`Task ID: ${props.indivTaskId}`);
       props.setIndivTaskId(undefined);
+      props.setTaskList(props.taskList.filter((task) => task._id != props._id));
     });
   };
   return (

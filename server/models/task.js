@@ -8,6 +8,8 @@ const TaskSchema = new mongoose.Schema({
   duration: Number,
   label: String,
   notes: String,
+  // Will change to Enum
+  fruit: String,
   source: { type: String, enum: ["GCal", "Manual"] },
 });
 

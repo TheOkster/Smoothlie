@@ -151,6 +151,7 @@ router.post("/task", (req, res) => {
     deadline: req.body.deadline,
     notes: req.body.notes,
     source: req.body.source,
+    fruit: req.body.fruit,
   });
   task.save();
   res.send(task);
@@ -166,9 +167,11 @@ router.put("/task", (req, res) => {
       deadline: req.body.deadline,
       notes: req.body.notes,
       source: req.body.source,
-    }
+      fruit: req.body.fruit,
+    },
+    { new: true }
   )
-    .then(() => {
+    .then((task) => {
       res.status(200).send(task);
     })
     .catch((err) => res.status(500).send("Internal Server Error"));
