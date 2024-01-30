@@ -11,10 +11,8 @@ const GridPage = (props) => {
   }
   const [taskList, setTaskList] = useState(location.state.taskList);
   const [quadrants, setQuadrants] = useState();
-
-  console.log(
-    `task list before passing onto create schedule in grid.js ${JSON.stringify(taskList)}`
-  );
+  const [urgent, setUrgent] = useState([]);
+  const [important, setImportant] = useState([]);
 
   const handleClick = (event) => {
     navigate("/createschedule", {
@@ -29,8 +27,15 @@ const GridPage = (props) => {
   return (
     <>
       <div className="TaskPage-pageContainer">
-        <UrgentImp taskList={taskList} handleTaskList={(event) => setQuadrants(event)} />
-        <button className="Button" onClick={handleClick}>Next</button>
+        <UrgentImp
+          taskList={taskList}
+          handleTaskList={(event) => setQuadrants(event)}
+          setImportant={setImportant}
+          setUrgent={setUrgent}
+        />
+        <button className="Button" onClick={handleClick}>
+          Next
+        </button>
       </div>
     </>
   );
