@@ -75,19 +75,20 @@ const NewTask = (props) => {
     <div className="pageContainer">
       <h1>Enter your Fruits:</h1>
       <div className="taskContainer">
-        <div className="TaskPage-line">
+        <div className="line">
           <div className="labelContainer">
             <p>Task Name:</p>
             <input
               type="text"
               placeholder=""
-              className="inputBox"
+              className="longInputBox"
               //"EnterTasks-taskNameInput"
               onChange={handleChange(setTaskName)}
             />
           </div>
+
         </div>
-        <div className="TaskPage-line">
+        <div className="line">
           <div className="labelContainer">
             <p>Deadline:</p>
             <input
@@ -98,27 +99,34 @@ const NewTask = (props) => {
             />
           </div>
           <div className="labelContainer">
-            <p>Duration: </p>
-            <input
-              type="number"
-              min="0"
-              placeholder=""
-              className="inputBox"
-              onChange={handleChange(setHours)}
-            />
-            hrs
-            <input
-              type="number"
-              min="0"
-              max="59"
-              placeholder=""
-              className="inputBox"
-              onChange={handleChange(setMinutes)}
-            />
-            mins
+            <div className="smallContainer">
+              <p>Duration: </p>
+              <input
+                type="number"
+                min="0"
+                placeholder=""
+                className="inputBox"
+                onChange={handleChange(setHours)}
+              />
+              hrs
+              <input
+                type="number"
+                min="0"
+                max="59"
+                placeholder=""
+                className="inputBox"
+                onChange={handleChange(setMinutes)}
+              />
+              mins
+            </div>
+            <div className="smallContainer">
+              <div className="Button">+15m</div>
+              <div className="Button">-15m</div>
+            </div>
           </div>
+
         </div>
-        <div className="TaskPage-line">
+        <div className="line">
           <div className="labelContainer">
             <p>Fruit type: </p>
             {/* need to fix the dropdown*/}
@@ -136,17 +144,18 @@ const NewTask = (props) => {
             />
           </div>
         </div>
-        <div className="TaskPage-line">
+        <div className="line">
           <div className="labelContainer">
             <p>Additional Notes:</p>
             <textarea rows="4" cols="50" onChange={handleChange(setNotes)}></textarea>
           </div>
-        </div>
-        <div className="bottomLine">
           <button className="Button" type="button" onClick={addTask}>
-            Add
+          Add
           </button>
         </div>
+
+
+
       </div>
     </div>
   );
