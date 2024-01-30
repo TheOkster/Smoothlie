@@ -46,7 +46,19 @@ const Smoothie = (props) => {
         {selectedEvent && (
           <div>
             <h2> {selectedEvent.title} </h2>
-            <p>Information about the event goes here</p>
+            <ul>
+              <li>
+                {selectedEvent.urgent ? null : "Not"} Urgent{" "}
+                {selectedEvent.important ? null : "Not"} Important
+              </li>
+              <li>
+                {" "}
+                <b> Label: </b> {selectedEvent.label}{" "}
+              </li>
+              <li>
+                <b>Additional Information: </b> {selectedEvent.description}
+              </li>
+            </ul>
             <button onClick={closeModal}> Close </button>
           </div>
         )}

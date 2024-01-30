@@ -32,6 +32,11 @@ const Result = (props) => {
       title: event.title,
       start: new Date(event.start),
       end: new Date(event.end),
+      description: event.description,
+      label: event.label,
+      urgent: event.urgent,
+      important: event.important,
+      fruit: event.fruit,
     };
   };
 
@@ -62,6 +67,7 @@ const Result = (props) => {
     <>
       <div>
         {smoothie[0] ? "Tasks scheduled successfully!" : "Failed to schedule all tasks."}
+        {console.log(smoothie[1])}
         <Smoothie events={smoothie[1]} />
       </div>
       <div>
