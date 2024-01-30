@@ -64,6 +64,7 @@ const PastSmoothies = (props) => {
         fields={smoothieNames}
         defaultValue={"Select Smoothie"}
       />
+      {console.log(displaySmoothie)}
       {displaySmoothie ? (
         <Smoothie
           events={displaySmoothie.events.map((event) => {

@@ -47,6 +47,10 @@ const NewTask = (props) => {
       deadline: date,
       notes: notes,
       source: "Manual",
+      // hardcoding these for now, eventually these should be passed in as well
+      fruit: "",
+      urgent: true,
+      important: true,
     }).then((task) =>
       navigate("/createtasks", {
         state: {
@@ -82,7 +86,7 @@ const NewTask = (props) => {
               onChange={handleChange(setTaskName)}
             />
           </div>
-          </div>
+        </div>
         <div className="TaskPage-line">
           <div className="labelContainer">
             <p>Deadline:</p>
@@ -112,7 +116,6 @@ const NewTask = (props) => {
               onChange={handleChange(setMinutes)}
             />
             mins
-
           </div>
         </div>
         <div className="TaskPage-line">
@@ -120,7 +123,6 @@ const NewTask = (props) => {
             <p>Fruit type: </p>
             {/* need to fix the dropdown*/}
             <Dropdown
-
               handleChange={handleChange(setLabel)}
               fields={["lemons", "avocados", "strawberries", "bananas"]}
             />
@@ -139,11 +141,11 @@ const NewTask = (props) => {
             <p>Additional Notes:</p>
             <textarea rows="4" cols="50" onChange={handleChange(setNotes)}></textarea>
           </div>
-      </div>
-      <div className="bottomLine">
-        <button className="Button" type="button" onClick={addTask}>
-          Add
-        </button>
+        </div>
+        <div className="bottomLine">
+          <button className="Button" type="button" onClick={addTask}>
+            Add
+          </button>
         </div>
       </div>
     </div>

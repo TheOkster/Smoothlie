@@ -67,6 +67,7 @@ const Result = (props) => {
     <>
       <div>
         {smoothie[0] ? "Tasks scheduled successfully!" : "Failed to schedule all tasks."}
+        {" Click on an event to see more detailed information about it."}
         {console.log(smoothie[1])}
         <Smoothie events={smoothie[1]} />
       </div>
