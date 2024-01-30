@@ -109,6 +109,7 @@ const TaskFull = (props) => {
     }).then(() => {
       console.log(`Task ID: ${props.indivTaskId}`);
       props.setIndivTaskId(undefined);
+      props.setTaskList(props.taskList.filter((task) => task._id != props._id));
     });
   };
   return (
