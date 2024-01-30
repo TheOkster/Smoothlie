@@ -112,82 +112,100 @@ const TaskFull = (props) => {
     });
   };
   return (
-    <div className="TaskPage-pageContainer">
-      <h1>Enter your Lemons:</h1>
-      <div className="TaskPage-line">
-        <p>Task Name:</p>
-        <input
-          type="text"
-          value={taskName}
-          className="EnterTasks-taskNameInput"
-          onChange={handleChange(setTaskName)}
-        />
-      </div>
-      <div className="TaskPage-line">
-        <p>Deadline</p>
-        <input
-          type="datetime-local"
-          value={deadline}
-          className="EnterTasks-dateInput"
-          onChange={handleDateChange}
-        />
-      </div>
-      <div className="TaskPage-line">
-        <p>Duration</p>
-        <input
-          type="number"
-          min="0"
-          value={hours}
-          className="EnterTasks-hourInput"
-          onChange={handleChange(setHours)}
-        />
-        hrs
-        <input
-          type="number"
-          min="0"
-          max="59"
-          value={minutes}
-          className="EnterTasks-minuteInput"
-          onChange={handleChange(setMinutes)}
-        />
-        mins
-      </div>
-      <div className="TaskPage-line">
-        {/* Should probably explain what fruits are somewhere */}
-        <p>Fruit: </p>
-        <Dropdown
-          handleChange={handleChange(setLabel)}
-          // To Do: Use Not Hardcoded Label Options
-          fields={["Lemons", "Avocados", "Undecided Fruit 3", "Undecided Fruit 4"]}
-        />
-      </div>
-      <div className="TaskPage-line">
-        <p>Label: </p>
-        <Dropdown
-          handleChange={handleChange(setLabel)}
-          // To Do: Use Not Hardcoded Label Options
-          fields={["Not Working Yet", "(Should be done by 1/30)"]}
-        />
-      </div>
-      <div className="TaskPage-line">
-        <p>Additional Notes:</p>
-        <textarea value={notes} rows="4" cols="50" onChange={handleChange(setNotes)}></textarea>
-        {props.isNewTask ? (
-          <div>
-            <button className="Button" type="button" onClick={addTask}>
-              Add
-            </button>
+    <div className="pageContainer">
+      <h1>Enter your Fruits:</h1>
+      <div className="taskContainer">
+        <div className="line">
+          <div className="labelContainer">
+            <p>Task Name:</p>
+            <input
+              type="text"
+              placeholder=""
+              className="longInputBox"
+              //"EnterTasks-taskNameInput"
+              onChange={handleChange(setTaskName)}
+            />
           </div>
-        ) : (
-          <div>
-            <button className="Button" type="button" onClick={updateTask}>
-              Update
-            </button>
-            <button className="Button" type="button" onClick={deleteTask}>
-              Delete
-            </button>
+
+        </div>
+        <div className="line">
+          <div className="labelContainer">
+            <p>Deadline:</p>
+            <input
+              type="datetime-local"
+              placeholder=""
+              className="EnterTasks-dateInput"
+              onChange={handleDateChange}
+            />
           </div>
-        )}
+          <div className="labelContainer">
+            <div className="smallContainer">
+              <p>Duration: </p>
+              <input
+                type="number"
+                min="0"
+                placeholder=""
+                className="inputBox"
+                onChange={handleChange(setHours)}
+              />
+              hrs
+              <input
+                type="number"
+                min="0"
+                max="59"
+                placeholder=""
+                className="inputBox"
+                onChange={handleChange(setMinutes)}
+              />
+              mins
+            </div>
+            <div className="smallContainer">
+              <div className="Button">+15m</div>
+              <div className="Button">-15m</div>
+            </div>
+          </div>
+        </div>
+        <div className="line">
+          <div className="labelContainer">
+            {/* Should probably explain what fruits are somewhere */}
+              <p>Fruit: </p>
+              <Dropdown
+                handleChange={handleChange(setLabel)}
+                // To Do: Use Not Hardcoded Label Options
+                fields={["Lemons", "Avocados", "Undecided Fruit 3", "Undecided Fruit 4"]}
+              />
+          </div>
+          <div className="labelContainer">
+            <p>Project: </p>
+            <Dropdown
+              handleChange={handleChange(setLabel)}
+              // To Do: Use Not Hardcoded Label Options
+              fields={["Not Working Yet", "(Should be done by 1/30)"]}
+            />
+          </div>
+        </div>
+        <div className="line">
+          <div className="smallContainer">
+            <p>Additional Notes:</p>
+            <textarea value={notes} rows="4" cols="50" onChange={handleChange(setNotes)}></textarea>
+          </div>
+          {props.isNewTask ? (
+            <div>
+              <button className="Button" type="button" onClick={addTask}>
+                Add
+              </button>
+            </div>
+          ) : (
+            <div className="bottomLine">
+              <button className="Button" type="button" onClick={updateTask}>
+                Update
+              </button>
+              <button className="Button" type="button" onClick={deleteTask}>
+                Delete
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
