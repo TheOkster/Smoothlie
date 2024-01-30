@@ -168,7 +168,7 @@ router.put("/task", (req, res) => {
     }
   )
     .then(() => {
-      res.status(200).send({ msg: `Task with id ${req.body.id} successfully updated` });
+      res.status(200).send(task);
     })
     .catch((err) => res.status(500).send("Internal Server Error"));
 });
