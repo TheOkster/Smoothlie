@@ -30,7 +30,7 @@ const GridPage = (props) => {
     <>
       <div className="TaskPage-pageContainer">
         <UrgentImp taskList={taskList} handleTaskList={(event) => setQuadrants(event)} />
-        <button onClick={handleClick}>Next</button>
+        <button className="Button" onClick={handleClick}>Next</button>
       </div>
     </>
   );

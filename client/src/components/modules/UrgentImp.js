@@ -27,14 +27,7 @@ const UrgentImp = (props) => {
   if ("handleTaskList" in props) {
     props.handleTaskList(taskList);
   }
-  // const containers = ["green", "blue"];
-  // const [green, setGreen] = useState([]);
-  // const [blue, setBlue] = useState([]);
-  // const [draggables, setDraggables] = useState([
-  //   { id: "draggable1", text: "be gay and do crime" },
-  //   { id: "draggable2", text: "heyyyy" },
-  //   { id: "draggable3", text: "another day, another slay" },
-  // ]);
+
   const handleDragEnd = (e) => {
     const item_id = e.active.id;
 
@@ -78,6 +71,7 @@ const UrgentImp = (props) => {
     return <Draggable id={task} key={task} text={task} />;
   };
 
+  //change these colours to be prettier later
   const colorMapping = {
     notUrgNotImp: "red",
     notUrgIsImp: "blue",
@@ -93,31 +87,23 @@ const UrgentImp = (props) => {
 
   return (
     <DndContext onDragEnd={handleDragEnd}>
-      {/* render all tasks not in a container */}
-      {taskList["unsorted"].map(taskMarkup)}
-      {Object.keys(taskList).map(containerMarkup)}
+      <div className="UrgentImp-Box">
+        <div className="taskColumn">
+          {/* Render all tasks not in a container */}
+          {taskList["unsorted"].map(taskMarkup)}
+        </div>
+        {/* Render 2x2 grid */}
+        <div className="gridContainer">
+          <div style={{ display: "flex" }}>
+            {["isUrgIsImp", "isUrgNotImp"].map(containerMarkup)}
+          </div>
+          <div style={{ display: "flex" }}>
+            {["notUrgIsImp", "notUrgNotImp"].map(containerMarkup)}
+          </div>
+        </div>
+      </div>
     </DndContext>
   );
 };
-//   function handleDragEnd(event) {
-//     // get draggable item data
-//     const { active } = event;
-//     const item = active;
-//     const newItem = { id: item.id, key: item.id, text: item.data.current?.title };
-
-//     // get droppable item data
-//     const { over } = event;
-
-//     // add draggable to whatever droppable item it ended up in, if any
-//     if (over.id === "green") {
-//       setGreen(green.concat([newItem]));
-//     } else if (over.id === "blue") {
-//       setBlue(blue.concat([newItem]));
-//     }
-
-//     // remove droppable from list of droppables
-//     setDraggables(draggables.filter((drag) => drag.id != newItem.id));
-//   }
-// };
 
 export default UrgentImp;

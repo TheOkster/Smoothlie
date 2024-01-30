@@ -131,6 +131,11 @@ const scheduleTask = (newSchedule, scheduleObj, task, time, blockLength) => {
     title: task.name,
     start: startTime,
     end: endTime,
+    description: task.notes,
+    label: task.label,
+    urgent: task.urgent,
+    fruit: task.fruit,
+    important: task.important,
   });
   // update schedule object
   const duration = task.duration;

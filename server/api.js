@@ -130,6 +130,7 @@ router.get("/tasks", (req, res) => {
 });
 router.post("/smoothie", (req, res) => {
   // TODO: Add error checking?
+  console.log(req.body);
   const smoothie = new Smoothie({
     // In the future, we could add created date, authorized users, etc.
     dateCreated: req.body.dateCreated,

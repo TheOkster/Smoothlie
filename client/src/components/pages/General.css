@@ -1,6 +1,7 @@
 .Button {
     position: relative;
     top:10%;
+    left:0%;
     background-color:#0a0a23;
     color: #fff;
     border:none;
@@ -119,8 +120,8 @@
 
   width: 60vw;
   position: relative;
-  left: 21.4vw;
-  top: 18vh;
+  left: -2vw;
+  top: 7vh;
 
   /* flex-grow: 0; */
   flex-direction: row;
@@ -140,4 +141,25 @@
   font-family: 'Josefin Sans';
   font-style: normal;
   font-weight: 300;
+}
+
+.gridContainer{
+  background-color: var(--grey);
+  display:flex;
+  flex-direction:column;
+}
+
+.taskColumn{
+  display:flex;
+  flex-flow:column wrap;
+  align-content: center;
+}
+
+.UrgentImp-Box{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  /* background-color: #221717; */
+  gap:40px;
+  /* get rid of above later*/
 }
