@@ -145,23 +145,23 @@ const TaskFull = (props) => {
                 type="number"
                 min="0"
                 placeholder=""
-                className="inputBox"
+
                 onChange={handleChange(setHours)}
               />
-              hrs
+              <p>hrs</p>
               <input
                 type="number"
                 min="0"
                 max="59"
                 placeholder=""
-                className="inputBox"
+
                 onChange={handleChange(setMinutes)}
               />
-              mins
+              <p>mins</p>
             </div>
             <div className="smallContainer">
-              <div className="Button">+15m</div>
-              <div className="Button">-15m</div>
+              <button>+15m</button>
+              <button>-15m</button>
             </div>
           </div>
         </div>
@@ -191,16 +191,16 @@ const TaskFull = (props) => {
           </div>
           {props.isNewTask ? (
             <div>
-              <button className="Button" type="button" onClick={addTask}>
+              <button type="button" onClick={addTask}>
                 Add
               </button>
             </div>
           ) : (
             <div className="bottomLine">
-              <button className="Button" type="button" onClick={updateTask}>
+              <button type="button" onClick={updateTask}>
                 Update
               </button>
-              <button className="Button" type="button" onClick={deleteTask}>
+              <button type="button" onClick={deleteTask}>
                 Delete
               </button>
             </div>

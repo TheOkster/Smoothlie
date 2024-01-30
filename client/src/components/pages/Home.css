@@ -20,7 +20,7 @@
     line-height: 36px; /* Adjust line height accordingly */
     display: flex;
     text-align: center;
-    color: var(--primary);
+    color: var(--pink);
 }
 .Home-l { /*figure this out later or just insert a photo*/
     height: inline;
@@ -32,11 +32,10 @@
     line-height: 36px; /* Adjust line height accordingly */
     display: flex;
     text-align: left;
-    color: var(--primary);
+    color: var(--pink);
 }
 
 .Home-centerButton {
     display: flex;
     justify-content: center;
 }
-
