@@ -16,7 +16,7 @@ const ViewTasks = (props) => {
   }
   const [possibleTaskList, setPossibleTaskList] = useState([]);
   const [indivTaskId, setIndivTaskId] = useState();
-
+  const [isNewTask, setIsNewTask] = useState(false);
   get("/api/tasks", { owner: props.userId }).then((tasks) => setPossibleTaskList(tasks));
   const handleDelete = () => {
     console.log("Did it work?");
@@ -25,7 +25,7 @@ const ViewTasks = (props) => {
   };
   return (
     <>
-      {indivTaskId === undefined ? (
+      {indivTaskId === undefined && !isNewTask ? (
         <div>
           {possibleTaskList.length > 0 ? (
             possibleTaskList.map((task) => (
@@ -42,10 +42,23 @@ const ViewTasks = (props) => {
           ) : (
             <div>You have no existing tasks!</div>
           )}
-          <button className="Button">Add New Task</button>
+          <button
+            className="Button"
+            onClick={() => {
+              setIsNewTask(true);
+            }}
+          >
+            Add New Task
+          </button>
         </div>
       ) : (
-        <TaskFull _id={indivTaskId} setIndivTaskId={setIndivTaskId} {...props} />
+        <TaskFull
+          _id={indivTaskId}
+          setIndivTaskId={setIndivTaskId}
+          setIsNewTask={setIsNewTask}
+          isNewTask={isNewTask}
+          {...props}
+        />
       )}
     </>
   );
