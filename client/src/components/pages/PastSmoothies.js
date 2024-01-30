@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Dropdown from "../modules/Dropdown";
 import { get, post } from "../../utilities";
 import Smoothie from "../modules/Smoothie";
+import { eventNames } from "../../../../server/models/smoothie";
 
 const PastSmoothies = (props) => {
   if (!props.userId) {
@@ -63,10 +64,20 @@ const PastSmoothies = (props) => {
         fields={smoothieNames}
         defaultValue={"Select Smoothie"}
       />
+      {console.log(displaySmoothie)}
       {displaySmoothie ? (
         <Smoothie
           events={displaySmoothie.events.map((event) => {
-            return { title: event.title, start: new Date(event.start), end: new Date(event.end) };
+            return {
+              title: event.title,
+              start: new Date(event.start),
+              end: new Date(event.end),
+              description: event.description,
+              label: event.label,
+              urgent: event.urgent,
+              important: event.important,
+              fruit: event.fruit,
+            };
           })}
         />
       ) : null}
