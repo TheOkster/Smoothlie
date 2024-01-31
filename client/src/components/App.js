@@ -7,8 +7,6 @@ import NotFound from "./pages/NotFound.js";
 import Home from "./pages/Home.js";
 import NewSmoothie from "./pages/NewSmoothie.js";
 import PastSmoothies from "./pages/PastSmoothies.js";
-import TaskPage from "./pages/TaskPage.js";
-import "./pages/TaskPage.jpg";
 
 import GridPage from "./pages/Grid.js";
 import NavBar from "./modules/NavBar.js";
@@ -74,8 +72,6 @@ const App = () => {
         <Route path="/newtask" element={<NewTask path="/newtask" userId={userId} />} />
         <Route path="/createtasks" element={<CreateTasks path="/createtasks" userId={userId} />} />
         <Route path="/result" element={<Result path="/result" userId={userId} />} />
-        {/* Tasks != TaskPage, TaskPage is a prototype */}
-        <Route path="/TaskPage" element={<TaskPage path="/TaskPage" />} />
         <Route path="/createschedule" element={<CreateSchedule path="/createschedule" />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

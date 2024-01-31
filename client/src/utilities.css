@@ -37,6 +37,8 @@
   --s: 8px;
   --m: 16px;
   --l: 24px;
+
+  --navbar--height: 2*var(--s)+38px; /*ideally i get rid of this later*/
 }
 
 .smoothlie {

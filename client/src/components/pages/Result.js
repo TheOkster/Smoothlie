@@ -3,6 +3,8 @@ import Smoothie from "../modules/Smoothie.js";
 import { get, post } from "../../utilities";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./General.css";
+import "./Mobile.css";
+import {useMediaQuery} from 'react-responsive';
 
 import EnterSchedule from "../modules/EnterSchedule.js";
 
@@ -11,6 +13,7 @@ const Result = (props) => {
     return <div>Please login before you use Smoothlie!</div>;
   }
   const location = useLocation();
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 500px)' });
 
   const [smoothie, setSmoothie] = useState([]);
   const [smoothieName, setSmoothieName] = useState("");

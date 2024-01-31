@@ -7,7 +7,8 @@ import Modal from "react-modal";
 import TaskFull from "../modules/TaskFull.js";
 import TaskCheckbox from "../modules/TaskCheckbox.js";
 import "./General.css";
-import "./TaskPage.css";
+import "./Mobile.css";
+import {useMediaQuery} from 'react-responsive'
 
 const SelectTasks = (props) => {
   if (!props.userId) {
@@ -17,13 +18,18 @@ const SelectTasks = (props) => {
   const [possibleTaskList, setPossibleTaskList] = useState([]);
   const [checkedTasks, setCheckedTasks] = useState(new Set());
   const [indivTaskId, setIndivTaskId] = useState(undefined);
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 500px)' })
+
   useEffect(() => {
     get("/api/tasks", { owner: props.userId }).then((tasks) => setPossibleTaskList(tasks));
   }, []);
 
   return (
     <div className="pageContainer">
-      <div className="mainContainer">
+      <div className="toplineContainer">
+        <h1>Re-use tasks you've previously made!</h1>
+      </div>
+      <div className={isTabletOrMobile ? "tasklistContainerMobile" : "tasklistContainer"}> {/*tasklist container here*/}
         {possibleTaskList.length > 0 ? (
           possibleTaskList.map((task) => (
             <TaskCheckbox
@@ -45,6 +51,7 @@ const SelectTasks = (props) => {
           ))
         ) : (
           <div>You have no existing tasks to import!</div>
+          /* add smth like "proceed state is false" or smth */
         )}
         <Modal
           isOpen={indivTaskId !== undefined}
@@ -68,16 +75,18 @@ const SelectTasks = (props) => {
           />
         </Modal>
       </div>
-      <button
-        className="Button"
-        onClick={() => {
-          navigate("/createtasks", {
-            state: { taskList: possibleTaskList.filter((task) => checkedTasks.has(task._id)) },
-          });
-        }}
-      >
-        Finish Selecting Existing Tasks
-      </button>
+      <div className="bottomlineContainer">
+        <button
+          className={isTabletOrMobile ? "buttonMobile" : "Button"}
+          onClick={() => {
+            navigate("/createtasks", {
+              state: { taskList: possibleTaskList.filter((task) => checkedTasks.has(task._id)) },
+            });
+          }}
+        >
+          Finish Selecting Existing Tasks
+        </button>
+      </div>
     </div>
   );
 };

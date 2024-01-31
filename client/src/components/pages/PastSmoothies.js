@@ -3,6 +3,9 @@ import Dropdown from "../modules/Dropdown";
 import { get, post } from "../../utilities";
 import Smoothie from "../modules/Smoothie";
 import { eventNames } from "../../../../server/models/smoothie";
+import {useMediaQuery} from 'react-responsive';
+import "./General.css";
+import "./Mobile.css";
 
 const PastSmoothies = (props) => {
   if (!props.userId) {
@@ -12,6 +15,7 @@ const PastSmoothies = (props) => {
   const [smoothies, setSmoothies] = useState([]);
   const [smoothieNames, setSmoothieNames] = useState([]);
   const [displaySmoothie, setDisplaySmoothie] = useState(null);
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 500px)' });
 
   useEffect(() => {
     get("/api/smoothiesbyuser", { owner: props.userId }).then((output) => {

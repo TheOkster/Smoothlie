@@ -30,6 +30,8 @@ const NewTask = (props) => {
     };
   };
 
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 500px)' })
+
   const addTask = () => {
     if (taskName === "" || date === undefined || (hours === "0" && minutes === "0")) {
       alert(

@@ -36,3 +36,25 @@
   transform: translateY(-50%);
   pointer-events: none;
 }
+
+.Task-Button {
+  position: relative;
+  top:10%;
+  left:0%;
+  max-height: 6vh; /* i want this to be current vh/38 or smth bc the proportions are nice but like to cater for mobile */
+  background-color: var(--darkgrey);
+  color: var(--white);
+  border:none;
+  padding: 10px;
+  border-radius:10px;
+  margin: 5px;
+
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-size:large;
+  font-weight: 500;
+  /* transition: transform 0.05s ease-in-out, box-shadow 0.2s ease-in-out; */
+  /* box-shadow: 0px 4px 4px 0px rgb(0, 0, 0,1); */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Adjusted shadow on hover */
+
+}

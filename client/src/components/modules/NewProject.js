@@ -204,7 +204,7 @@ const NewProject = (props) => {
               </button>
             </div>
           ) : (
-            <div className="bottomLine">
+            <div className="bottomlineContainer">
               <button type="button" onClick={updateTask}>
                 Update
               </button>

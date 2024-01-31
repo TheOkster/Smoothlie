@@ -14,7 +14,7 @@ const Home = ({ userId, handleLogin, handleLogout }) => {
   return (
     <>
       <div className="Background">
-            <img src={require("./TaskPage.jpg").default} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center"}} />
+            {/* <img src={require("./TaskPage.jpg").default} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center"}} /> */}
       </div>
       <div className="Home-container">
         <div className="Home-logo">Smoothlie</div>
@@ -24,7 +24,7 @@ const Home = ({ userId, handleLogin, handleLogout }) => {
             <>
             <Link to={{pathname: "/selecttasks"}}> {/* need to fix this later; this is going to redirect to another page depending on whether you've selected tasks before*/}
               <button className="Button">
-                Welcome back! Click here to begin.
+                Welcome! Click here to begin.
               </button>
             </Link>
 

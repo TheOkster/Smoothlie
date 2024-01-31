@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { get, del, put, post } from "../../utilities";
 import Dropdown from "./Dropdown";
 import "./Task.css";
+import "../pages/General.css";
 
 /**
  * Component to render an online user
@@ -84,7 +85,7 @@ const TaskFull = (props) => {
     if (taskName === "" || deadline === undefined || (hours === "0" && minutes === "0")) {
       alert(
         "Make sure that the task name, deadline (including the time), and duration boxes are filled!"
-      );
+      ); {/*make this actually distinct – each alert is for smth specific */}
       return;
     }
 
@@ -125,8 +126,8 @@ const TaskFull = (props) => {
     props.setTaskList(props.taskList.filter((task) => task._id != props._id));
   };
   return (
-    <div className="pageContainer">
-      <h1>Enter your Fruits:</h1>
+    <div>
+      <h1>Enter your Tasks:</h1>
       <div className="taskContainer">
         <div className="line">
           <div className="labelContainer">
@@ -157,10 +158,12 @@ const TaskFull = (props) => {
               <input
                 type="number"
                 min="0"
+                max = "10000"
+
                 placeholder=""
                 onChange={handleChange(setHours)}
               />
-              <p>hrs</p>
+              <p>hrs </p>
               <input
                 type="number"
                 min="0"
@@ -171,10 +174,10 @@ const TaskFull = (props) => {
               />
               <p>mins</p>
             </div>
-            <div className="smallContainer">
+            {/* <div className="smallContainer">
               <button className="Button">+15m</button>
               <button className="Button">-15m</button>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="line">
@@ -203,16 +206,16 @@ const TaskFull = (props) => {
           </div>
           {props.isNewTask ? (
             <div>
-              <button classname="Button" type="button" onClick={addTask}>
+              <button className="Button" type="button" onClick={addTask}>
                 Add
               </button>
             </div>
           ) : (
             <div className="smallContainer">
-              <button className="Button" type="button" onClick={updateTask}>
+              <button className="Task-Button" type="button" onClick={updateTask}>
                 Update
               </button>
-              <button className="Button" type="button" onClick={deleteTask}>
+              <button className="Task-Button" type="button" onClick={deleteTask}>
                 Delete
               </button>
             </div>

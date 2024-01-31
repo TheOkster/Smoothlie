@@ -3,10 +3,14 @@ import ScheduleSelector from "react-schedule-selector";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import EnterSchedule from "../modules/EnterSchedule.js";
 import "./CreateSchedule.css";
+import "./General.css";
+import "./Mobile.css";
+import {useMediaQuery} from 'react-responsive';
 
 const CreateSchedule = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 500px)' });
 
   const [available, setAvailable] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
@@ -36,6 +40,7 @@ const CreateSchedule = (props) => {
   const handleScheduleChange = (newSchedule) => {
     setAvailable(newSchedule);
   };
+
 
   // to do: add functionality for user to enter startdate, numdays, mintime, maxtime
   return (

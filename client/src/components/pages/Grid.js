@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import UrgentImp from "../modules/UrgentImp.js";
+import {useMediaQuery} from 'react-responsive';
+import "./Mobile.css";
 
 const GridPage = (props) => {
   const navigate = useNavigate();
@@ -13,6 +15,8 @@ const GridPage = (props) => {
   const [quadrants, setQuadrants] = useState();
   const [urgent, setUrgent] = useState([]);
   const [important, setImportant] = useState([]);
+
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 500px)' });
 
   const handleClick = (event) => {
     navigate("/createschedule", {

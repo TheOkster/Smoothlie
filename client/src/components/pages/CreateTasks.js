@@ -8,8 +8,11 @@ import Task from "../modules/Task";
 import TaskFull from "../modules/TaskFull";
 import * as mongoose from "mongoose";
 import "./General.css";
+import "./Mobile.css";
+import {useMediaQuery} from 'react-responsive';
 
 const CreateTasks = (props) => {
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 500px)' });
   const location = useLocation();
   const navigate = useNavigate();
   const [taskList, setTaskList] = useState(location.state?.taskList ?? []);
@@ -39,40 +42,48 @@ const CreateTasks = (props) => {
     del("/api/task", { id: mongoose.Types.ObjectId("65aeecf2087fa00ec4207d12") });
     setShowAlert(true);
   };
+
   return (
     <>
-      <div className="TaskPage-pageContainer">
-        {taskList.length > 0 ? (
-          taskList.map((task) => (
-            <Task
-              key={task._id}
-              _id={task._id}
-              name={task.name}
-              onDelete={handleDelete}
-              onTitleClick={(_id) => {
-                setIndivTaskId(_id);
-              }}
-            />
-          ))
-        ) : (
-          <div>You have no existing tasks!</div>
-        )}
-        <button
-          className="Button"
-          onClick={() => {
-            setIsNewTask(true);
-          }}
-        >
-          Add New Task
-        </button>
-        <button
-          className="Button"
-          onClick={() => {
-            navigate("/taskgrid", { state: { taskList: taskList } });
-          }}
-        >
-          Finishing Adding Tasks
-        </button>
+      <div className="pageContainer">
+        <div className="toplineContainer">
+          <h1>Your current tasks are: </h1>
+        </div>
+        <div className="tasklistContainer">
+          {taskList.length > 0 ? (
+            taskList.map((task) => (
+              <Task
+                key={task._id}
+                _id={task._id}
+                name={task.name}
+                onDelete={handleDelete}
+                onTitleClick={(_id) => {
+                  setIndivTaskId(_id);
+                }}
+              />
+            ))
+          ) : (
+            <div>You have no existing tasks. Click below to add a task!</div>
+          )}
+        </div>
+        <div className="buttonContainer">
+          <button
+            className="Button"
+            onClick={() => {
+              setIsNewTask(true);
+            }}
+          >
+            Add New Task
+          </button>
+          <button
+            className="Button"
+            onClick={() => {
+              navigate("/taskgrid", { state: { taskList: taskList } });
+            }}
+          >
+            Finishing Adding Tasks
+          </button>
+        </div>
       </div>
       <Modal
         isOpen={indivTaskId !== ""}

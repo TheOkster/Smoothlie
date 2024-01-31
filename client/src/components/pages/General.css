@@ -9,6 +9,7 @@ button{
     position: relative;
     top:10%;
     left:0%;
+    max-height: 6vh; /* i want this to be current vh/38 or smth bc the proportions are nice but like to cater for mobile */
     background-color: var(--darkgrey);
     color: var(--white);
     border:none;
@@ -34,7 +35,7 @@ button{
 p {
   font-family: "Josefin Sans";
   font-style: normal;
-  font-size: large;
+  font-size: 20px;
   font-weight: 500;
   color: var(--white);
   width: auto;
@@ -55,24 +56,23 @@ p {
 } */
 
 .buttonContainer {
-  position: absolute;
-  top: 60%;
+
   align-items: center;
   justify-content: center;
   gap: 20px;
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .pageContainer {
-  position: relative;
-  width: 60vw;
-  height: 55vh; /* this is the top of the hierarchy*/
-  left: 10vw;
-  top: 10vh;
+  position: absolute;
+  width: 100vw;
+  height: calc(92vh - 60px); /* this is the top of the hierarchy*/
+  top: var(--navbar--height);
 
   display: inline-flex;
-  padding: 4% 4%;
+  padding: 4% 0%;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
@@ -96,7 +96,7 @@ p {
 .Background {
   width: 100vw;
   height: 93vh;
-  background-color: #221717;
+  background-color: var(--primary);
   background-size: cover;
   position: absolute;
   z-index: -1;
@@ -123,6 +123,19 @@ p {
 
   gap: 5%;
   align-items: center;
+}
+
+.tasklistContainer{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items:center;
+  gap: 5px;
+  overflow:auto;
+  width: 500px;
+  height: 400px;
+  border: 3px solid var(--darkblue);
+  fill: var(--darkblue--dim);
 }
 
 .smallContainer p {
@@ -175,36 +188,29 @@ p {
   gap: 10px;
 }
 
-.topLine {
+.toplineContainer {
   display: flex;
-  display: flex;
-  background-color: #bc1f1fcd;
 
   width: 60vw;
-  position: relative;
-  left: -2vw;
   top: 10vh;
 
   /* flex-grow: 0; */
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 10px;
 }
 
-.bottomLine {
+.bottomlineContainer {
   display: flex;
-  background-color: #f3f3f3cd;
 
   width: 60vw;
   position: relative;
-  left: -2vw;
-  top: 7vh;
 
   /* flex-grow: 0; */
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 10px;
 }
 
@@ -212,6 +218,11 @@ p {
   background-color: var(--grey);
   display: flex;
   flex-direction: column;
+}
+
+.taskgridContainer{
+  display: flex;
+  flex-direction: row;
 }
 
 .taskColumn {
