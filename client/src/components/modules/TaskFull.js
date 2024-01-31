@@ -109,7 +109,7 @@ const TaskFull = (props) => {
           }
         })
       );
-      props.setIndivTaskId(undefined);
+      props.setIndivTaskId("");
     });
   };
 
@@ -121,7 +121,7 @@ const TaskFull = (props) => {
     //   props.setIndivTaskId(undefined);
     //   props.setTaskList(props.taskList.filter((task) => task._id != props._id));
     // });
-    props.setIndivTaskId(undefined);
+    props.setIndivTaskId("");
     props.setTaskList(props.taskList.filter((task) => task._id != props._id));
   };
   return (
@@ -162,7 +162,7 @@ const TaskFull = (props) => {
                 min="0"
                 max="59"
                 placeholder=""
-                value={hours}
+                value={minutes}
                 onChange={handleChange(setMinutes)}
               />
               <p>mins</p>

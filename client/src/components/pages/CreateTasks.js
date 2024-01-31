@@ -15,7 +15,7 @@ const CreateTasks = (props) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [taskList, setTaskList] = useState(location.state?.taskList ?? []);
-  const [indivTaskId, setIndivTaskId] = useState();
+  const [indivTaskId, setIndivTaskId] = useState("");
   const [isNewTask, setIsNewTask] = useState(false);
   useEffect(() => {
     // Event listener for popstate
@@ -78,9 +78,9 @@ const CreateTasks = (props) => {
         </button>
       </div>
       <Modal
-        isOpen={indivTaskId !== undefined}
+        isOpen={indivTaskId !== ""}
         onRequestClose={() => {
-          setIndivTaskId(undefined);
+          setIndivTaskId("");
         }}
         style={{
           content: {
