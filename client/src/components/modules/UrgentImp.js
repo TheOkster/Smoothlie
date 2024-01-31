@@ -12,16 +12,8 @@ import Droppable from "./Droppable";
  */
 
 const UrgentImp = (props) => {
-  // console.log(props.taskList.map((task) => task.name));
-  const [taskList, setTaskList] = useState({
-    notUrgNotImp: [],
-    notUrgIsImp: [],
-    isUrgNotImp: [],
-    isUrgIsImp: [],
-    unsorted: props.taskList,
-  });
   if ("handleTaskList" in props) {
-    props.handleTaskList(taskList);
+    props.handleTaskList(props.taskGrid);
   }
 
   const handleDragEnd = (e) => {
@@ -45,18 +37,18 @@ const UrgentImp = (props) => {
     // }
 
     console.log(finalContainer);
-    const temp = { ...taskList };
+    const temp = { ...props.taskGrid };
     const task = temp[initialContainer].find((task) => task._id === item_id);
     console.log(task);
     temp[initialContainer] = temp[initialContainer].filter((task) => task._id !== item_id);
     temp[finalContainer] = temp[finalContainer].concat([task]);
 
-    setTaskList(temp);
+    props.setTaskGrid(temp);
   };
 
   const findTaskContainer = (taskId) => {
-    for (const key of Object.keys(taskList)) {
-      for (const task of taskList[key]) {
+    for (const key of Object.keys(props.taskGrid)) {
+      for (const task of props.taskGrid[key]) {
         if (task._id == taskId) {
           return key;
         }
@@ -79,7 +71,7 @@ const UrgentImp = (props) => {
 
   const containerMarkup = (key) => {
     if (key !== "unsorted") {
-      return <Droppable key={key} id={key} color={colorMapping[key]} tasks={taskList[key]} />;
+      return <Droppable key={key} id={key} color={colorMapping[key]} tasks={props.taskGrid[key]} />;
     }
   };
 
@@ -88,7 +80,8 @@ const UrgentImp = (props) => {
       <div className="UrgentImp-Box">
         <div className="taskColumn">
           {/* Render all tasks not in a container */}
-          {taskList["unsorted"].map(taskMarkup)}
+          {console.log(`printing stuff ${JSON.stringify(props.taskGrid)}`)}
+          {props.taskGrid.unsorted.map(taskMarkup)}
         </div>
         {/* Render 2x2 grid */}
         <div className="gridContainer">
