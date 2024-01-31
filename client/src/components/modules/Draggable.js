@@ -14,7 +14,7 @@ const Draggable = (props) => {
   };
 
   return (
-    <button ref={setNodeRef} style={style} {...listeners} {...attributes}>
+    <button className="Button" ref={setNodeRef} style={style} {...listeners} {...attributes}>
       {props.text}
       {/* {props.text} */}
     </button>

@@ -134,7 +134,6 @@ const TaskFull = (props) => {
               type="text"
               placeholder=""
               className="longInputBox"
-              //"EnterTasks-taskNameInput"
               onChange={handleChange(setTaskName)}
             />
           </div>
@@ -157,7 +156,6 @@ const TaskFull = (props) => {
                 type="number"
                 min="0"
                 placeholder=""
-
                 onChange={handleChange(setHours)}
               />
               <p>hrs</p>
@@ -172,8 +170,8 @@ const TaskFull = (props) => {
               <p>mins</p>
             </div>
             <div className="smallContainer">
-              <button>+15m</button>
-              <button>-15m</button>
+              <button className="Button">+15m</button>
+              <button className="Button">-15m</button>
             </div>
           </div>
         </div>
@@ -203,16 +201,16 @@ const TaskFull = (props) => {
           </div>
           {props.isNewTask ? (
             <div>
-              <button type="button" onClick={addTask}>
+              <button classname="Button" type="button" onClick={addTask}>
                 Add
               </button>
             </div>
           ) : (
-            <div className="bottomLine">
-              <button type="button" onClick={updateTask}>
+            <div className="smallContainer">
+              <button className="Button" type="button" onClick={updateTask}>
                 Update
               </button>
-              <button type="button" onClick={deleteTask}>
+              <button className="Button" type="button" onClick={deleteTask}>
                 Delete
               </button>
             </div>

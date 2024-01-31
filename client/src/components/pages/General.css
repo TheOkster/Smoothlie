@@ -1,4 +1,11 @@
-button {
+button{
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-size:large;
+  font-weight: 500;
+}
+
+.Button {
     position: relative;
     top:10%;
     left:0%;
@@ -14,14 +21,14 @@ button {
     font-size:large;
     font-weight: 500;
     /* transition: transform 0.05s ease-in-out, box-shadow 0.2s ease-in-out; */
-    box-shadow: 0px 4px 4px 0px rgb(0, 0, 0);
-
+    /* box-shadow: 0px 4px 4px 0px rgb(0, 0, 0,1); */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Adjusted shadow on hover */
 
 }
 
-button:hover {
+.Button:hover {
   transform: scale(0.98);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Adjusted shadow on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0); /* Adjusted shadow on hover */
 }
 
 p {
@@ -33,7 +40,7 @@ p {
   width:auto;
 }
 
-input{
+/* input{
   position: relative;
   top:5%;
   background-color:var(--primary);
@@ -45,7 +52,7 @@ input{
   font-family: 'Josefin Sans';
   font-style: normal;
   font-weight: 500;
-}
+} */
 
 .buttonContainer {
   position:absolute;
@@ -126,7 +133,7 @@ input{
   display: flex;
   flex-direction:row;
   align-items: center;
-
+  width:min-content;
 }
 
 .taskContainer {

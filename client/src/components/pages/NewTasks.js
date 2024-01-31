@@ -94,7 +94,7 @@ const NewTask = (props) => {
             <input
               type="datetime-local"
               placeholder=""
-              className="EnterTasks-dateInput"
+              className="dateInput"
               onChange={handleDateChange}
             />
           </div>
@@ -147,7 +147,7 @@ const NewTask = (props) => {
         <div className="line">
           <div className="labelContainer">
             <p>Additional Notes:</p>
-            <textarea rows="4" cols="50" onChange={handleChange(setNotes)}></textarea>
+            <textarea className="longInputBox" rows="4" cols="50" onChange={handleChange(setNotes)}></textarea>
           </div>
           <button className="Button" type="button" onClick={addTask}>
           Add

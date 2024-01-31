@@ -43,7 +43,7 @@ const CreateSchedule = (props) => {
       <div className="pageContainer">
       <div>
         <h1>Enter Your Availability</h1>
-        <p>Click and/or drag to select the times you're available for!</p>
+        <h3>Click and/or drag to select the times you're available for!</h3>
       </div>
       <div className="container">
         Start Date:

@@ -14,7 +14,7 @@ import React, { useState, useEffect } from "react";
  */
 const Dropdown = (props) => {
   return (
-    <div className="Dropdown-dropdown">
+    <div className="Task-dropdown">
       {props.label && <label htmlFor={props._id}>{props.label}</label>}
       <select
         name={props._name}
