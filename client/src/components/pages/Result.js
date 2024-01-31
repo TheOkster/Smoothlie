@@ -75,7 +75,7 @@ const Result = (props) => {
         <form onSubmit={handleSubmit}>
           Enter a name for your smoothie:
           <input type="text" value={smoothieName} id="text" onChange={handleChange} />
-          <input type="submit" value="Save Smoothie" />
+          <input className="Button" type="submit" value="Save Smoothie" />
         </form>
         {/* <p>Smoothie Name:</p>
         <button onClick={handleClick}>Save Smoothie</button> */}

@@ -8,3 +8,31 @@
   padding-right: 1%;
   align-items: center;
 }
+
+.Task-dropdown{
+  position: relative;
+  top:5%;
+  background-color:var(--primary);
+  border-color: transparent;
+  color: var(--darkblue);
+  padding:10px;
+  border-radius:10px;
+
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 300;
+}
+
+.Task-dropdown select:hover, .Task-dropdown select:focus {
+  border-color: #66afe9;
+}
+
+/* Optional: Style the dropdown arrow */
+.Task-dropdown::after {
+  content: '\25BC'; /* Unicode character for a downward arrow */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}

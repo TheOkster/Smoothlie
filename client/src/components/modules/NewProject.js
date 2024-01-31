@@ -13,7 +13,7 @@ import "./Task.css";
  * @param {Array} taskList
  * @param {Array} setTasklist
  */
-const TaskFull = (props) => {
+const NewProject = (props) => {
   const [taskName, setTaskName] = useState("");
   const [deadline, setDeadline] = useState();
   const [hours, setHours] = useState(0);
@@ -136,6 +136,7 @@ const TaskFull = (props) => {
               placeholder=""
               className="longInputBox"
               value={taskName}
+              //"EnterTasks-taskNameInput"
               onChange={handleChange(setTaskName)}
             />
           </div>
@@ -154,12 +155,7 @@ const TaskFull = (props) => {
           <div className="labelContainer">
             <div className="smallContainer">
               <p>Duration: </p>
-              <input
-                type="number"
-                min="0"
-                placeholder=""
-                onChange={handleChange(setHours)}
-              />
+              <input type="number" min="0" placeholder="" onChange={handleChange(setHours)} />
               <p>hrs</p>
               <input
                 type="number"
@@ -172,8 +168,8 @@ const TaskFull = (props) => {
               <p>mins</p>
             </div>
             <div className="smallContainer">
-              <button className="Button">+15m</button>
-              <button className="Button">-15m</button>
+              <button>+15m</button>
+              <button>-15m</button>
             </div>
           </div>
         </div>
@@ -203,24 +199,26 @@ const TaskFull = (props) => {
           </div>
           {props.isNewTask ? (
             <div>
-              <button classname="Button" type="button" onClick={addTask}>
+              <button type="button" onClick={addTask}>
                 Add
               </button>
             </div>
           ) : (
-            <div className="smallContainer">
-              <button className="Button" type="button" onClick={updateTask}>
+            <div className="bottomLine">
+              <button type="button" onClick={updateTask}>
                 Update
               </button>
-              <button className="Button" type="button" onClick={deleteTask}>
+              <button type="button" onClick={deleteTask}>
                 Delete
               </button>
             </div>
           )}
         </div>
+        {/* Temp position for now until we get CSS figured out */}
+        <button class="Button">Add New Project</button>
       </div>
     </div>
   );
 };
 
-export default TaskFull;
+export default NewProject;

@@ -2,8 +2,10 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import UrgentImp from "../modules/UrgentImp.js";
 import { get } from "../../utilities";
-import { useState } from "react";
-import Checkbox from "../modules/Checkbox";
+import { useState, useEffect } from "react";
+import Modal from "react-modal";
+import TaskFull from "../modules/TaskFull.js";
+import TaskCheckbox from "../modules/TaskCheckbox.js";
 import "./General.css";
 import "./TaskPage.css";
 
@@ -14,15 +16,19 @@ const SelectTasks = (props) => {
   const navigate = useNavigate();
   const [possibleTaskList, setPossibleTaskList] = useState([]);
   const [checkedTasks, setCheckedTasks] = useState(new Set());
-  get("/api/tasks", { owner: props.userId }).then((tasks) => setPossibleTaskList(tasks));
+  const [indivTaskId, setIndivTaskId] = useState(undefined);
+  useEffect(() => {
+    get("/api/tasks", { owner: props.userId }).then((tasks) => setPossibleTaskList(tasks));
+  }, []);
+
   return (
     <div className="pageContainer">
       <div className="mainContainer">
         {possibleTaskList.length > 0 ? (
           possibleTaskList.map((task) => (
-            <Checkbox
+            <TaskCheckbox
               for={task._id}
-              text={task.name}
+              task={task}
               key={task._id}
               handleChange={(event) => {
                 // TODO: Make this less slow
@@ -32,11 +38,35 @@ const SelectTasks = (props) => {
                       new Set([...checkedTasks].filter((item) => item != event.target.id))
                     );
               }}
+              onTitleClick={(_id) => {
+                setIndivTaskId(_id);
+              }}
             />
           ))
         ) : (
           <div>You have no existing tasks to import!</div>
         )}
+        <Modal
+          isOpen={indivTaskId !== undefined}
+          onRequestClose={() => {
+            setIndivTaskId(undefined);
+          }}
+          style={{
+            content: {
+              width: "auto", // Adjust the width as needed
+              height: "auto", // Adjust the height as needed
+              margin: "auto", // Center the modal horizontally
+            },
+          }}
+        >
+          <TaskFull
+            _id={indivTaskId}
+            setIndivTaskId={setIndivTaskId}
+            taskList={possibleTaskList}
+            setTaskList={setPossibleTaskList}
+            {...props}
+          />
+        </Modal>
       </div>
       <button
         className="Button"

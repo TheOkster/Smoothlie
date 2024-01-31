@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./General.css";
 
-/* Page is no longer useful */
+/*TODO: Page is no longer useful, will probably delete before 1/31 12:00PM*/
 
 const NewTask = (props) => {
   const navigate = useNavigate();
@@ -93,7 +93,7 @@ const NewTask = (props) => {
             <input
               type="datetime-local"
               placeholder=""
-              className="EnterTasks-dateInput"
+              className="dateInput"
               onChange={handleDateChange}
             />
           </div>
@@ -145,7 +145,7 @@ const NewTask = (props) => {
         <div className="line">
           <div className="labelContainer">
             <p>Additional Notes:</p>
-            <textarea rows="4" cols="50" onChange={handleChange(setNotes)}></textarea>
+            <textarea className="longInputBox" rows="4" cols="50" onChange={handleChange(setNotes)}></textarea>
           </div>
           <button className="Button" type="button" onClick={addTask}>
             Add

@@ -60,7 +60,7 @@ const Smoothie = (props) => {
                 <b>Additional Information: </b> {selectedEvent.description}
               </li>
             </ul>
-            <button onClick={closeModal}> Close </button>
+            <button className="Button" onClick={closeModal}> Close </button>
           </div>
         )}
       </Modal>
