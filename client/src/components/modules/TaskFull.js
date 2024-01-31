@@ -77,9 +77,7 @@ const TaskFull = (props) => {
       _id: props._id,
       name: taskName,
       owner: props.userId,
-      fruit: fruit,
       duration: parseInt(hours) * 60 + parseInt(minutes),
-      label: label,
       deadline: new Date(deadline),
       notes: notes,
       source: "Manual",
@@ -104,8 +102,6 @@ const TaskFull = (props) => {
       name: taskName,
       owner: props.userId,
       duration: parseInt(hours) * 60 + parseInt(minutes),
-      fruit: fruit,
-      label: label,
       deadline: new Date(deadline),
       notes: notes,
       source: "Manual",
@@ -197,25 +193,6 @@ const TaskFull = (props) => {
               <button className="Button">+15m</button>
               <button className="Button">-15m</button>
             </div> */}
-          </div>
-        </div>
-        <div className="line">
-          <div className="labelContainer">
-            {/* Should probably explain what fruits are somewhere */}
-            <p>Fruit: </p>
-            <Dropdown
-              handleChange={handleChange(setFruit)}
-              // To Do: Use Not Hardcoded Label Options
-              fields={["Lemons", "Avocados", "Undecided Fruit 3", "Undecided Fruit 4"]}
-            />
-          </div>
-          <div className="labelContainer">
-            <p>Project: </p>
-            <Dropdown
-              handleChange={handleChange(setLabel)}
-              // To Do: Use Not Hardcoded Label Options
-              fields={["Not Working Yet", "(Should be done by 1/30)"]}
-            />
           </div>
         </div>
         <div className="line">
