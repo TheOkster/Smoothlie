@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { DndContext } from "@dnd-kit/core";
 
-import {useMediaQuery} from 'react-responsive'
+import { useMediaQuery } from "react-responsive";
 import Draggable from "./Draggable";
 import Droppable from "./Droppable";
 import "../pages/General.css";
+import "../../utilities.css";
 /**
  * Component to render an online user
  * Proptypes
@@ -17,7 +18,7 @@ const UrgentImp = (props) => {
   if ("handleTaskList" in props) {
     props.handleTaskList(props.taskGrid);
   }
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 500px)' })
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 500px)" });
 
   const handleDragEnd = (e) => {
     console.log(`e.active ${JSON.stringify(e.active)}`);
@@ -81,22 +82,29 @@ const UrgentImp = (props) => {
   return (
     <DndContext onDragEnd={handleDragEnd}>
       <div className="smallContainer">
-      <div className={isTabletOrMobile ? "taskgridMobile" : "taskgridContainer"}>
-        <div className="taskColumn">
-          {/* Render all tasks not in a container */}
-          {console.log(`printing stuff ${JSON.stringify(props.taskGrid)}`)}
-          {props.taskGrid.unsorted.map(taskMarkup)}
-        </div>
-        {/* Render 2x2 grid */}
-        <div className="gridContainer">
-          <div style={{ display: "flex" }}>
-            {["isUrgIsImp", "isUrgNotImp"].map(containerMarkup)}
+        <div className={isTabletOrMobile ? "taskgridMobile" : "taskgridContainer"}>
+          <div className="taskColumn">
+            {/* Render all tasks not in a container */}
+            {props.taskGrid.unsorted.map(taskMarkup)}
           </div>
-          <div style={{ display: "flex" }}>
-            {["notUrgIsImp", "notUrgNotImp"].map(containerMarkup)}
+          {/* Render 2x2 grid */}
+          <div className="wholeContainer">
+            <div className="gridContainer">
+              <div className="u-flex">
+                {/* <h5>Urgent</h5>
+                <h5>Important</h5> */}
+                {["isUrgIsImp"].map(containerMarkup)}
+                {/* <h6 className="u-textCenter">Not Important</h6> */}
+                {["isUrgNotImp"].map(containerMarkup)}
+                {/* {["isUrgIsImp", "isUrgNotImp"].map(containerMarkup)} */}
+              </div>
+              <div className="u-flex">
+                {["notUrgIsImp"].map(containerMarkup)}
+                {["notUrgNotImp"].map(containerMarkup)}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </DndContext>
   );

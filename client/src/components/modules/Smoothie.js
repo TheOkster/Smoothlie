@@ -52,10 +52,6 @@ const Smoothie = (props) => {
                 {selectedEvent.important ? null : "Not"} Important
               </li>
               <li>
-                {" "}
-                <b> Label: </b> {selectedEvent.label}{" "}
-              </li>
-              <li>
                 <b>Additional Information: </b> {selectedEvent.description}
               </li>
             </ul>

@@ -15,31 +15,30 @@
 */
 
 /* TODO: REPLACE WITH YOUR OWN FONT! */
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 
 :root {
-  --primary: #F2E9E4;
+  --primary: #f2e9e4;
   --primary--dim: #6987db;
   --outline: #000000;
-  --darkgrey: #4A4E69;
-  --darktext: #22223B;
+  --darkgrey: #4a4e69;
+  --darktext: #22223b;
   --medgrey: #e0e0e0;
   --grey: #f7f7f7;
-  --white: #F5F0E1;
+  --white: #f5f0e1;
   --pink: #f0a6ca;
-  --blue: #1A8FE3;
-  --darkblue: #22223B;
-  --darkblue--dim: #4A4E69;
-  --green: #C3D1C6;
+  --blue: #1a8fe3;
+  --darkblue: #22223b;
+  --darkblue--dim: #4a4e69;
+  --green: #c3d1c6;
   --purple: #542344;
-
 
   --xs: 4px;
   --s: 8px;
   --m: 16px;
   --l: 24px;
 
-  --navbar--height: 2*var(--s)+38px; /*ideally i get rid of this later*/
+  --navbar--height: 2 * var(--s) + 38px; /*ideally i get rid of this later*/
 }
 
 .smoothlie {
@@ -58,7 +57,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: "Josefin Sans", sans-serif;
   font-weight: 300;
 }
 
@@ -81,6 +80,11 @@ form {
 
 .u-flex-alignCenter {
   align-items: center;
+}
+
+.u-sideways-text {
+  transform: rotate(-90deg);
+  /* citation: https://css-tricks.com/snippets/css/text-rotation/ */
 }
 
 .u-inlineBlock {
