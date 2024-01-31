@@ -48,7 +48,8 @@ const Smoothie = (props) => {
             <h2> {selectedEvent.title} </h2>
             <ul>
               <li>
-                {selectedEvent.urgent ? null : "Not"} Urgent{" "}
+                {console.log(JSON.stringify(selectedEvent))}
+                {selectedEvent.urgent ? null : "Not"} Urgent and{" "}
                 {selectedEvent.important ? null : "Not"} Important
               </li>
               <li>
