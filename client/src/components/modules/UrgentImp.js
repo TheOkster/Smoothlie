@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { DndContext } from "@dnd-kit/core";
 
+import {useMediaQuery} from 'react-responsive'
 import Draggable from "./Draggable";
 import Droppable from "./Droppable";
+import "../pages/General.css";
 /**
  * Component to render an online user
  * Proptypes
@@ -15,6 +17,7 @@ const UrgentImp = (props) => {
   if ("handleTaskList" in props) {
     props.handleTaskList(props.taskGrid);
   }
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 500px)' })
 
   const handleDragEnd = (e) => {
     console.log(`e.active ${JSON.stringify(e.active)}`);
@@ -77,7 +80,8 @@ const UrgentImp = (props) => {
 
   return (
     <DndContext onDragEnd={handleDragEnd}>
-      <div className="UrgentImp-Box">
+      <div className="smallContainer">
+      <div className={isTabletOrMobile ? "taskgridMobile" : "taskgridContainer"}>
         <div className="taskColumn">
           {/* Render all tasks not in a container */}
           {console.log(`printing stuff ${JSON.stringify(props.taskGrid)}`)}
@@ -92,6 +96,7 @@ const UrgentImp = (props) => {
             {["notUrgIsImp", "notUrgNotImp"].map(containerMarkup)}
           </div>
         </div>
+      </div>
       </div>
     </DndContext>
   );

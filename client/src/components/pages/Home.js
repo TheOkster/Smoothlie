@@ -15,37 +15,41 @@ const Home = ({ userId, handleLogin, handleLogout }) => {
     <>
       <div className="Background">
             {/* <img src={require("./TaskPage.jpg").default} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center"}} /> */}
-      </div>
-      <div className="Home-container">
-        <div className="Home-logo">Smoothlie</div>
-        <div className="buttonContainer">
-        <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-          {userId ? (
-            <>
-            <Link to={{pathname: "/selecttasks"}}> {/* need to fix this later; this is going to redirect to another page depending on whether you've selected tasks before*/}
-              <button className="Button">
-                Welcome! Click here to begin.
-              </button>
-            </Link>
-
-            <button className ="Button"
-              onClick={() => {
-                googleLogout();
-                handleLogout();
-              }}
-            >
-              Logout
-            </button>
-            </>
-          ) : (
-            <>
-            <div className="Button">
-              <GoogleLogin onSuccess={handleLogin} onError={(err) => console.log(err)} />
+        <div className="Home-container">
+          <div className="Home-logo">
+            <h1>Smooth</h1>
+            <h1><div className="Home-l">l</div></h1>
+            <h1>ie</h1>
             </div>
-            <div className="Label">Please login to start!</div>
-            </>
-          )}
-        </GoogleOAuthProvider>
+          <div className="buttonContainer">
+          <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+            {userId ? (
+              <>
+              <Link to={{pathname: "/selecttasks"}}> {/* need to fix this later; this is going to redirect to another page depending on whether you've selected tasks before*/}
+                <button className="Button">
+                  Welcome! Click here to begin.
+                </button>
+              </Link>
+
+              <button className ="Button"
+                onClick={() => {
+                  googleLogout();
+                  handleLogout();
+                }}
+              >
+                Logout
+              </button>
+              </>
+            ) : (
+              <>
+              <div className="Button">
+                <GoogleLogin onSuccess={handleLogin} onError={(err) => console.log(err)} />
+              </div>
+              <div className="Label">Please login to start!</div>
+              </>
+            )}
+          </GoogleOAuthProvider>
+          </div>
         </div>
       </div>
     </>

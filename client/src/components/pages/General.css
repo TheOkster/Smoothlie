@@ -70,6 +70,7 @@ p {
   width: 100vw;
   height: calc(92vh - 60px); /* this is the top of the hierarchy*/
   top: var(--navbar--height);
+  overflow:auto;
 
   display: inline-flex;
   padding: 4% 0%;
@@ -101,6 +102,7 @@ p {
   position: absolute;
   z-index: -1;
   overflow: hidden;
+  display:flex;
 }
 
 .mainContainer {
@@ -109,10 +111,11 @@ p {
   overflow: auto;
   background-color: var(--primary); /*visibility purposes, get rid later */
   justify-content: space-around;
-  /* align-items: flex-start; */
+  align-items: center;
   gap: var(--s);
   width: 200px; /* should i make this flexible later? */
   word-wrap: break-word;
+
 }
 
 .labelContainer {
@@ -128,14 +131,14 @@ p {
 .tasklistContainer{
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-around;
+  justify-content:space-evenly;
   align-items:center;
   gap: 5px;
   overflow:auto;
   width: 500px;
   height: 400px;
   border: 3px solid var(--darkblue);
-  fill: var(--darkblue--dim);
+  background-color: var(--darkblue--dim);
 }
 
 .smallContainer p {
@@ -255,4 +258,15 @@ p {
 
 .Checkbox-checkbox {
   display: inline-flex;
+}
+
+.calendarContainer{
+  display: flex;
+  /* flex-flow: column nowrap; */
+  /* justify-content:space-evenly; */
+  gap: 5px;
+  overflow:auto;
+  width: 500px;
+  height: 400px;
+  border: 3px solid var(--darkblue);
 }

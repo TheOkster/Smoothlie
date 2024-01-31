@@ -1,6 +1,5 @@
 .Home-container {
     width: 100vw;
-    height: 93vh; /* later i should either actually get rid of the navbar or like, fix this */
     flex-shrink: 0; /* change this later */
     flex-direction: column;
     display: flex;
@@ -11,7 +10,6 @@
 }
 
 .Home-logo {
-    height: 106px;
     /* Remove left and top properties */
     font-family: 'Josefin Sans';
     font-style: normal;
@@ -23,9 +21,8 @@
     color: var(--pink);
 }
 .Home-l { /*figure this out later or just insert a photo*/
-    height: inline;
     /* Remove left and top properties */
-    font-family: 'Pacifico';
+    font-family: 'Pacifico', cursive;
     font-style: normal;
     font-weight: 700;
     font-size: 100px; /* Adjust the font size to fit within the container */

@@ -72,14 +72,15 @@ const Result = (props) => {
         {smoothie[0] ? "Tasks scheduled successfully!" : "Failed to schedule all tasks."}
         {" Click on an event to see more detailed information about it."}
         {console.log(smoothie[1])}
-        <Smoothie events={smoothie[1]} />
-      </div>
-      <div>
+        <div>
         <form onSubmit={handleSubmit}>
           Enter a name for your smoothie:
           <input type="text" value={smoothieName} id="text" onChange={handleChange} />
           <input className="Button" type="submit" value="Save Smoothie" />
         </form>
+        <Smoothie events={smoothie[1]} />
+      </div>
+
         {/* <p>Smoothie Name:</p>
         <button onClick={handleClick}>Save Smoothie</button> */}
       </div>

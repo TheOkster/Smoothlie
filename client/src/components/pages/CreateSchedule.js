@@ -51,7 +51,7 @@ const CreateSchedule = (props) => {
           <h1>Enter Your Availability</h1>
           <h3>Click and/or drag to select the times you're available for!</h3>
         </div>
-        <div className="container">
+        <div className="line">
           Start Date:
           <input type="date" defaultValue={new Date()} onChange={handleChange(setStartDate)} />
           Number of Days:
@@ -79,23 +79,26 @@ const CreateSchedule = (props) => {
             onChange={(event) => setMaxTime(Number(event.target.value))}
           />
         </div>
-        <div>
-          <ScheduleSelector
-            minTime={minTime}
-            maxTime={maxTime}
-            numDays={numDays}
-            startDate={startDate}
-            selection={available}
-            onChange={setAvailable}
-            hourlyChunks={4}
-            timeFormat="h:mma"
-          />
-        </div>
+      <div className={isTabletOrMobile ? "calendarMobile" : "calendarContainer"}>
+        <ScheduleSelector 
+          minTime={minTime}
+          maxTime={maxTime}
+          numDays={numDays}
+          startDate={startDate}
+          selection={available}
+          onChange={setAvailable}
+          hourlyChunks={4}
+          timeFormat="h:mma"
+        />
+      </div>
         {/* <EnterSchedule available={available} setAvailable={setAvailable} /> */}
+
+      <div className="bottomlineContainer">
         <button className="Button" onClick={handleClick}>
           Submit Availability
         </button>
       </div>
+    </div>
     </>
   );
 };

@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import UrgentImp from "../modules/UrgentImp.js";
 import {useMediaQuery} from 'react-responsive';
 import "./Mobile.css";
+import "./General.css";
 
 const GridPage = (props) => {
   const navigate = useNavigate();
@@ -57,17 +58,19 @@ const GridPage = (props) => {
 
   return (
     <>
-      <div className="TaskPage-pageContainer">
-        <UrgentImp
-          taskList={taskList}
-          handleTaskList={(event) => setQuadrants(event)}
-          taskGrid={taskGrid}
-          setTaskGrid={setTaskGrid}
-        />
-        <button className="Button" onClick={handleClick}>
-          Next
-        </button>
-      </div>
+      <div className="pageContainer">
+          {/* <div className="taskgridContainer"> */}
+            <UrgentImp
+            taskList={taskList}
+            handleTaskList={(event) => setQuadrants(event)}
+            taskGrid={taskGrid}
+            setTaskGrid={setTaskGrid}
+            />
+          {/* </div> */}
+          <button className="Button" onClick={handleClick}>
+            Next
+          </button>
+        </div>
     </>
   );
 };
