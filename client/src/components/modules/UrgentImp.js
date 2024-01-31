@@ -72,8 +72,8 @@ const UrgentImp = (props) => {
   const colorMapping = {
     notUrgNotImp: "red",
     notUrgIsImp: "blue",
-    isUrgNotImp: "pink",
-    isUrgIsImp: "purple",
+    isUrgNotImp: "orange",
+    isUrgIsImp: "green",
   };
 
   const containerMarkup = (key) => {
@@ -108,10 +108,7 @@ const UrgentImp = (props) => {
               </div>
             </div>
             <div className="gridContainer">
-              <div className="u-flex">
-
-                {["isUrgIsImp", "isUrgNotImp"].map(containerMarkup)}
-              </div>
+              <div className="u-flex">{["isUrgIsImp", "isUrgNotImp"].map(containerMarkup)}</div>
               <div className="u-flex">
                 {["notUrgIsImp"].map(containerMarkup)}
                 {["notUrgNotImp"].map(containerMarkup)}
