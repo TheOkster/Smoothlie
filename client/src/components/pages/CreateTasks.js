@@ -1,15 +1,13 @@
 import React from "react";
 import { get, del } from "../../utilities";
 import { useState, useEffect } from "react";
-import Checkbox from "../modules/Checkbox";
-import Button from "react-bootstrap/Button";
+import TaskCheckbox from "../modules/TaskCheckbox";
 import { useLocation, useNavigate } from "react-router-dom";
 import Modal from "react-modal";
 import Task from "../modules/Task";
 import TaskFull from "../modules/TaskFull";
 import * as mongoose from "mongoose";
 import "./General.css";
-import "./ViewTasks.css";
 
 const CreateTasks = (props) => {
   const location = useLocation();
@@ -43,7 +41,6 @@ const CreateTasks = (props) => {
   };
   return (
     <>
-      (
       <div className="TaskPage-pageContainer">
         {taskList.length > 0 ? (
           taskList.map((task) => (

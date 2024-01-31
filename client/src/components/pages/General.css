@@ -1,22 +1,20 @@
 button {
-    position: relative;
-    top:10%;
-    left:0%;
-    background-color: var(--darkgrey);
-    color: var(--white);
-    border:none;
-    padding: 10px;
-    border-radius:10px;
-    margin: 5px;
+  position: relative;
+  top: 10%;
+  left: 0%;
+  background-color: var(--darkgrey);
+  color: var(--white);
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 5px;
 
-    font-family: 'Josefin Sans';
-    font-style: normal;
-    font-size:large;
-    font-weight: 500;
-    /* transition: transform 0.05s ease-in-out, box-shadow 0.2s ease-in-out; */
-    box-shadow: 0px 4px 4px 0px rgb(0, 0, 0);
-
-
+  font-family: "Josefin Sans";
+  font-style: normal;
+  font-size: large;
+  font-weight: 500;
+  /* transition: transform 0.05s ease-in-out, box-shadow 0.2s ease-in-out; */
+  box-shadow: 0px 4px 4px 0px rgb(0, 0, 0);
 }
 
 button:hover {
@@ -25,63 +23,63 @@ button:hover {
 }
 
 p {
-  font-family: 'Josefin Sans';
+  font-family: "Josefin Sans";
   font-style: normal;
-  font-size:large;
+  font-size: large;
   font-weight: 500;
   color: var(--white);
-  width:auto;
+  width: auto;
 }
 
-input{
+input {
   position: relative;
-  top:5%;
-  background-color:var(--primary);
+  top: 5%;
+  background-color: var(--primary);
   color: var(--darkblue);
-  padding:5%;
-  border-radius:5%;
+  padding: 5%;
+  border-radius: 5%;
   width: var(--l);
 
-  font-family: 'Josefin Sans';
+  font-family: "Josefin Sans";
   font-style: normal;
   font-weight: 500;
 }
 
 .buttonContainer {
-  position:absolute;
-  top:60%;
-  align-items:center;
-  justify-content:center;
-  gap:20px;
+  position: absolute;
+  top: 60%;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
 }
 
-.pageContainer{
+.pageContainer {
   position: relative;
-    width: 60vw;
-    height: 55vh; /* this is the top of the hierarchy*/
-    left: 10vw;
-    top: 10vh;
+  width: 60vw;
+  height: 55vh; /* this is the top of the hierarchy*/
+  left: 10vw;
+  top: 10vh;
 
-    display:inline-flex;
-    padding: 4% 4%;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    /* row-gap: 10%; */
-    background-color: rgba(190, 234, 152, 0.1);
+  display: inline-flex;
+  padding: 4% 4%;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  /* row-gap: 10%; */
+  background-color: rgba(190, 234, 152, 0.1);
 }
 
 .Label {
   position: relative;
-  top:5%;
-  background-color:var(--primary);
+  top: 5%;
+  background-color: var(--primary);
   color: var(--darkblue);
-  padding:10px;
-  border-radius:10px;
+  padding: 10px;
+  border-radius: 10px;
 
-  font-family: 'Josefin Sans';
+  font-family: "Josefin Sans";
   font-style: normal;
   font-weight: 300;
 }
@@ -91,46 +89,44 @@ input{
   height: 93vh;
   background-color: #221717;
   background-size: cover;
-  position:absolute;
+  position: absolute;
   z-index: -1;
   overflow: hidden;
 }
 
-.mainContainer{
+.mainContainer {
   display: flex;
   flex-direction: column;
-  overflow:auto;
+  overflow: auto;
   background-color: var(--primary); /*visibility purposes, get rid later */
-  justify-content:space-around;
+  justify-content: space-around;
   /* align-items: flex-start; */
   gap: var(--s);
-  width:200px; /* should i make this flexible later? */
-  word-wrap:break-word;
+  width: 200px; /* should i make this flexible later? */
+  word-wrap: break-word;
 }
 
-.labelContainer{
+.labelContainer {
   display: flex;
   flex-direction: row;
   /* background-color: var(--green); visibility purposes, get rid later */
-  justify-content:space-around;
+  justify-content: space-around;
 
   gap: 5%;
-  align-items:center;
-}
-
-.smallContainer p{
-  flex-shrink:0;
-}
-
-.smallContainer{
-  display: flex;
-  flex-direction:row;
   align-items: center;
+}
 
+.smallContainer p {
+  flex-shrink: 0;
+}
+
+.smallContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .taskContainer {
-
   display: inline-flex;
   /* padding: 60px 31px; convert these into sensitive numbers later */
   flex-direction: column;
@@ -143,12 +139,12 @@ input{
   max-height: 100%; */
 
   box-sizing: border-box;
-  flex:1;
+  flex: 1;
 
   border-radius: 30px;
   background-color: var(--darkblue);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  gap:3%;
+  gap: 3%;
   margin: 10px;
   /* position:relative;
   top:25.7vh;
@@ -160,17 +156,16 @@ input{
 .line {
   display: flex;
   background: #c32c2c00;
-  flex:1;
+  flex: 1;
 
   /* flex-grow: 0; */
   flex-flow: row wrap;
   align-items: center;
-  justify-content:space-around;
-  gap:10px;
-
+  justify-content: space-around;
+  gap: 10px;
 }
 
-.topLine{
+.topLine {
   display: flex;
   display: flex;
   background-color: #bc1f1fcd;
@@ -184,10 +179,10 @@ input{
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  gap:10px;
+  gap: 10px;
 }
 
-.bottomLine{
+.bottomLine {
   display: flex;
   background-color: #f3f3f3cd;
 
@@ -200,39 +195,43 @@ input{
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  gap:10px;
+  gap: 10px;
 }
 
-.gridContainer{
+.gridContainer {
   background-color: var(--grey);
-  display:flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
 }
 
-.taskColumn{
-  display:flex;
-  flex-flow:column wrap;
+.taskColumn {
+  display: flex;
+  flex-flow: column wrap;
   align-content: center;
 }
 
-.UrgentImp-Box{
+.UrgentImp-Box {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   /* background-color: #221717; */
-  gap:40px;
+  gap: 40px;
   /* get rid of above later*/
 }
 
-.longInputBox{
+.longInputBox {
   position: relative;
-  top:5%;
-  background-color:var(--primary);
+  top: 5%;
+  background-color: var(--primary);
   color: var(--darktext);
-  padding:5%;
-  border-radius:5%;
+  padding: 5%;
+  border-radius: 5%;
 
-  font-family: 'Josefin Sans';
+  font-family: "Josefin Sans";
   font-style: normal;
   font-weight: 500;
+}
+
+.Checkbox-checkbox {
+  display: inline-flex;
 }

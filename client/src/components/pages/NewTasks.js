@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./General.css";
 
-/* Page is no longer useful */
+/*TODO: Page is no longer useful, will probably delete before 1/31 12:00PM*/
 
 const NewTask = (props) => {
   const navigate = useNavigate();
