@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { get, del, put, post } from "../../utilities";
 import Dropdown from "./Dropdown";
 import "./Task.css";
+
 /**
  * Component to render an online user
  * Proptypes
@@ -11,9 +12,7 @@ import "./Task.css";
  * @param {function} setIsNewTask
  * @param {Array} taskList
  * @param {Array} setTasklist
-
-/* Right now this is basically the same code as NewTasks w/o location and navigate and with
-  the fields already set */
+ */
 const TaskFull = (props) => {
   const [taskName, setTaskName] = useState("");
   const [deadline, setDeadline] = useState();
@@ -33,7 +32,7 @@ const TaskFull = (props) => {
 
     return `${year}-${month}-${day}T${hours}:${minutes}`;
   };
-  if (!props.isNewTask) {
+  if (!props.isNewTask || !("isNewTask" in props)) {
     useEffect(() => {
       get("/api/task", { _id: props._id }).then((task) => {
         setTaskName(task.name);
@@ -115,13 +114,15 @@ const TaskFull = (props) => {
   };
 
   const deleteTask = () => {
-    del("/api/task", {
-      _id: props._id,
-    }).then(() => {
-      console.log(`Task ID: ${props.indivTaskId}`);
-      props.setIndivTaskId(undefined);
-      props.setTaskList(props.taskList.filter((task) => task._id != props._id));
-    });
+    // del("/api/task", {
+    //   _id: props._id,
+    // }).then(() => {
+    //   console.log(`Task ID: ${props.indivTaskId}`);
+    //   props.setIndivTaskId(undefined);
+    //   props.setTaskList(props.taskList.filter((task) => task._id != props._id));
+    // });
+    props.setIndivTaskId(undefined);
+    props.setTaskList(props.taskList.filter((task) => task._id != props._id));
   };
   return (
     <div className="pageContainer">
@@ -134,11 +135,11 @@ const TaskFull = (props) => {
               type="text"
               placeholder=""
               className="longInputBox"
+              value={taskName}
               //"EnterTasks-taskNameInput"
               onChange={handleChange(setTaskName)}
             />
           </div>
-
         </div>
         <div className="line">
           <div className="labelContainer">
@@ -146,6 +147,7 @@ const TaskFull = (props) => {
             <input
               type="datetime-local"
               placeholder=""
+              value={deadline}
               className="EnterTasks-dateInput"
               onChange={handleDateChange}
             />
@@ -153,20 +155,14 @@ const TaskFull = (props) => {
           <div className="labelContainer">
             <div className="smallContainer">
               <p>Duration: </p>
-              <input
-                type="number"
-                min="0"
-                placeholder=""
-
-                onChange={handleChange(setHours)}
-              />
+              <input type="number" min="0" placeholder="" onChange={handleChange(setHours)} />
               <p>hrs</p>
               <input
                 type="number"
                 min="0"
                 max="59"
                 placeholder=""
-
+                value={hours}
                 onChange={handleChange(setMinutes)}
               />
               <p>mins</p>
@@ -180,12 +176,12 @@ const TaskFull = (props) => {
         <div className="line">
           <div className="labelContainer">
             {/* Should probably explain what fruits are somewhere */}
-              <p>Fruit: </p>
-              <Dropdown
-                handleChange={handleChange(setLabel)}
-                // To Do: Use Not Hardcoded Label Options
-                fields={["Lemons", "Avocados", "Undecided Fruit 3", "Undecided Fruit 4"]}
-              />
+            <p>Fruit: </p>
+            <Dropdown
+              handleChange={handleChange(setFruit)}
+              // To Do: Use Not Hardcoded Label Options
+              fields={["Lemons", "Avocados", "Undecided Fruit 3", "Undecided Fruit 4"]}
+            />
           </div>
           <div className="labelContainer">
             <p>Project: </p>

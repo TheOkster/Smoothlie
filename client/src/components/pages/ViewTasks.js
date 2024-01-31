@@ -2,14 +2,13 @@ import React from "react";
 import { get, del } from "../../utilities";
 import { useState } from "react";
 import Checkbox from "../modules/Checkbox";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
+
 import Task from "../modules/Task";
 import TaskFull from "../modules/TaskFull";
 import * as mongoose from "mongoose";
 import "./General.css";
 import "./ViewTasks.css";
-
+/* Page is no longer useful */
 const ViewTasks = (props) => {
   if (!props.userId) {
     return <div>Please login before you use Smoothlie!</div>;

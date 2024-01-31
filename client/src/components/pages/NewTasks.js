@@ -5,8 +5,8 @@ import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./General.css";
 
-/* To make this less redundant, I could make this and CreateTasks render on the same page with conditional rendering
-and use the code from TaskFull */
+/* Page is no longer useful */
+
 const NewTask = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -86,7 +86,6 @@ const NewTask = (props) => {
               onChange={handleChange(setTaskName)}
             />
           </div>
-
         </div>
         <div className="line">
           <div className="labelContainer">
@@ -124,7 +123,6 @@ const NewTask = (props) => {
               <div className="Button">-15m</div>
             </div>
           </div>
-
         </div>
         <div className="line">
           <div className="labelContainer">
@@ -150,12 +148,9 @@ const NewTask = (props) => {
             <textarea rows="4" cols="50" onChange={handleChange(setNotes)}></textarea>
           </div>
           <button className="Button" type="button" onClick={addTask}>
-          Add
+            Add
           </button>
         </div>
-
-
-
       </div>
     </div>
   );

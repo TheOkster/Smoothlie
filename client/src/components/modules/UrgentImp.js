@@ -18,17 +18,14 @@ const UrgentImp = (props) => {
     notUrgIsImp: [],
     isUrgNotImp: [],
     isUrgIsImp: [],
-    unsorted: props.taskList.map((task) => task.name) ?? [
-      "hello",
-      "hellooooooo",
-      "be gayer and do more crime",
-    ],
+    unsorted: props.taskList,
   });
   if ("handleTaskList" in props) {
     props.handleTaskList(taskList);
   }
 
   const handleDragEnd = (e) => {
+    console.log(`e.active ${JSON.stringify(e.active)}`);
     const item_id = e.active.id;
 
     let finalContainer;
@@ -49,17 +46,18 @@ const UrgentImp = (props) => {
 
     console.log(finalContainer);
     const temp = { ...taskList };
-
-    temp[initialContainer] = temp[initialContainer].filter((task) => task !== item_id);
-    temp[finalContainer] = temp[finalContainer].concat([item_id]);
+    const task = temp[initialContainer].find((task) => task._id === item_id);
+    console.log(task);
+    temp[initialContainer] = temp[initialContainer].filter((task) => task._id !== item_id);
+    temp[finalContainer] = temp[finalContainer].concat([task]);
 
     setTaskList(temp);
   };
 
-  const findTaskContainer = (taskName) => {
+  const findTaskContainer = (taskId) => {
     for (const key of Object.keys(taskList)) {
       for (const task of taskList[key]) {
-        if (task == taskName) {
+        if (task._id == taskId) {
           return key;
         }
       }
@@ -68,7 +66,7 @@ const UrgentImp = (props) => {
 
   const taskMarkup = (task) => {
     // note --- will have to come up with better system for id in case user has two tasks with same name
-    return <Draggable id={task} key={task} text={task} />;
+    return <Draggable id={task._id} key={task._id} text={task.name} />;
   };
 
   //change these colours to be prettier later
