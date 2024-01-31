@@ -23,18 +23,9 @@
   font-weight: 300;
 }
 
+/* the task dropdown snippet here was made with some reference to chatgpt */
 .Task-dropdown select:hover, .Task-dropdown select:focus {
   border-color: #66afe9;
-}
-
-/* Optional: Style the dropdown arrow */
-.Task-dropdown::after {
-  content: '\25BC'; /* Unicode character for a downward arrow */
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  pointer-events: none;
 }
 
 .Task-Button {

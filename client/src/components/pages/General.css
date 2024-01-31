@@ -21,15 +21,13 @@ button{
     font-style: normal;
     font-size:large;
     font-weight: 500;
-    /* transition: transform 0.05s ease-in-out, box-shadow 0.2s ease-in-out; */
-    /* box-shadow: 0px 4px 4px 0px rgb(0, 0, 0,1); */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Adjusted shadow on hover */
-
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    /* hover shadow; method referenced from chatgpt */
 }
 
 .Button:hover {
   transform: scale(0.98);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0); /* Adjusted shadow on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0); /* no shadow */
 }
 
 p {
@@ -40,20 +38,6 @@ p {
   color: var(--white);
   width: auto;
 }
-
-/* input{
-  position: relative;
-  top: 5%;
-  background-color: var(--primary);
-  color: var(--darkblue);
-  padding: 5%;
-  border-radius: 5%;
-  width: var(--l);
-
-  font-family: "Josefin Sans";
-  font-style: normal;
-  font-weight: 500;
-} */
 
 .buttonContainer {
 
@@ -136,7 +120,7 @@ p {
   gap: 5px;
   overflow:auto;
   width: 500px;
-  height: 400px;
+  height: 350px;
   border: 3px solid var(--darkblue);
   background-color: var(--darkblue--dim);
 }
@@ -153,16 +137,14 @@ p {
 }
 
 .taskContainer {
+  /* below involves references from figma-generated code*/
   display: inline-flex;
-  /* padding: 60px 31px; convert these into sensitive numbers later */
   flex-direction: column;
   justify-content: space-around;
   padding: 2% 1%; /* wait is this padding for the inside or outside... it seems like it's for the children */
 
   width: 60vw;
   height: 40vh;
-  /* max-width: 100%;
-  max-height: 100%; */
 
   box-sizing: border-box;
   flex: 1;
@@ -172,10 +154,6 @@ p {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   gap: 3%;
   margin: 10px;
-  /* position:relative;
-  top:25.7vh;
-  left:10vw; */
-
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
@@ -183,8 +161,6 @@ p {
   display: flex;
   background: #c32c2c00;
   flex: 1;
-
-  /* flex-grow: 0; */
   flex-flow: row wrap;
   align-items: center;
   justify-content: space-around;
@@ -193,11 +169,10 @@ p {
 
 .toplineContainer {
   display: flex;
+  position: relative;
 
   width: 60vw;
-  top: 10vh;
-
-  /* flex-grow: 0; */
+  top: 8%;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -206,11 +181,8 @@ p {
 
 .bottomlineContainer {
   display: flex;
-
   width: 60vw;
   position: relative;
-
-  /* flex-grow: 0; */
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -238,9 +210,7 @@ p {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  /* background-color: #221717; */
   gap: 40px;
-  /* get rid of above later*/
 }
 
 .longInputBox {
@@ -248,9 +218,8 @@ p {
   top: 5%;
   background-color: var(--primary);
   color: var(--darktext);
-  padding: 5%;
   border-radius: 5%;
-
+  padding: 1%;
   font-family: "Josefin Sans";
   font-style: normal;
   font-weight: 500;
@@ -261,12 +230,63 @@ p {
 }
 
 .calendarContainer{
+  padding:1%;
   display: flex;
-  /* flex-flow: column nowrap; */
-  /* justify-content:space-evenly; */
+  flex-direction:column;
   gap: 5px;
   overflow:auto;
   width: 500px;
   height: 400px;
   border: 3px solid var(--darkblue);
+  position:relative;
+}
+
+.pageContainerRelative {
+  position: relative;
+  width: 100vw;
+  height: calc(92vh - 60px); /* this is the top of the hierarchy*/
+  overflow:auto;
+
+  display: inline-flex;
+  padding: 4% 0%;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgba(190, 234, 152, 0.1);
+}
+
+.calendarLine {
+  display: flex;
+  background: #c32c2c00;
+  flex: 1;
+
+  /* flex-grow: 0; */
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.calendarContainer{
+  gap:10%;
+  background-color: white;
+  color: var(--darktext);
+  border-radius: 5%;
+  padding: 1%;
+  font-family: "Josefin Sans";
+  font-style: normal;
+  font-weight: 500;
+
+}
+
+.createtoplineContainer{
+  display: flex;
+  position: relative;
+
+  width: 60vw;
+  top: 4%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }

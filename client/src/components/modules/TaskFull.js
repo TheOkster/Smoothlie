@@ -58,6 +58,13 @@ const TaskFull = (props) => {
       setter(event.target.value);
     };
   };
+  const closeTask = () => {
+    if (props.indivTaskId !== "") {
+      props.setIndivTaskId("");
+    } else {
+      setIsNewTask(false);
+    }
+  };
   const addTask = () => {
     if (taskName === "" || deadline === undefined || (hours === "0" && minutes === "0")) {
       alert(
@@ -85,7 +92,10 @@ const TaskFull = (props) => {
     if (taskName === "" || deadline === undefined || (hours === "0" && minutes === "0")) {
       alert(
         "Make sure that the task name, deadline (including the time), and duration boxes are filled!"
-      ); {/*make this actually distinct – each alert is for smth specific */}
+      );
+      {
+        /*make this actually distinct – each alert is for smth specific */
+      }
       return;
     }
 
@@ -122,8 +132,18 @@ const TaskFull = (props) => {
     //   props.setIndivTaskId(undefined);
     //   props.setTaskList(props.taskList.filter((task) => task._id != props._id));
     // });
-    props.setIndivTaskId("");
-    props.setTaskList(props.taskList.filter((task) => task._id != props._id));
+    if (props.fullDelete) {
+      props.setIndivTaskId("");
+      props.setTaskList(props.taskList.filter((task) => task._id != props._id));
+    } else {
+      del("/api/task", {
+        _id: props._id,
+      }).then(() => {
+        console.log(`Task ID: ${props.indivTaskId}`);
+        props.setIndivTaskId("");
+        props.setTaskList(props.taskList.filter((task) => task._id != props._id));
+      });
+    }
   };
   return (
     <div>
@@ -158,8 +178,7 @@ const TaskFull = (props) => {
               <input
                 type="number"
                 min="0"
-                max = "10000"
-
+                max="10000"
                 placeholder=""
                 onChange={handleChange(setHours)}
               />
@@ -217,6 +236,9 @@ const TaskFull = (props) => {
               </button>
               <button className="Task-Button" type="button" onClick={deleteTask}>
                 Delete
+              </button>
+              <button className="Task-Button" type="button" onClick={closeTask}>
+                Close
               </button>
             </div>
           )}

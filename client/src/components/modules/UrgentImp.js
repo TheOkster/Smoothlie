@@ -105,6 +105,22 @@ const UrgentImp = (props) => {
             </div>
           </div>
         </div>
+        <div className={isTabletOrMobile ? "taskgridMobile" : "taskgridContainer"}>
+          <div className="taskColumn">
+            {/* this below code was referenced from chatgpt // purpose of storing unsorted tasks */}
+            {console.log(`printing stuff ${JSON.stringify(props.taskGrid)}`)}
+            {props.taskGrid.unsorted.map(taskMarkup)}
+          </div>
+          {/* the below code was referenced from chatgpt*/}
+          <div className="gridContainer">
+            <div style={{ display: "flex" }}>
+              {["isUrgIsImp", "isUrgNotImp"].map(containerMarkup)}
+            </div>
+            <div style={{ display: "flex" }}>
+              {["notUrgIsImp", "notUrgNotImp"].map(containerMarkup)}
+            </div>
+          </div>
+        </div>
       </div>
     </DndContext>
   );
