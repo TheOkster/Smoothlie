@@ -14,6 +14,9 @@ import "../../utilities.css";
  * @param handleTaskList
  */
 
+// sources used for drag and drop: https://dndkit.com/,
+// https://medium.com/@kurniawanc/implement-drag-and-drop-feature-in-react-js-using-dnd-kit-library-4cbd7e4b8135, https://medium.com/@kurniawanc/create-multiple-drag-and-drop-list-like-trello-in-react-js-using-dnd-kit-library-b2acd9a65fab
+
 const UrgentImp = (props) => {
   if ("handleTaskList" in props) {
     props.handleTaskList(props.taskGrid);

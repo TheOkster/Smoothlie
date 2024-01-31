@@ -4,6 +4,8 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import Modal from "react-modal";
 
+// sources for react-big-calendarcalendar: https://www.npmjs.com/package/react-big-calendar, https://github.com/jquense/react-big-calendar/issues/234
+
 const localizer = momentLocalizer(moment);
 
 const Smoothie = (props) => {

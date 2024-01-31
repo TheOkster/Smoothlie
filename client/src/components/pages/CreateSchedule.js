@@ -5,12 +5,14 @@ import EnterSchedule from "../modules/EnterSchedule.js";
 import "./CreateSchedule.css";
 import "./General.css";
 import "./Mobile.css";
-import {useMediaQuery} from 'react-responsive';
+import { useMediaQuery } from "react-responsive";
+
+// sources used for react-schedule-selector code: https://github.com/bibekg/react-schedule-selector, https://medium.com/bruinmeet/react-schedule-selector-6cd5bf1f4968
 
 const CreateSchedule = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 500px)' });
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 500px)" });
 
   const [available, setAvailable] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
@@ -41,8 +43,6 @@ const CreateSchedule = (props) => {
     setAvailable(newSchedule);
   };
 
-
-  // to do: add functionality for user to enter startdate, numdays, mintime, maxtime
   return (
     <>
       {console.log(JSON.stringify(taskList))}
@@ -88,24 +88,24 @@ const CreateSchedule = (props) => {
             />
           </div>
         </div>
-      <div className="calendarContainer">
-        <ScheduleSelector
-          minTime={minTime}
-          maxTime={maxTime}
-          numDays={numDays}
-          startDate={startDate}
-          selection={available}
-          onChange={setAvailable}
-          hourlyChunks={4}
-          timeFormat="h:mma"
-        />
+        <div className="calendarContainer">
+          <ScheduleSelector
+            minTime={minTime}
+            maxTime={maxTime}
+            numDays={numDays}
+            startDate={startDate}
+            selection={available}
+            onChange={setAvailable}
+            hourlyChunks={4}
+            timeFormat="h:mma"
+          />
+        </div>
+        <div className="bottomlineContainer">
+          <button className="Button" onClick={handleClick}>
+            Submit Availability
+          </button>
+        </div>
       </div>
-      <div className="bottomlineContainer">
-        <button className="Button" onClick={handleClick}>
-          Submit Availability
-        </button>
-      </div>
-    </div>
     </>
   );
 };
