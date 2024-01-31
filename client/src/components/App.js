@@ -17,7 +17,6 @@ import "../utilities.css";
 import { socket } from "../client-socket.js";
 
 import { get, post } from "../utilities";
-import NewTask from "./pages/NewTasks.js";
 import CreateTasks from "./pages/CreateTasks.js";
 import Result from "./pages/Result.js";
 import CreateSchedule from "./pages/CreateSchedule.js";
@@ -69,7 +68,6 @@ const App = () => {
         />
         <Route path="/selecttasks" element={<SelectTasks path="/selecttasks" userId={userId} />} />
         <Route path="/taskgrid" element={<GridPage path="/taskgrid" userId={userId} />} />
-        <Route path="/newtask" element={<NewTask path="/newtask" userId={userId} />} />
         <Route path="/createtasks" element={<CreateTasks path="/createtasks" userId={userId} />} />
         <Route path="/result" element={<Result path="/result" userId={userId} />} />
         <Route path="/createschedule" element={<CreateSchedule path="/createschedule" />} />
