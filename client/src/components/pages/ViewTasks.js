@@ -2,8 +2,7 @@ import React from "react";
 import { get, del } from "../../utilities";
 import { useState } from "react";
 import Checkbox from "../modules/Checkbox";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
+
 import Task from "../modules/Task";
 import TaskFull from "../modules/TaskFull";
 import * as mongoose from "mongoose";

@@ -32,7 +32,8 @@ const TaskFull = (props) => {
 
     return `${year}-${month}-${day}T${hours}:${minutes}`;
   };
-  if (!props.isNewTask) {
+  console.log(taskName);
+  if (!props.isNewTask || !("isNewTask" in props)) {
     useEffect(() => {
       get("/api/task", { _id: props._id }).then((task) => {
         setTaskName(task.name);
@@ -135,6 +136,7 @@ const TaskFull = (props) => {
               type="text"
               placeholder=""
               className="longInputBox"
+              value={taskName}
               //"EnterTasks-taskNameInput"
               onChange={handleChange(setTaskName)}
             />
@@ -146,6 +148,7 @@ const TaskFull = (props) => {
             <input
               type="datetime-local"
               placeholder=""
+              value={deadline}
               className="EnterTasks-dateInput"
               onChange={handleDateChange}
             />
@@ -160,6 +163,7 @@ const TaskFull = (props) => {
                 min="0"
                 max="59"
                 placeholder=""
+                value={hours}
                 onChange={handleChange(setMinutes)}
               />
               <p>mins</p>
@@ -175,7 +179,7 @@ const TaskFull = (props) => {
             {/* Should probably explain what fruits are somewhere */}
             <p>Fruit: </p>
             <Dropdown
-              handleChange={handleChange(setLabel)}
+              handleChange={handleChange(setFruit)}
               // To Do: Use Not Hardcoded Label Options
               fields={["Lemons", "Avocados", "Undecided Fruit 3", "Undecided Fruit 4"]}
             />
