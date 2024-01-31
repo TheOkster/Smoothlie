@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { get, del, put, post } from "../../utilities";
 import Dropdown from "./Dropdown";
 import "./Task.css";
+
 /**
  * Component to render an online user
  * Proptypes
@@ -11,9 +12,7 @@ import "./Task.css";
  * @param {function} setIsNewTask
  * @param {Array} taskList
  * @param {Array} setTasklist
-
-/* Right now this is basically the same code as NewTasks w/o location and navigate and with
-  the fields already set */
+ */
 const TaskFull = (props) => {
   const [taskName, setTaskName] = useState("");
   const [deadline, setDeadline] = useState();
