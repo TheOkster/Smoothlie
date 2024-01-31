@@ -9,10 +9,10 @@ import TaskFull from "../modules/TaskFull";
 import * as mongoose from "mongoose";
 import "./General.css";
 import "./Mobile.css";
-import {useMediaQuery} from 'react-responsive';
+import { useMediaQuery } from "react-responsive";
 
 const CreateTasks = (props) => {
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 500px)' });
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 500px)" });
   const location = useLocation();
   const navigate = useNavigate();
   const [taskList, setTaskList] = useState(location.state?.taskList ?? []);
@@ -20,6 +20,7 @@ const CreateTasks = (props) => {
   const [isNewTask, setIsNewTask] = useState(false);
   useEffect(() => {
     // Event listener for popstate
+    // the handlePopState, window.addEventListener, and window.removeEventListener were taken from ChatGPT
     const handlePopState = (event) => {
       // Update condition based on the state
       if (event.state) {

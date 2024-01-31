@@ -14,6 +14,7 @@
   font-family: "Josefin Sans";
   font-style: normal;
   font-weight: 700;
+  flex-shrink: 1;
   font-size: 100px; /* Adjust the font size to fit within the container */
   line-height: 36px; /* Adjust line height accordingly */
   display: inline-flex;
