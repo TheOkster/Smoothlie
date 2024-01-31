@@ -32,7 +32,6 @@ const TaskFull = (props) => {
 
     return `${year}-${month}-${day}T${hours}:${minutes}`;
   };
-  console.log(taskName);
   if (!props.isNewTask || !("isNewTask" in props)) {
     useEffect(() => {
       get("/api/task", { _id: props._id }).then((task) => {
