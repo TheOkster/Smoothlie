@@ -13,7 +13,6 @@ const express = require("express");
 const User = require("./models/user");
 const Smoothie = require("./models/smoothie.js");
 const Task = require("./models/task.js");
-const Project = require("./models/project.js");
 const scheduler = require("./scheduler.js");
 const mongoose = require("mongoose");
 
@@ -167,11 +166,9 @@ router.post("/task", (req, res) => {
     name: req.body.name,
     owner: req.body.owner,
     duration: req.body.duration,
-    label: req.body.label,
     deadline: req.body.deadline,
     notes: req.body.notes,
     source: req.body.source,
-    fruit: req.body.fruit,
   });
   task.save();
   res.send(task);
@@ -183,11 +180,9 @@ router.put("/task", (req, res) => {
       name: req.body.name,
       owner: req.body.owner,
       duration: req.body.duration,
-      label: req.body.label,
       deadline: req.body.deadline,
       notes: req.body.notes,
       source: req.body.source,
-      fruit: req.body.fruit,
     },
     { new: true }
   )
