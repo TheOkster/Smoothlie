@@ -26,9 +26,9 @@
   font-family: "Pacifico";
   font-style: normal;
   font-weight: 700;
-  font-size: 100px; /* Adjust the font size to fit within the container */
-  line-height: 36px; /* Adjust line height accordingly */
-  display: flex;
+  letter-spacing: 0.2em;
+  font-size: 160px; /* Adjust the font size to fit within the container */
+  line-height: 50px; /* Adjust line height accordingly */
   text-align: center;
   color: var(--pink);
 }

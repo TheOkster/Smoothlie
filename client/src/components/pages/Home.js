@@ -24,9 +24,7 @@ const Home = ({ userId, handleLogin, handleLogout }) => {
         <div className="Home-container">
           <div className="Home-logo">
             <h1>Smooth</h1>
-            <h1>
-              <div className="Home-l">l</div>
-            </h1>
+            <h1 className="Home-l">l</h1>
             <h1>ie</h1>
           </div>
           <div className="buttonContainer">
