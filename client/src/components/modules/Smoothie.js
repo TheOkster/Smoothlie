@@ -31,6 +31,7 @@ const Smoothie = (props) => {
         onSelectEvent={handleSelectEvent}
       />
 
+      {/* consulted chatgpt and https://www.npmjs.com/package/react-modal for some of the code about Modals */}
       <Modal
         isOpen={selectedEvent !== null}
         onRequestClose={closeModal}
@@ -43,7 +44,7 @@ const Smoothie = (props) => {
           },
         }}
       >
-        {selectedEvent && (
+        {selectedEvent ? (
           <div>
             <h2> {selectedEvent.title} </h2>
             <ul>
@@ -52,16 +53,12 @@ const Smoothie = (props) => {
                 {selectedEvent.important ? null : "Not"} Important
               </li>
               <li>
-                {" "}
-                <b> Label: </b> {selectedEvent.label}{" "}
-              </li>
-              <li>
                 <b>Additional Information: </b> {selectedEvent.description}
               </li>
             </ul>
             <button onClick={closeModal}> Close </button>
           </div>
-        )}
+        ) : null}
       </Modal>
     </div>
   );

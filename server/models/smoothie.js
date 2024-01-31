@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+/* Got help from a piazza post for the eventschema */
 const EventSchema = new mongoose.Schema({
   title: String,
   start: Date,

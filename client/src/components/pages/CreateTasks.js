@@ -47,7 +47,7 @@ const CreateTasks = (props) => {
   return (
     <>
       <div className="pageContainer">
-        <div className="toplineContainer">
+        <div className="createtoplineContainer">
           <h1>Your current tasks are: </h1>
         </div>
         <div className="tasklistContainer">
