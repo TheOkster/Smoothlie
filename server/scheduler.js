@@ -209,6 +209,27 @@ const formTasksQueue = (tasks) => {
   return queue;
 };
 
+const cleanEvents = (events) => {
+  let changed = true;
+  let output = [...events];
+
+  while (changed) {
+    changed = false;
+    for (let i = 0; i < output.length - 1; i++) {
+      if (
+        output[i].title === output[i + 1].title &&
+        output[i].end.getTime() == output[i + 1].start.getTime()
+      ) {
+        output[i + 1].start = output[i].start;
+        output = output.slice(i + 1);
+        changed = true;
+        break;
+      }
+    }
+  }
+  return output;
+};
+
 const createSchedule = (tasks, schedule) => {
   // returns an array where the first element is a boolean indicating if all tasks were scheduled
   // and second element is an array of events that were scheduled
@@ -241,7 +262,7 @@ const createSchedule = (tasks, schedule) => {
     if (Date.now() - startTime > 10 * 1000) {
       // ten seconds have passed and haven't fully scheduled everything -- break from loop
       console.log("could not find schedule that works for all tasks");
-      return [false, newSchedule];
+      return [false, cleanEvents(newSchedule)];
     }
 
     const currentTask = tasksQueue.shift(); // get first element from tasks list and remove it
@@ -271,7 +292,7 @@ const createSchedule = (tasks, schedule) => {
     }
   }
 
-  return [true, newSchedule];
+  return [true, cleanEvents(newSchedule)];
 };
 
 // testing
@@ -284,42 +305,42 @@ const myTasks = [
     urgent: true,
     important: true,
   },
-  {
-    name: "be cooler",
-    duration: 60,
-    deadline: new Date(2024, 1, 26, 1, 0, 0),
-    urgent: true,
-    important: false,
-  },
-  {
-    name: "be coolest",
-    duration: 60,
-    deadline: new Date(2024, 1, 27, 1, 0, 0),
-    urgent: false,
-    important: true,
-  },
-  {
-    name: "testing",
-    duration: 60,
-    deadline: new Date(2024, 1, 25, 1, 0, 0),
-    urgent: true,
-    important: false,
-  },
-  {
-    name: "be cooler",
-    duration: 60,
-    deadline: new Date(2024, 1, 26, 3, 0, 0),
-    urgent: false,
-    important: true,
-  },
+  // {
+  //   name: "be cooler",
+  //   duration: 60,
+  //   deadline: new Date(2024, 1, 26, 1, 0, 0),
+  //   urgent: true,
+  //   important: false,
+  // },
+  // {
+  //   name: "be coolest",
+  //   duration: 60,
+  //   deadline: new Date(2024, 1, 27, 1, 0, 0),
+  //   urgent: false,
+  //   important: true,
+  // },
+  // {
+  //   name: "testing",
+  //   duration: 60,
+  //   deadline: new Date(2024, 1, 25, 1, 0, 0),
+  //   urgent: true,
+  //   important: false,
+  // },
+  // {
+  //   name: "be cooler",
+  //   duration: 60,
+  //   deadline: new Date(2024, 1, 26, 3, 0, 0),
+  //   urgent: false,
+  //   important: true,
+  // },
 
-  {
-    name: "hellloooooo",
-    duration: 15,
-    deadline: new Date(2024, 1, 21, 5, 15, 0),
-    urgent: true,
-    important: true,
-  },
+  // {
+  //   name: "hellloooooo",
+  //   duration: 15,
+  //   deadline: new Date(2024, 1, 21, 5, 15, 0),
+  //   urgent: true,
+  //   important: true,
+  // },
 ];
 
 console.log(formTasksQueue(myTasks));
@@ -373,8 +394,8 @@ const schedule2 = [
 
 // console.log(scheduleObj);
 
-// console.log(createSchedule(myTasks, schedule));
-
+const output = createSchedule(myTasks, schedule);
+console.log(cleanEvents(output[1]));
 // console.log(createSchedule(tasks2, schedule2));
 
 module.exports = {
