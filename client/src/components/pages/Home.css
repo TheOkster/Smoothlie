@@ -1,38 +1,39 @@
 .Home-container {
-    width: 100vw;
-    flex-shrink: 0; /* change this later */
-    flex-direction: column;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    align-items: center; /* Center items vertically */
-    /* background-color: brown; */
+  width: 100vw;
+  flex-shrink: 0; /* change this later */
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center; /* Center items vertically */
+  /* background-color: brown; */
 }
 
 .Home-logo {
-    /* Remove left and top properties */
-    font-family: 'Josefin Sans';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 100px; /* Adjust the font size to fit within the container */
-    line-height: 36px; /* Adjust line height accordingly */
-    display: flex;
-    text-align: center;
-    color: var(--pink);
+  /* Remove left and top properties */
+  font-family: "Josefin Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 100px; /* Adjust the font size to fit within the container */
+  line-height: 36px; /* Adjust line height accordingly */
+  display: inline-flex;
+  text-align: center;
+  color: var(--pink);
 }
-.Home-l { /*figure this out later or just insert a photo*/
-    /* Remove left and top properties */
-    font-family: 'Pacifico', cursive;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 100px; /* Adjust the font size to fit within the container */
-    line-height: 36px; /* Adjust line height accordingly */
-    display: flex;
-    text-align: left;
-    color: var(--pink);
+.Home-l {
+  /*figure this out later or just insert a photo*/
+  /* Remove left and top properties */
+  font-family: "Pacifico";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 100px; /* Adjust the font size to fit within the container */
+  line-height: 36px; /* Adjust line height accordingly */
+  display: flex;
+  text-align: center;
+  color: var(--pink);
 }
 
 .Home-centerButton {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
