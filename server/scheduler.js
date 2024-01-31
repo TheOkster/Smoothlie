@@ -142,6 +142,73 @@ const scheduleTask = (newSchedule, scheduleObj, task, time, blockLength) => {
   updateSchedule(scheduleObj, time, blockLength, duration);
 };
 
+const UrgentImpSort = (tasks) => {
+  const output = {
+    isUrgentIsImp: [],
+    isUrgentNotImp: [],
+    notUrgentIsImp: [],
+    notUrgentNotImp: [],
+  };
+  for (task of tasks) {
+    if (task.urgent && task.important) {
+      output.isUrgentIsImp.push(task);
+    } else if (task.urgent && !task.important) {
+      output.isUrgentNotImp.push(task);
+    } else if (!task.urgent && task.important) {
+      output.notUrgentIsImp.push(task);
+    } else {
+      output.notUrgentNotImp.push(task);
+    }
+  }
+
+  return output;
+};
+
+const formTasksQueue = (tasks) => {
+  let queue = [];
+  const UrgentImp = UrgentImpSort(tasks);
+  const sortByDeadline = (task1, task2) => {
+    return compareAsc(task1.deadline, task2.deadline);
+  };
+  // add all the urgent and important tasks first
+  const isUrgentIsImp = [...UrgentImp.isUrgentIsImp];
+  isUrgentIsImp.sort(sortByDeadline);
+  queue = queue.concat(isUrgentIsImp);
+  let middle = [];
+
+  // add all the other tasks in the middle !
+  const notUrgentIsImp = [...UrgentImp.notUrgentIsImp];
+  notUrgentIsImp.sort(sortByDeadline);
+  const isUrgentNotImp = [...UrgentImp.isUrgentNotImp].sort(sortByDeadline);
+
+  console.log(`not urgent and important ${JSON.stringify(notUrgentIsImp)}`);
+
+  let shorter = [];
+  let longer = [];
+
+  if (notUrgentIsImp.length >= isUrgentNotImp.length) {
+    longer = notUrgentIsImp;
+    shorter = isUrgentNotImp;
+  } else {
+    longer = isUrgentNotImp;
+    shorter = notUrgentIsImp;
+  }
+
+  for (let i = 0; i < shorter.length; i++) {
+    middle.push(notUrgentIsImp[i]);
+    middle.push(isUrgentNotImp[i]);
+  }
+
+  // add all the tasks of the longer one
+  middle = middle.concat(longer.slice(shorter.length));
+  queue = queue.concat(middle);
+
+  // add all the not urgent and not important tasks last
+  queue = queue.concat([...UrgentImp.notUrgentNotImp].sort(sortByDeadline));
+
+  return queue;
+};
+
 const createSchedule = (tasks, schedule) => {
   // returns an array where the first element is a boolean indicating if all tasks were scheduled
   // and second element is an array of events that were scheduled
@@ -163,22 +230,26 @@ const createSchedule = (tasks, schedule) => {
   const tasksObj = formatTasks(tasks_new);
   const scheduleObj = getFreeTimes(schedule_new);
   // array of all the tasks sorted so soonest deadline task is first
-  let tasksByDeadline = [...tasks_new].sort((task1, task2) => {
-    compareAsc(task1.deadline, task2.deadline);
-  });
+  let tasksQueue = formTasksQueue(tasks);
 
   const newSchedule = [];
 
   const startTime = Date.now();
 
-  while (tasksByDeadline.length > 0) {
+  while (tasksQueue.length > 0) {
+    // change to 15 minute block but need to take into account the case where it's a weird amount of time --- what's a better way to do this?
     if (Date.now() - startTime > 10 * 1000) {
       // ten seconds have passed and haven't fully scheduled everything -- break from loop
       console.log("could not find schedule that works for all tasks");
       return [false, newSchedule];
     }
 
-    const currentTask = tasksByDeadline.shift(); // get first element from tasks list and remove it
+    const currentTask = tasksQueue.shift(); // get first element from tasks list and remove it
+
+    // if (currentTask.duration < 15) {
+    //   console.log("could not schedule all tasks.");
+    //   return [false, newSchedule];
+    // }
 
     // find a time that works for the current task
     const res = findTime(scheduleObj, currentTask);
@@ -188,12 +259,12 @@ const createSchedule = (tasks, schedule) => {
     if (!time) {
       // couldn't find a time block to do entire task
       // split task in half and try scheduling that instead
-      const task1 = currentTask;
+      const task1 = { ...currentTask };
       task1.duration = Math.floor(currentTask.duration / 2);
-      const task2 = currentTask;
+      const task2 = { ...currentTask };
       task2.duration = Math.ceil(currentTask.duration / 2);
       newTasks = [task1, task2];
-      tasksByDeadline = newTasks.concat(tasksByDeadline);
+      tasksQueue = newTasks.concat(tasksQueue);
     } else {
       // schedule task for the found time block
       scheduleTask(newSchedule, scheduleObj, currentTask, time, blockLength);
@@ -206,10 +277,52 @@ const createSchedule = (tasks, schedule) => {
 // testing
 
 const myTasks = [
-  { name: "be cool", duration: 30, deadline: new Date(2024, 1, 25, 1, 0, 0) },
-  { name: "be cooler", duration: 60, deadline: new Date(2024, 1, 26, 1, 0, 0) },
-  { name: "hellloooooo", duration: 15, deadline: new Date(2024, 1, 28, 5, 15, 0) },
+  {
+    name: "be cool",
+    duration: 67,
+    deadline: new Date(2024, 1, 25, 1, 0, 0),
+    urgent: true,
+    important: true,
+  },
+  {
+    name: "be cooler",
+    duration: 60,
+    deadline: new Date(2024, 1, 26, 1, 0, 0),
+    urgent: true,
+    important: false,
+  },
+  {
+    name: "be coolest",
+    duration: 60,
+    deadline: new Date(2024, 1, 27, 1, 0, 0),
+    urgent: false,
+    important: true,
+  },
+  {
+    name: "testing",
+    duration: 60,
+    deadline: new Date(2024, 1, 25, 1, 0, 0),
+    urgent: true,
+    important: false,
+  },
+  {
+    name: "be cooler",
+    duration: 60,
+    deadline: new Date(2024, 1, 26, 3, 0, 0),
+    urgent: false,
+    important: true,
+  },
+
+  {
+    name: "hellloooooo",
+    duration: 15,
+    deadline: new Date(2024, 1, 21, 5, 15, 0),
+    urgent: true,
+    important: true,
+  },
 ];
+
+console.log(formTasksQueue(myTasks));
 
 const tasks2 = [
   {
@@ -229,9 +342,9 @@ const schedule = [
   new Date(2024, 1, 24, 9, 0, 0),
   new Date(2024, 1, 24, 9, 15, 0),
   new Date(2024, 1, 24, 9, 30, 0),
-  new Date(2024, 1, 25, 8, 30, 0),
-  new Date(2024, 1, 25, 8, 45, 0),
-  new Date(2024, 1, 21, 11, 15, 0),
+  // new Date(2024, 1, 25, 8, 30, 0),
+  // new Date(2024, 1, 25, 8, 45, 0),
+  // new Date(2024, 1, 21, 11, 15, 0),
 ];
 
 const schedule2 = [
