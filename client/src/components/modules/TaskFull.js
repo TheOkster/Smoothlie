@@ -58,6 +58,13 @@ const TaskFull = (props) => {
       setter(event.target.value);
     };
   };
+  const closeTask = () => {
+    if (props.indivTaskId !== "") {
+      props.setIndivTaskId("");
+    } else {
+      setIsNewTask(false);
+    }
+  };
   const addTask = () => {
     if (taskName === "" || deadline === undefined || (hours === "0" && minutes === "0")) {
       alert(
@@ -229,6 +236,9 @@ const TaskFull = (props) => {
               </button>
               <button className="Task-Button" type="button" onClick={deleteTask}>
                 Delete
+              </button>
+              <button className="Task-Button" type="button" onClick={closeTask}>
+                Close
               </button>
             </div>
           )}
