@@ -4,7 +4,9 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import Modal from "react-modal";
 
-// sources for react-big-calendarcalendar: https://www.npmjs.com/package/react-big-calendar, https://github.com/jquense/react-big-calendar/issues/234
+// sources for react-big-calendar code: https://www.npmjs.com/package/react-big-calendar,
+// https://github.com/jquense/react-big-calendar/issues/234, https://github.com/jquense/react-big-calendar,
+// https://github.com/jquense/react-big-calendar/issues/278, https://stackoverflow.com/questions/55737134/how-to-get-selected-event-in-react-big-calendar
 
 const localizer = momentLocalizer(moment);
 
