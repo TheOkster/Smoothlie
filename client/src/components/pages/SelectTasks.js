@@ -23,6 +23,7 @@ const SelectTasks = (props) => {
             <Checkbox
               for={task._id}
               text={task.name}
+              key={task._id}
               handleChange={(event) => {
                 // TODO: Make this less slow
                 event.target.checked
