@@ -20,7 +20,7 @@ const Droppable = (props) => {
     // note --- will have to come up with better system for id in case user has two tasks with same name
     const markup = [];
     for (const task of Array.from(tasks)) {
-      markup.push(<Draggable id={task} key={task} text={task} />);
+      markup.push(<Draggable id={task._id} key={task._id} text={task.name} />);
     }
     return markup;
   };
