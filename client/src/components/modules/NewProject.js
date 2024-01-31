@@ -23,7 +23,7 @@ const NewProject = (props) => {
   const [notes, setNotes] = useState("");
   // Add Error checking
   const convertToDateTimeLocalString = (date) => {
-    // Taken from StackOverflow
+    // Taken from StackOverflow: https://stackoverflow.com/questions/30166338/setting-value-of-datetime-local-from-date
     const year = date.getFullYear();
     const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const day = date.getDate().toString().padStart(2, "0");
