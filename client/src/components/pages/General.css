@@ -193,6 +193,7 @@ p {
 
 .toplineContainer {
   display: flex;
+  position: relative;
 
   width: 60vw;
   top: 10vh;
@@ -248,9 +249,8 @@ p {
   top: 5%;
   background-color: var(--primary);
   color: var(--darktext);
-  padding: 5%;
   border-radius: 5%;
-
+  padding: 1%;
   font-family: "Josefin Sans";
   font-style: normal;
   font-weight: 500;
@@ -261,7 +261,9 @@ p {
 }
 
 .calendarContainer{
+  padding:1%;
   display: flex;
+  flex-direction:column;
   /* flex-flow: column nowrap; */
   /* justify-content:space-evenly; */
   gap: 5px;
@@ -269,4 +271,45 @@ p {
   width: 500px;
   height: 400px;
   border: 3px solid var(--darkblue);
+  position:relative;
+}
+
+.pageContainerRelative {
+  position: relative;
+  width: 100vw;
+  height: calc(92vh - 60px); /* this is the top of the hierarchy*/
+  /* top: var(--navbar--height); */
+  overflow:auto;
+
+  display: inline-flex;
+  padding: 4% 0%;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  /* row-gap: 10%; */
+  background-color: rgba(190, 234, 152, 0.1);
+}
+
+.calendarLine {
+  display: flex;
+  background: #c32c2c00;
+  flex: 1;
+
+  /* flex-grow: 0; */
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.calendarContainer{
+  gap:10%;
+  background-color: white;
+  color: var(--darktext);
+  border-radius: 5%;
+  padding: 1%;
+  font-family: "Josefin Sans";
+  font-style: normal;
+  font-weight: 500;
+
 }
