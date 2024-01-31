@@ -13,6 +13,7 @@ const express = require("express");
 const User = require("./models/user");
 const Smoothie = require("./models/smoothie.js");
 const Task = require("./models/task.js");
+const Project = require("./models/project.js");
 const scheduler = require("./scheduler.js");
 const mongoose = require("mongoose");
 
@@ -94,6 +95,7 @@ router.get("/task", (req, res) => {
     })
     .catch((err) => res.status(500).send("Internal Server Error"));
 });
+
 router.get("/smoothiesbyuser", (req, res) => {
   if (!req.query.owner) {
     return res.status(400).send({ error: "No Owner selected" });
@@ -127,6 +129,24 @@ router.get("/tasks", (req, res) => {
       res.send(tasks);
     })
     .catch((err) => res.status(500).send("Internal Server Error"));
+});
+router.get("/projects", (req, res) => {
+  if (!req.query.owner) {
+    return res.status(400).send({ error: "No Owner selected" });
+  }
+  Project.find({ owner: req.query.owner })
+    .then((projects) => {
+      res.send(projects);
+    })
+    .catch((err) => res.status(500).send("Internal Server Error"));
+});
+router.post("/project", (req, res) => {
+  const project = new Project({
+    name: req.body.name,
+    owner: req.body.owner,
+  });
+  project.save();
+  res.send(project);
 });
 router.post("/smoothie", (req, res) => {
   // TODO: Add error checking?

@@ -8,7 +8,7 @@ import TaskFull from "../modules/TaskFull.js";
 import TaskCheckbox from "../modules/TaskCheckbox.js";
 import "./General.css";
 import "./Mobile.css";
-import {useMediaQuery} from 'react-responsive'
+import { useMediaQuery } from "react-responsive";
 
 const SelectTasks = (props) => {
   if (!props.userId) {
@@ -17,8 +17,8 @@ const SelectTasks = (props) => {
   const navigate = useNavigate();
   const [possibleTaskList, setPossibleTaskList] = useState([]);
   const [checkedTasks, setCheckedTasks] = useState(new Set());
-  const [indivTaskId, setIndivTaskId] = useState(undefined);
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 500px)' })
+  const [indivTaskId, setIndivTaskId] = useState("");
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 500px)" });
 
   useEffect(() => {
     get("/api/tasks", { owner: props.userId }).then((tasks) => setPossibleTaskList(tasks));
@@ -29,7 +29,9 @@ const SelectTasks = (props) => {
       <div className="toplineContainer">
         <h1>Re-use tasks you've previously made!</h1>
       </div>
-      <div className={isTabletOrMobile ? "tasklistContainerMobile" : "tasklistContainer"}> {/*tasklist container here*/}
+      <div className={isTabletOrMobile ? "tasklistContainerMobile" : "tasklistContainer"}>
+        {" "}
+        {/*tasklist container here*/}
         {possibleTaskList.length > 0 ? (
           possibleTaskList.map((task) => (
             <TaskCheckbox
@@ -54,9 +56,9 @@ const SelectTasks = (props) => {
           /* add smth like "proceed state is false" or smth */
         )}
         <Modal
-          isOpen={indivTaskId !== undefined}
+          isOpen={indivTaskId !== ""}
           onRequestClose={() => {
-            setIndivTaskId(undefined);
+            setIndivTaskId("");
           }}
           style={{
             content: {
@@ -68,9 +70,11 @@ const SelectTasks = (props) => {
         >
           <TaskFull
             _id={indivTaskId}
+            indivTaskId={indivTaskId}
             setIndivTaskId={setIndivTaskId}
             taskList={possibleTaskList}
             setTaskList={setPossibleTaskList}
+            fullDelete={true}
             {...props}
           />
         </Modal>
