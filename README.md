@@ -1,3 +1,27 @@
+SOURCES: 
+
+We used chatgpt and MDN webdocs for some CSS styling. 
+
+React dnd kit:
+https://dndkit.com/
+https://medium.com/@kurniawanc/implement-drag-and-drop-feature-in-react-js-using-dnd-kit-library-4cbd7e4b8135
+https://medium.com/@kurniawanc/create-multiple-drag-and-drop-list-like-trello-in-react-js-using-dnd-kit-library-b2acd9a65fab
+
+
+react-big-calendar:
+https://www.npmjs.com/package/react-big-calendar
+
+react-schedule-selector: 
+https://medium.com/bruinmeet/react-schedule-selector-6cd5bf1f4968
+
+
+Date: 
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+
+Map: 
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
+
+
 Here are the instructions they provided. We can change the README later
 Also make sure to copy the .env.example and save it to a new file called .env with the SRV replaced with ours (should be in the group chat).
 
