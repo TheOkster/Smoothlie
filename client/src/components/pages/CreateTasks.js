@@ -1,6 +1,6 @@
 import React from "react";
 import { get, del } from "../../utilities";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Checkbox from "../modules/Checkbox";
 import Button from "react-bootstrap/Button";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -17,6 +17,21 @@ const CreateTasks = (props) => {
   const [taskList, setTaskList] = useState(location.state?.taskList ?? []);
   const [indivTaskId, setIndivTaskId] = useState();
   const [isNewTask, setIsNewTask] = useState(false);
+  useEffect(() => {
+    // Event listener for popstate
+    const handlePopState = (event) => {
+      // Update condition based on the state
+      if (event.state) {
+        setIndivTaskId(event.state.indivTaskId);
+        setIsNewTask(event.state.isNewTask);
+      }
+    };
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, []); // Run only once on component mount
   //  console.log(taskList);
   if (!props.userId) {
     return <div>Please login before you use Smoothlie!</div>;
@@ -39,6 +54,7 @@ const CreateTasks = (props) => {
                 onDelete={handleDelete}
                 onTitleClick={(_id) => {
                   setIndivTaskId(_id);
+                  history.pushState({ indivTaskId: undefined, isNewTask: false }, "");
                 }}
               />
             ))
@@ -49,6 +65,7 @@ const CreateTasks = (props) => {
             className="Button"
             onClick={() => {
               setIsNewTask(true);
+              history.pushState({ indivTaskId: undefined, isNewTask: false }, "");
             }}
           >
             Add New Task

@@ -115,13 +115,15 @@ const TaskFull = (props) => {
   };
 
   const deleteTask = () => {
-    del("/api/task", {
-      _id: props._id,
-    }).then(() => {
-      console.log(`Task ID: ${props.indivTaskId}`);
-      props.setIndivTaskId(undefined);
-      props.setTaskList(props.taskList.filter((task) => task._id != props._id));
-    });
+    // del("/api/task", {
+    //   _id: props._id,
+    // }).then(() => {
+    //   console.log(`Task ID: ${props.indivTaskId}`);
+    //   props.setIndivTaskId(undefined);
+    //   props.setTaskList(props.taskList.filter((task) => task._id != props._id));
+    // });
+    props.setIndivTaskId(undefined);
+    props.setTaskList(props.taskList.filter((task) => task._id != props._id));
   };
   return (
     <div className="pageContainer">
@@ -138,7 +140,6 @@ const TaskFull = (props) => {
               onChange={handleChange(setTaskName)}
             />
           </div>
-
         </div>
         <div className="line">
           <div className="labelContainer">
@@ -153,20 +154,13 @@ const TaskFull = (props) => {
           <div className="labelContainer">
             <div className="smallContainer">
               <p>Duration: </p>
-              <input
-                type="number"
-                min="0"
-                placeholder=""
-
-                onChange={handleChange(setHours)}
-              />
+              <input type="number" min="0" placeholder="" onChange={handleChange(setHours)} />
               <p>hrs</p>
               <input
                 type="number"
                 min="0"
                 max="59"
                 placeholder=""
-
                 onChange={handleChange(setMinutes)}
               />
               <p>mins</p>
@@ -180,12 +174,12 @@ const TaskFull = (props) => {
         <div className="line">
           <div className="labelContainer">
             {/* Should probably explain what fruits are somewhere */}
-              <p>Fruit: </p>
-              <Dropdown
-                handleChange={handleChange(setLabel)}
-                // To Do: Use Not Hardcoded Label Options
-                fields={["Lemons", "Avocados", "Undecided Fruit 3", "Undecided Fruit 4"]}
-              />
+            <p>Fruit: </p>
+            <Dropdown
+              handleChange={handleChange(setLabel)}
+              // To Do: Use Not Hardcoded Label Options
+              fields={["Lemons", "Avocados", "Undecided Fruit 3", "Undecided Fruit 4"]}
+            />
           </div>
           <div className="labelContainer">
             <p>Project: </p>
