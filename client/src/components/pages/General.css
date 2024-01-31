@@ -196,7 +196,7 @@ p {
   position: relative;
 
   width: 60vw;
-  top: 10vh;
+  top: 8%;
 
   /* flex-grow: 0; */
   flex-direction: row;
