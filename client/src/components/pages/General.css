@@ -290,3 +290,24 @@ p {
   justify-content: center;
   gap: 10px;
 }
+
+.sideContainer{
+  display:flex;
+  flex-direction:column;
+  gap: 100px;
+  justify-content: center;
+}
+
+.wholeContainer{
+  display: flex;
+  flex-direction: row;
+
+}
+
+.topContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 300px;
+  left:300px;
+}

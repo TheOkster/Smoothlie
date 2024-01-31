@@ -81,43 +81,38 @@ const UrgentImp = (props) => {
 
   return (
     <DndContext onDragEnd={handleDragEnd}>
+      <div className="toplineContainer">
+        <h1>Prioritise your tasks!</h1>
+      </div>
+      <div className="topContainer">
+        <h5>Important</h5>
+        <h5>Not Important</h5>
+      </div>
       <div className="smallContainer">
         <div className={isTabletOrMobile ? "taskgridMobile" : "taskgridContainer"}>
           <div className="taskColumn">
-            {/* Render all tasks not in a container */}
+            {/* below line of code was referenced from chatgpt */}
             {props.taskGrid.unsorted.map(taskMarkup)}
           </div>
-          {/* Render 2x2 grid */}
+
           <div className="wholeContainer">
+            <div className="sideContainer">
+              <div className="u-sideways-text">
+                <h5>Urgent</h5>
+              </div>
+              <div className="u-sideways-text">
+                <h5>Not Urgent</h5>
+              </div>
+            </div>
             <div className="gridContainer">
               <div className="u-flex">
-                {/* <h5>Urgent</h5>
-                <h5>Important</h5> */}
-                {["isUrgIsImp"].map(containerMarkup)}
-                {/* <h6 className="u-textCenter">Not Important</h6> */}
-                {["isUrgNotImp"].map(containerMarkup)}
-                {/* {["isUrgIsImp", "isUrgNotImp"].map(containerMarkup)} */}
+
+                {["isUrgIsImp", "isUrgNotImp"].map(containerMarkup)}
               </div>
               <div className="u-flex">
                 {["notUrgIsImp"].map(containerMarkup)}
                 {["notUrgNotImp"].map(containerMarkup)}
               </div>
-            </div>
-          </div>
-        </div>
-        <div className={isTabletOrMobile ? "taskgridMobile" : "taskgridContainer"}>
-          <div className="taskColumn">
-            {/* this below code was referenced from chatgpt // purpose of storing unsorted tasks */}
-            {console.log(`printing stuff ${JSON.stringify(props.taskGrid)}`)}
-            {props.taskGrid.unsorted.map(taskMarkup)}
-          </div>
-          {/* the below code was referenced from chatgpt*/}
-          <div className="gridContainer">
-            <div style={{ display: "flex" }}>
-              {["isUrgIsImp", "isUrgNotImp"].map(containerMarkup)}
-            </div>
-            <div style={{ display: "flex" }}>
-              {["notUrgIsImp", "notUrgNotImp"].map(containerMarkup)}
             </div>
           </div>
         </div>

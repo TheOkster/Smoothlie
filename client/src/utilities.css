@@ -85,6 +85,9 @@ form {
 
 .u-sideways-text {
   transform: rotate(-90deg);
+  justify-content: space-between;
+  width:max-content;
+  height: min-content;
   /* citation: https://css-tricks.com/snippets/css/text-rotation/ */
 }
 
